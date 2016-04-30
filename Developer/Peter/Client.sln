@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25123.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeHub.Client.ServiceHost", "..\..\Source\Client\HomeHub.Client.ServiceHost\HomeHub.Client.ServiceHost.csproj", "{AFC37F68-E2A9-413B-A567-EA950F0B915A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeHub.Client.Service", "..\..\Source\Client\HomeHub.Client.Service\HomeHub.Client.Service.csproj", "{29A70090-BC5D-4D95-9C89-1C911BCC3AD5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AFC37F68-E2A9-413B-A567-EA950F0B915A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AFC37F68-E2A9-413B-A567-EA950F0B915A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AFC37F68-E2A9-413B-A567-EA950F0B915A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AFC37F68-E2A9-413B-A567-EA950F0B915A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{29A70090-BC5D-4D95-9C89-1C911BCC3AD5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29A70090-BC5D-4D95-9C89-1C911BCC3AD5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29A70090-BC5D-4D95-9C89-1C911BCC3AD5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29A70090-BC5D-4D95-9C89-1C911BCC3AD5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
