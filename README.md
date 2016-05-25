@@ -1,2 +1,2 @@
-# smarthome
+# GrIdDlE
 ##This is the front end of smart home.
