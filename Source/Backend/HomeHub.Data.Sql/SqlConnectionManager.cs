@@ -9,23 +9,24 @@ using System.Threading.Tasks;
 
 namespace HomeHub.Data.Sql
 {
-    internal static class SqlConnectionManager
+    using System.Configuration;
+
+    internal class SqlConnectionManager
     {
-        private static string ConnectionString
+        private readonly string ConnectionString;
+
+        public SqlConnectionManager(string connectionString)
         {
-            get
-            {
-                return "";
-            }
+            this.ConnectionString = connectionString;
         }
 
-        public static async Task ExecuteSql(string stproc, Action<SqlParameterCollection> parameters, Action<SqlDataReader> read, CancellationToken token)
+        public async Task ExecuteSql(string stproc, Action<SqlParameterCollection> parameters, Action<SqlDataReader> read, CancellationToken token)
         {
             HomeHubEventSource.Log.MethodEnter();
 
             HomeHubEventSource.Log.FetchingData(stproc);
 
-            using (var connection = new SqlConnection(SqlConnectionManager.ConnectionString))
+            using (var connection = new SqlConnection(this.ConnectionString))
             {
 
                 await connection.OpenAsync(token);
@@ -44,13 +45,13 @@ namespace HomeHub.Data.Sql
             HomeHubEventSource.Log.MethodLeave();
         }
 
-        public static async Task ExecuteSql(string stproc, Action<SqlParameterCollection> parameters, CancellationToken token)
+        public async Task ExecuteSql(string stproc, Action<SqlParameterCollection> parameters, CancellationToken token)
         {
             HomeHubEventSource.Log.MethodEnter();
 
             HomeHubEventSource.Log.FetchingData(stproc);
 
-            using (var connection = new SqlConnection(SqlConnectionManager.ConnectionString))
+            using (var connection = new SqlConnection(this.ConnectionString))
             {
 
                 await connection.OpenAsync(token);

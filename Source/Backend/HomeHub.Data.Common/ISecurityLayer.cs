@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -10,10 +11,10 @@ namespace HomeHub.Data.Common
 
     public interface ISecurityLayer
     {
-        Task<AuthenticationToken> CreateUser(CreateUser user);
+        Task<AuthenticationToken> CreateUser(CreateUser user, IPAddress ip);
 
-        Task<AuthenticationToken> LoginUser(UserPass userpass);
+        Task<AuthenticationToken> LoginUser(UserPass userpass, IPAddress ip);
 
-        Task<User> GetUser(string token);
+        Task<User> GetUser(string token, IPAddress ip);
     }
 }

@@ -10,8 +10,14 @@ namespace HomeHub.Service.Common.Data
 {
     public static class DataLayer
     {
-        public readonly static IDataLayer Instance = new SqlDataLayer();
+        public static IDataLayer Instance { get; private set; }
 
-        public readonly static ISecurityLayer Security = new SqlDataLayer();
+        public static ISecurityLayer Security { get; private set; }
+
+        public static void Initialize(string connectionString)
+        {
+            Instance = new SqlDataLayer(connectionString);
+            Security = new SqlDataLayer(connectionString);
+        }
     }
 }

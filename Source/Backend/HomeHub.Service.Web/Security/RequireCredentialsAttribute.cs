@@ -10,6 +10,7 @@ using System.Web;
 using System.Web.Http;
 using System.Web.Http.Controllers;
 using System.Web.Http.Filters;
+using HomeHub.Service.Common.Helpers;
 
 namespace HomeHub.Service.Web.Security
 {
@@ -40,9 +41,11 @@ namespace HomeHub.Service.Web.Security
 
             User user = null;
 
+            var ip = IPAddressHelper.GetIPAddress(actionContext.Request);
+
             try
             {
-                user = await DataLayer.Security.GetUser(header);
+                user = await DataLayer.Security.GetUser(header, ip);
             }
             catch (UnauthorizedAccessException)
             {

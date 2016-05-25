@@ -33,6 +33,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -42,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data\DataLayer.cs" />
+    <Compile Include="Helpers\IPAddressHelper.cs" />
     <Compile Include="Models\ActionArgumentModel.cs" />
     <Compile Include="Models\DeviceActionModel.cs" />
     <Compile Include="Models\DeviceModel.cs" />
