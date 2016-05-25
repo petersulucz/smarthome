@@ -2,6 +2,7 @@
     @email NVARCHAR(128)
    ,@password BINARY(64)
    ,@token BINARY(64)
+   ,@ip BINARY(16)
 AS
     BEGIN TRANSACTION
 
@@ -33,6 +34,9 @@ AS
             ,@expiration
             ,@UtcNow
         )
+
+    EXECUTE auth.logaccess   @id = @id
+                            ,@ip = @ip
 
     COMMIT TRANSACTION
 

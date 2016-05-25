@@ -5,6 +5,7 @@
    ,@salt BINARY(64)
    ,@password BINARY(64)
    ,@token BINARY(64)
+   ,@ip BINARY(16)
    ,@roles auth.rolesList READONLY
 
 AS
@@ -59,6 +60,9 @@ AS
             @id,
             rl.claim
         FROM @roles rl
+
+        EXECUTE auth.logaccess   @id = @id
+                                ,@ip = @ip
 
     COMMIT TRANSACTION
 

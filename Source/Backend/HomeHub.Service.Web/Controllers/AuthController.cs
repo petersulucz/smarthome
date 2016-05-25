@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using HomeHub.Service.Common.Helpers;
 
 namespace HomeHub.Service.Web.Controllers
 {
@@ -24,7 +25,8 @@ namespace HomeHub.Service.Web.Controllers
         [Route("create")]
         public async Task<AuthenticationToken> CreateAccount(User user)
         {
-            var token = await DataLayer.Security.CreateUser(user.ToSecurityUser());
+            var ip = IPAddressHelper.GetIPAddress(Request);
+            var token = await DataLayer.Security.CreateUser(user.ToSecurityUser(), ip);
 
             return new AuthenticationToken(token);
         }
@@ -33,9 +35,10 @@ namespace HomeHub.Service.Web.Controllers
         [Route("login")]
         public async Task<AuthenticationToken> LoginUser(UserPass userpass)
         {
+            var ip = IPAddressHelper.GetIPAddress(Request);
             try
             {
-                var token = await DataLayer.Security.LoginUser(userpass.ToSecurityUserPass());
+                var token = await DataLayer.Security.LoginUser(userpass.ToSecurityUserPass(), ip);
                 return new AuthenticationToken(token);
             }
             catch (UnauthorizedAccessException)

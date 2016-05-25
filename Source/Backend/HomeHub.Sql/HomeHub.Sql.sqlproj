@@ -79,8 +79,11 @@
     <Build Include="Schemas\Auth\Programability\StoredProcedures\getUser.sql" />
     <Build Include="Schemas\Auth\Programability\StoredProcedures\getPassword.sql" />
     <Build Include="Schemas\Auth\Constraints\unique_email.sql" />
+    <Build Include="Schemas\Auth\Tables\acc_log.sql" />
+    <Build Include="Schemas\Auth\Programability\StoredProcedures\logaccess.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="HomeHub.Sql.publish.xml" />
+    <None Include="HomeHub_1.Sql.publish.xml" />
   </ItemGroup>
 </Project>

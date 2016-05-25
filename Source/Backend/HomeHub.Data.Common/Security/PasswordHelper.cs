@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 using System.Security.Cryptography;
@@ -89,6 +91,17 @@ namespace HomeHub.Data.Common.Security
             }
 
             return true;
+        }
+
+        /// <summary>
+        /// Get the bytes from an ip address
+        /// </summary>
+        /// <param name="ip">The ip address</param>
+        /// <returns>16 bytes</returns>
+        public static byte[] GetIPAddressInSqlForm(IPAddress ip)
+        {
+            var ipv6 = ip.AddressFamily != AddressFamily.InterNetworkV6 ? ip.MapToIPv6() : ip;
+            return ipv6.GetAddressBytes();
         }
     }
 }
