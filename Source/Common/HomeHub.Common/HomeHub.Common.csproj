@@ -45,6 +45,7 @@
     <Compile Include="Devices\ILight.cs" />
     <Compile Include="Devices\Light.cs" />
     <Compile Include="Exceptions\ExceptionUtility.cs" />
+    <Compile Include="Exceptions\FailureException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Trace\HomeHubEventSource.cs" />
   </ItemGroup>

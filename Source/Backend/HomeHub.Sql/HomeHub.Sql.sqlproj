@@ -8,7 +8,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectVersion>4.1</ProjectVersion>
     <ProjectGuid>{dc32c7eb-9fa7-4110-889c-74def0a0d5a1}</ProjectGuid>
-    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql130DatabaseSchemaProvider</DSP>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.SqlAzureV12DatabaseSchemaProvider</DSP>
     <OutputType>Database</OutputType>
     <RootPath>
     </RootPath>
@@ -57,8 +57,30 @@
   <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
   <ItemGroup>
     <Folder Include="Properties" />
+    <Folder Include="Schemas" />
+    <Folder Include="Schemas\Auth" />
+    <Folder Include="Schemas\Hub" />
+    <Folder Include="Schemas\Auth\Tables" />
+    <Folder Include="Schemas\Auth\Programability" />
+    <Folder Include="Schemas\Auth\Programability\StoredProcedures" />
+    <Folder Include="Schemas\Auth\Programability\Types" />
+    <Folder Include="Schemas\Auth\Constraints" />
   </ItemGroup>
   <ItemGroup>
-    <Build Include="hub.sql" />
+    <Build Include="Schemas\Hub\hub.sql" />
+    <Build Include="Schemas\Auth\auth.sql" />
+    <Build Include="Schemas\Auth\Tables\user.sql" />
+    <Build Include="Schemas\Auth\Tables\token.sql" />
+    <Build Include="Schemas\Auth\Tables\identity.sql" />
+    <Build Include="Schemas\Auth\Programability\StoredProcedures\createUser.sql" />
+    <Build Include="Schemas\Auth\Programability\StoredProcedures\loginUser.sql" />
+    <Build Include="Schemas\Auth\Tables\roles.sql" />
+    <Build Include="Schemas\Auth\Programability\Types\rolesList.sql" />
+    <Build Include="Schemas\Auth\Programability\StoredProcedures\getUser.sql" />
+    <Build Include="Schemas\Auth\Programability\StoredProcedures\getPassword.sql" />
+    <Build Include="Schemas\Auth\Constraints\unique_email.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="HomeHub.Sql.publish.xml" />
   </ItemGroup>
 </Project>

@@ -11,5 +11,7 @@ namespace HomeHub.Service.Common.Data
     public static class DataLayer
     {
         public readonly static IDataLayer Instance = new SqlDataLayer();
+
+        public readonly static ISecurityLayer Security = new SqlDataLayer();
     }
 }

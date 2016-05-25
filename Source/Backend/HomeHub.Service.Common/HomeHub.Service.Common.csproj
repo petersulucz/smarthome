@@ -31,6 +31,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -44,9 +45,13 @@
     <Compile Include="Models\ActionArgumentModel.cs" />
     <Compile Include="Models\DeviceActionModel.cs" />
     <Compile Include="Models\DeviceModel.cs" />
+    <Compile Include="Models\Security\AuthenticationToken.cs" />
+    <Compile Include="Models\Security\User.cs" />
+    <Compile Include="Models\Security\UserPass.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Security\Extensions.cs" />
     <Compile Include="Security\HubIdentity.cs" />
+    <Compile Include="Security\HubPrincipal.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\HomeHub.Data.Common\HomeHub.Data.Common.csproj">

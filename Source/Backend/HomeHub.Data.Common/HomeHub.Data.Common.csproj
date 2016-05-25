@@ -41,7 +41,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IDataLayer.cs" />
+    <Compile Include="ISecurityLayer.cs" />
+    <Compile Include="Models\IValidateable.cs" />
+    <Compile Include="Models\Security\AuthenticationToken.cs" />
+    <Compile Include="Models\Security\CreateUser.cs" />
+    <Compile Include="Models\Security\User.cs" />
+    <Compile Include="Models\Security\UserPass.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Security\PasswordHelper.cs" />
+    <Compile Include="Security\UserRoles.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Common\HomeHub.Common\HomeHub.Common.csproj">
@@ -49,6 +57,7 @@
       <Name>HomeHub.Common</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

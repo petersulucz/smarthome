@@ -13,6 +13,9 @@ using System.Web.Http.Filters;
 
 namespace HomeHub.Service.Web.Security
 {
+    using HomeHub.Data.Common.Models.Security;
+    using HomeHub.Service.Common.Data;
+
     public class RequireCredentialsAttribute : Attribute, IAuthorizationFilter
     {
         public bool AllowMultiple
@@ -23,23 +26,36 @@ namespace HomeHub.Service.Web.Security
             }
         }
 
-        public Task<HttpResponseMessage> ExecuteAuthorizationFilterAsync(HttpActionContext actionContext, CancellationToken cancellationToken, Func<Task<HttpResponseMessage>> continuation)
+        public async Task<HttpResponseMessage> ExecuteAuthorizationFilterAsync(HttpActionContext actionContext, CancellationToken cancellationToken, Func<Task<HttpResponseMessage>> continuation)
         {
-            var containsAuth = actionContext.Request.Headers.Contains("sh-name");
+            var containsAuth = actionContext.Request.Headers.Contains("sh-auth");
+            
 
-            if(false == containsAuth)
+            if (false == containsAuth)
             {
-                return Task.FromResult(RequireCredentialsAttribute.UnauthorizedResponse());
+                return RequireCredentialsAttribute.UnauthorizedResponse();
             }
 
-            var header = actionContext.Request.Headers.GetValues("sh-name").FirstOrDefault();
-            var identity = new HubIdentity(header, Guid.Empty);
+            var header = actionContext.Request.Headers.GetValues("sh-auth").FirstOrDefault();
 
-            var principal = new GenericPrincipal(identity, new[] { "admin" });
+            User user = null;
+
+            try
+            {
+                user = await DataLayer.Security.GetUser(header);
+            }
+            catch (UnauthorizedAccessException)
+            {
+                return RequireCredentialsAttribute.UnauthorizedResponse();
+            }
+
+            var identity = new HubIdentity(user);
+
+            var principal = new HubPrincipal(identity);
             Thread.CurrentPrincipal = principal;
             HttpContext.Current.User = principal;
 
-            return continuation();
+            return await continuation();
         }
 
         private static HttpResponseMessage UnauthorizedResponse()
