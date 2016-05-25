@@ -7,15 +7,23 @@ using System.Threading.Tasks;
 
 namespace HomeHub.Service.Common.Security
 {
+    using HomeHub.Data.Common.Models.Security;
+
     public class HubIdentity : IIdentity
     {
-        private Guid userId;
-        private string name;
+        private readonly User user;
 
-        public HubIdentity(string name, Guid user)
+        public HubIdentity(User user)
         {
-            this.userId = user;
-            this.name = name;
+            this.user = user;
+        }
+
+        public User User
+        {
+            get
+            {
+                return this.user;
+            }
         }
 
         public string AuthenticationType
@@ -38,7 +46,7 @@ namespace HomeHub.Service.Common.Security
         {
             get
             {
-                return this.name;
+                return $"{this.user.FirstName} {this.user.LastName}";
             }
         }
 
@@ -46,7 +54,7 @@ namespace HomeHub.Service.Common.Security
         {
             get
             {
-                return this.userId;
+                return this.user.Id;
             }
         }
     }

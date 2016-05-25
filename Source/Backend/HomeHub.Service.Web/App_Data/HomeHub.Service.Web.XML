@@ -481,6 +481,13 @@
             </summary>
             <param name="documentPath">The physical path to XML document.</param>
         </member>
+        <member name="M:HomeHub.Service.Web.Controllers.AuthController.CreateAccount(HomeHub.Service.Common.Models.Security.User)">
+            <summary>
+            Create a user account
+            </summary>
+            <param name="user">The user information</param>
+            <returns>The authentication token for the user</returns>
+        </member>
         <member name="T:HomeHub.Service.Web.Controllers.DeviceController">
             <summary>
             The controller for devices
