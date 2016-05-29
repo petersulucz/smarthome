@@ -65,6 +65,9 @@
     <Folder Include="Schemas\Auth\Programability\StoredProcedures" />
     <Folder Include="Schemas\Auth\Programability\Types" />
     <Folder Include="Schemas\Auth\Constraints" />
+    <Folder Include="Schemas\Hub\Tables" />
+    <Folder Include="Schemas\Hub\Programability" />
+    <Folder Include="Schemas\Hub\Programability\StoredProcedures" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Schemas\Hub\hub.sql" />
@@ -81,6 +84,11 @@
     <Build Include="Schemas\Auth\Constraints\unique_email.sql" />
     <Build Include="Schemas\Auth\Tables\acc_log.sql" />
     <Build Include="Schemas\Auth\Programability\StoredProcedures\logaccess.sql" />
+    <Build Include="Schemas\Hub\Tables\home.sql" />
+    <Build Include="Schemas\Hub\Tables\device.sql" />
+    <Build Include="Schemas\Hub\Tables\membership.sql" />
+    <Build Include="Schemas\Hub\Programability\StoredProcedures\createhome.sql" />
+    <Build Include="Schemas\Hub\Programability\StoredProcedures\gethomes.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="HomeHub.Sql.publish.xml" />

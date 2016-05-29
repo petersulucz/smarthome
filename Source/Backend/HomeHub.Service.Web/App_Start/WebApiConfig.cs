@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace HomeHub.Service.Web
 {
@@ -10,6 +11,8 @@ namespace HomeHub.Service.Web
         public static void Register(HttpConfiguration config)
         {
             // Web API configuration and services
+            var cors = new EnableCorsAttribute("justaniles.github.io", "*", "*");
+            config.EnableCors(cors);
 
             // Web API routes
             config.MapHttpAttributeRoutes();
