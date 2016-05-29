@@ -155,6 +155,7 @@ namespace HomeHub.Data.Sql
             return authToken;
         }
 
+
         async Task<User> ISecurityLayer.GetUser(string token, IPAddress ip)
         {
             var bytes = Convert.FromBase64String(token);
