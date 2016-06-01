@@ -1,34 +1,51 @@
-﻿using HomeHub.Common.Trace;
-using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-
-namespace HomeHub.Data.Sql
+﻿namespace HomeHub.Data.Sql
 {
-    using System.Configuration;
+    using System;
+    using System.Data.SqlClient;
+    using System.Threading;
+    using System.Threading.Tasks;
 
+    using HomeHub.Common.Trace;
+
+    /// <summary>
+    /// The SQL connection manager.
+    /// </summary>
     internal class SqlConnectionManager
     {
-        private readonly string ConnectionString;
+        /// <summary>
+        /// The connection string.
+        /// </summary>
+        private readonly string connectionString;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SqlConnectionManager"/> class. 
+        /// </summary>
+        /// <param name="connectionString">
+        /// The connection string.
+        /// </param>
         public SqlConnectionManager(string connectionString)
         {
-            this.ConnectionString = connectionString;
+            this.connectionString = connectionString;
         }
 
+        /// <summary>
+        /// The execute SQL.
+        /// </summary>
+        /// <param name="stproc">The stored procedure.</param>
+        /// <param name="parameters">The parameters.</param>
+        /// <param name="read">The read.</param>
+        /// <param name="token">The token.</param>
+        /// <returns>
+        /// The <see cref="Task"/>.
+        /// </returns>
         public async Task ExecuteSql(string stproc, Action<SqlParameterCollection> parameters, Action<SqlDataReader> read, CancellationToken token)
         {
             HomeHubEventSource.Log.MethodEnter();
 
             HomeHubEventSource.Log.FetchingData(stproc);
 
-            using (var connection = new SqlConnection(this.ConnectionString))
+            using (var connection = new SqlConnection(this.connectionString))
             {
-
                 await connection.OpenAsync(token);
                 var command = connection.CreateCommand();
                 command.CommandText = stproc;
@@ -45,15 +62,23 @@ namespace HomeHub.Data.Sql
             HomeHubEventSource.Log.MethodLeave();
         }
 
+        /// <summary>
+        /// Execute the SQL.
+        /// </summary>
+        /// <param name="stproc">The stored procedure name.</param> 
+        /// <param name="parameters">The parameters.</param>
+        /// <param name="token">The token.</param>
+        /// <returns>
+        /// The <see cref="Task"/>.
+        /// </returns>
         public async Task ExecuteSql(string stproc, Action<SqlParameterCollection> parameters, CancellationToken token)
         {
             HomeHubEventSource.Log.MethodEnter();
 
             HomeHubEventSource.Log.FetchingData(stproc);
 
-            using (var connection = new SqlConnection(this.ConnectionString))
+            using (var connection = new SqlConnection(this.connectionString))
             {
-
                 await connection.OpenAsync(token);
                 var command = connection.CreateCommand();
                 command.CommandText = stproc;
