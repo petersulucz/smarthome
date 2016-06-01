@@ -31,6 +31,55 @@
         /// <summary>
         /// The execute SQL.
         /// </summary>
+        /// <typeparam name="T">
+        /// The type to return
+        /// </typeparam>
+        /// <param name="stproc">
+        /// The stored procedure.
+        /// </param>
+        /// <param name="parameters">
+        /// The parameters.
+        /// </param>
+        /// <param name="read">
+        /// The read.
+        /// </param>
+        /// <param name="token">
+        /// The token.
+        /// </param>
+        /// <returns>
+        /// The <see cref="Task"/>.
+        /// </returns>
+        public async Task<T> ExecuteSql<T>(string stproc, Action<SqlParameterCollection> parameters, Func<SqlDataReader, T> read, CancellationToken token)
+        {
+            HomeHubEventSource.Log.MethodEnter();
+
+            HomeHubEventSource.Log.FetchingData(stproc);
+
+            T result;
+
+            using (var connection = new SqlConnection(this.connectionString))
+            {
+                await connection.OpenAsync(token);
+                var command = connection.CreateCommand();
+                command.CommandText = stproc;
+                command.CommandType = System.Data.CommandType.StoredProcedure;
+
+                parameters(command.Parameters);
+
+                using (var reader = await command.ExecuteReaderAsync(token))
+                {
+                    result = read(reader);
+                }
+            }
+
+            HomeHubEventSource.Log.MethodLeave();
+
+            return result;
+        }
+
+        /// <summary>
+        /// The execute SQL.
+        /// </summary>
         /// <param name="stproc">The stored procedure.</param>
         /// <param name="parameters">The parameters.</param>
         /// <param name="read">The read.</param>
