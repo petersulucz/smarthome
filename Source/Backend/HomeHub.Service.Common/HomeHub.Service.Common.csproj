@@ -47,6 +47,8 @@
     <Compile Include="Models\ActionArgumentModel.cs" />
     <Compile Include="Models\DeviceActionModel.cs" />
     <Compile Include="Models\DeviceModel.cs" />
+    <Compile Include="Models\HomeModel.cs" />
+    <Compile Include="Models\NewHomeModel.cs" />
     <Compile Include="Models\Security\AuthenticationToken.cs" />
     <Compile Include="Models\Security\User.cs" />
     <Compile Include="Models\Security\UserPass.cs" />
