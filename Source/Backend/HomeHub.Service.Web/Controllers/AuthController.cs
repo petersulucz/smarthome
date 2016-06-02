@@ -1,18 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Web.Http;
-using HomeHub.Service.Common.Helpers;
-
-namespace HomeHub.Service.Web.Controllers
+﻿namespace HomeHub.Service.Web.Controllers
 {
+    using System;
+    using System.Net;
+    using System.Net.Http;
     using System.Threading.Tasks;
+    using System.Web.Http;
 
     using HomeHub.Service.Common.Data;
+    using HomeHub.Service.Common.Helpers;
     using HomeHub.Service.Common.Models.Security;
 
+    /// <summary>
+    /// Controller for authentication stuff
+    /// </summary>
     [RoutePrefix("auth")]
     public class AuthController : ApiController
     {
@@ -25,17 +25,27 @@ namespace HomeHub.Service.Web.Controllers
         [Route("create")]
         public async Task<AuthenticationToken> CreateAccount(User user)
         {
-            var ip = IPAddressHelper.GetIPAddress(Request);
+            var ip = IPAddressHelper.GetIPAddress(this.Request);
             var token = await DataLayer.Security.CreateUser(user.ToSecurityUser(), ip);
 
             return new AuthenticationToken(token);
         }
 
+        /// <summary>
+        /// The login user.
+        /// </summary>
+        /// <param name="userpass">The user/pass object</param>
+        /// <returns>
+        /// The <see cref="Task"/>.
+        /// </returns>
+        /// <exception cref="HttpResponseException">
+        /// If shit is unauthorized. Could be a 401
+        /// </exception>
         [HttpPost]
         [Route("login")]
         public async Task<AuthenticationToken> LoginUser(UserPass userpass)
         {
-            var ip = IPAddressHelper.GetIPAddress(Request);
+            var ip = IPAddressHelper.GetIPAddress(this.Request);
             try
             {
                 var token = await DataLayer.Security.LoginUser(userpass.ToSecurityUserPass(), ip);
@@ -47,6 +57,5 @@ namespace HomeHub.Service.Web.Controllers
                 throw new HttpResponseException(content);
             }
         }
-
     }
 }

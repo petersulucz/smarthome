@@ -481,12 +481,29 @@
             </summary>
             <param name="documentPath">The physical path to XML document.</param>
         </member>
+        <member name="T:HomeHub.Service.Web.Controllers.AuthController">
+            <summary>
+            Controller for authentication stuff
+            </summary>
+        </member>
         <member name="M:HomeHub.Service.Web.Controllers.AuthController.CreateAccount(HomeHub.Service.Common.Models.Security.User)">
             <summary>
             Create a user account
             </summary>
             <param name="user">The user information</param>
             <returns>The authentication token for the user</returns>
+        </member>
+        <member name="M:HomeHub.Service.Web.Controllers.AuthController.LoginUser(HomeHub.Service.Common.Models.Security.UserPass)">
+            <summary>
+            The login user.
+            </summary>
+            <param name="userpass">The user/pass object</param>
+            <returns>
+            The <see cref="T:System.Threading.Tasks.Task"/>.
+            </returns>
+            <exception cref="T:System.Web.Http.HttpResponseException">
+            If shit is unauthorized. Could be a 401
+            </exception>
         </member>
         <member name="T:HomeHub.Service.Web.Controllers.DeviceController">
             <summary>
@@ -498,6 +515,37 @@
             Get all of your devices
             </summary>
             <returns>A list of all devices</returns>
+        </member>
+        <member name="T:HomeHub.Service.Web.Controllers.HomeController">
+            <summary>
+            Gets the home page
+            </summary>
+        </member>
+        <member name="M:HomeHub.Service.Web.Controllers.HomeController.Index">
+            <summary>
+            The index.
+            </summary>
+            <returns>
+            The <see cref="T:System.Web.Mvc.ActionResult"/>.
+            </returns>
+        </member>
+        <member name="T:HomeHub.Service.Web.Controllers.HomesController">
+            <summary>
+                Stuff with homes
+            </summary>
+        </member>
+        <member name="M:HomeHub.Service.Web.Controllers.HomesController.CreateHome(HomeHub.Service.Common.Models.NewHomeModel)">
+            <summary>
+                Create a new home
+            </summary>
+            <param name="newHome">The new home object</param>
+            <returns>The new home result</returns>
+        </member>
+        <member name="M:HomeHub.Service.Web.Controllers.HomesController.GetHomes">
+            <summary>
+                Get all of the homes you have access to
+            </summary>
+            <returns>All the homes you have access to</returns>
         </member>
         <member name="T:HomeHub.Service.Web.Controllers.TestController">
             <summary>
