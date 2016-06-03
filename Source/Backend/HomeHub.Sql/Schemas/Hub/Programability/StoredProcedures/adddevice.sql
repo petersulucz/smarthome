@@ -33,7 +33,22 @@ AS
            ,@definition
         )
 
+        -- Get the id
         SELECT @id AS id
+
+        -- Get the functions for the device
+        SELECT
+            func.device
+           ,func.name
+        FROM hub.devicefunction func
+        WHERE func.device = @definition
+
+        -- Get the device definition
+        SELECT
+            def.manufacturer
+           ,def.type
+        FROM hub.devicedefinition def
+        WHERE def.id = @definition
 
         COMMIT TRANSACTION
     END TRY

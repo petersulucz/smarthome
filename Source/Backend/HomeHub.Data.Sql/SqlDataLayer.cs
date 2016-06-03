@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Data;
+    using System.Data.SqlClient;
     using System.Net;
     using System.Text;
     using System.Threading;
@@ -34,6 +35,48 @@
         public void Dispose()
         {
             this.tokenSource.Dispose();
+        }
+
+        /// <summary>
+        /// Create a new device
+        /// </summary>
+        /// <param name="device">The device to create</param>
+        /// <returns>A device</returns>
+        async Task<Device> IDataLayer.CreateDevice(Device device)
+        {
+            return await this.connectionManager.ExecuteSql(
+                "hub.adddevice",
+                collection =>
+                    {
+                        collection.AddWithValue("name", device.Name);
+                        collection.AddWithValue("home", device.Home);
+                        collection.AddWithValue("description", device.Description);
+                        collection.AddWithValue("definition", device.Definition.Id);
+                    },
+                reader =>
+                    {
+                        // Get the guid for the new device
+                        reader.Read();
+                        var id = (Guid)reader["id"];
+
+                        reader.NextResult();
+
+                        // read the functions
+                        var functions = SqlDataLayer.GetDeviceFunctions(reader);
+
+                        reader.NextResult();
+
+                        // read the device definition
+                        reader.Read();
+                        var defintion = new DeviceDefinition(
+                            device.Definition.Id,
+                            (string)reader["manufacturer"],
+                            (DeviceType)reader["type"],
+                            functions[device.Definition.Id]);
+
+                        return new Device(id, device.Home, device.Name, device.Description, defintion);
+                    },
+                this.tokenSource.Token);
         }
 
         async Task<Home> IDataLayer.CreateHome(Home home, Guid user)
@@ -73,10 +116,77 @@
                 this.tokenSource.Token);
         }
 
-        Task<IEnumerable<Device>> IDataLayer.GetAllDevices(Guid user)
+
+
+        /// <summary>
+        /// Get all devices for a home
+        /// </summary>
+        /// <param name="user">The user to get for</param>
+        /// <param name="home">The home</param>
+        /// <returns>The list of all devices attached to a home</returns>
+        async Task<IEnumerable<Device>> IDataLayer.GetAllDevices(Guid user, Guid home)
         {
-            var lst = new[] { new Light(Guid.Empty, "device 1"), new Light(Guid.Empty, "device 2") };
-            return Task.FromResult((IEnumerable<Device>)lst);
+            return await this.connectionManager.ExecuteSql(
+                "hub.getdevices",
+                parameters =>
+                    {
+                        parameters.AddWithValue("home", home);
+                        parameters.AddWithValue("user", user);
+                    },
+                reader =>
+                    {
+                        var functions = SqlDataLayer.GetDeviceFunctions(reader);
+
+                        reader.NextResult();
+
+                        var devices = new List<Device>();
+                        while (reader.Read())
+                        {
+                            var deviceDefinitionGuid = (Guid)reader["devicedefinition"];
+
+                            var definition = new DeviceDefinition(
+                                deviceDefinitionGuid,
+                                (string)reader["manufacturer"],
+                                (DeviceType)reader["type"],
+                                functions[deviceDefinitionGuid]);
+
+                            var device = new Device(
+                                (Guid)reader["id"],
+                                (Guid)reader["home"],
+                                (string)reader["name"],
+                                (string)reader["description"],
+                                definition);
+                            devices.Add(device);
+                        }
+
+                        return devices;
+                    },
+                this.tokenSource.Token);
+        }
+
+        /// <summary>
+        /// Get the functions for a device from a reader
+        /// </summary>
+        /// <param name="reader">The reader to use</param>
+        /// <returns>The mapping of functions to device definitions</returns>
+        private static Dictionary<Guid, List<DeviceFunction>> GetDeviceFunctions(IDataReader reader)
+        {
+            var functions = new Dictionary<Guid, List<DeviceFunction>>();
+
+            // Read all of the device functions
+            while (reader.Read())
+            {
+                var dev = (Guid)reader["device"];
+                var func = new DeviceFunction((string)reader["name"]);
+
+                if (false == functions.ContainsKey(dev))
+                {
+                    functions.Add(dev, new List<DeviceFunction>());
+                }
+
+                functions[dev].Add(func);
+            }
+            return functions;
         }
 
         /// <summary>
