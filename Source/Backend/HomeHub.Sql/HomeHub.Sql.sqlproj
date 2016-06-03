@@ -89,6 +89,12 @@
     <Build Include="Schemas\Hub\Tables\membership.sql" />
     <Build Include="Schemas\Hub\Programability\StoredProcedures\createhome.sql" />
     <Build Include="Schemas\Hub\Programability\StoredProcedures\gethomes.sql" />
+    <Build Include="Schemas\Hub\Tables\devicedefinition.sql" />
+    <Build Include="Schemas\Hub\Tables\devicetype.sql" />
+    <Build Include="Schemas\Hub\Tables\devicefunction.sql" />
+    <Build Include="Schemas\Hub\Programability\StoredProcedures\adddevice.sql" />
+    <Build Include="Schemas\Hub\Tables\devicemanufacturer.sql" />
+    <Build Include="Schemas\Hub\Programability\StoredProcedures\getdevices.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="HomeHub.Sql.publish.xml" />
