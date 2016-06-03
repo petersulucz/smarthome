@@ -1,6 +1,12 @@
 ﻿CREATE PROCEDURE [hub].[getdevices]
     @home UNIQUEIDENTIFIER
+   ,@user UNIQUEIDENTIFIER
 AS
+
+    IF NOT EXISTS (SELECT TOP 1 1 FROM hub.membership WHERE home = @home AND user = @user)
+    BEGIN
+        ;THROW 50002, N'NO ACCESS', 0
+    END
 
     DECLARE @devices TABLE
     (
@@ -25,12 +31,14 @@ AS
         ON def.id = device.devicedefinition
     WHERE device.home = @home
 
-    SELECT * FROM @devices
-
+    -- Get the device types
     SELECT
         func.device
        ,func.name
     FROM hub.devicefunction func
     WHERE func.device IN (SELECT devicedefinition FROM @devices)
+
+    -- Get the devices
+    SELECT * FROM @devices
 
 RETURN 0

@@ -41,9 +41,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Devices\Device.cs" />
-    <Compile Include="Devices\IDevice.cs" />
-    <Compile Include="Devices\ILight.cs" />
-    <Compile Include="Devices\Light.cs" />
+    <Compile Include="Devices\DeviceDefinition.cs" />
+    <Compile Include="Devices\DeviceFunction.cs" />
+    <Compile Include="Devices\DeviceType.cs" />
     <Compile Include="Exceptions\ExceptionUtility.cs" />
     <Compile Include="Exceptions\FailureException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

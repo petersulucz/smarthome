@@ -16,10 +16,18 @@
         /// Get all devices for a user.
         /// </summary>
         /// <param name="user">The user.</param>
+        /// <param name="home">The home to search.</param>
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
-        Task<IEnumerable<Device>> GetAllDevices(Guid user);
+        Task<IEnumerable<Device>> GetAllDevices(Guid user, Guid home);
+
+        /// <summary>
+        /// Create a device
+        /// </summary>
+        /// <param name="device">The device which has been created</param>
+        /// <returns>The created device</returns>
+        Task<Device> CreateDevice(Device device);
 
         /// <summary>
         /// The create home.
