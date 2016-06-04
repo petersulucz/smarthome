@@ -9,11 +9,13 @@
     using HomeHub.Service.Common.Data;
     using HomeHub.Service.Common.Models;
     using HomeHub.Service.Common.Security;
+    using HomeHub.Service.Web.Security;
 
     /// <summary>
     ///     Stuff with homes
     /// </summary>
     [RoutePrefix("homes")]
+    [RequireCredentials]
     public class HomesController : ApiController
     {
         /// <summary>

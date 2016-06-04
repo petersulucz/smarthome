@@ -3,7 +3,6 @@
     using System;
     using System.Collections.Generic;
     using System.Data;
-    using System.Data.SqlClient;
     using System.Net;
     using System.Text;
     using System.Threading;
@@ -40,18 +39,21 @@
         /// <summary>
         /// Create a new device
         /// </summary>
-        /// <param name="device">The device to create</param>
-        /// <returns>A device</returns>
-        async Task<Device> IDataLayer.CreateDevice(Device device)
+        /// <param name="name">The name</param>
+        /// <param name="home">The home</param>
+        /// <param name="description">The description</param>
+        /// <param name="definition">The definition</param>
+        /// <returns>The new device</returns>
+        async Task<Device> IDataLayer.CreateDevice(string name, Guid home, string description, Guid definition)
         {
             return await this.connectionManager.ExecuteSql(
                 "hub.adddevice",
                 collection =>
                     {
-                        collection.AddWithValue("name", device.Name);
-                        collection.AddWithValue("home", device.Home);
-                        collection.AddWithValue("description", device.Description);
-                        collection.AddWithValue("definition", device.Definition.Id);
+                        collection.AddWithValue("name", name);
+                        collection.AddWithValue("home", home);
+                        collection.AddWithValue("description", description);
+                        collection.AddWithValue("definition", definition);
                     },
                 reader =>
                     {
@@ -69,16 +71,64 @@
                         // read the device definition
                         reader.Read();
                         var defintion = new DeviceDefinition(
-                            device.Definition.Id,
+                            definition,
                             (string)reader["manufacturer"],
                             (DeviceType)reader["type"],
-                            functions[device.Definition.Id]);
+                            functions[definition]);
 
-                        return new Device(id, device.Home, device.Name, device.Description, defintion);
+                        return new Device(id, home, name, description, defintion);
                     },
                 this.tokenSource.Token);
         }
 
+        /// <summary>
+        /// Get the device definitions
+        /// </summary>
+        /// <returns></returns>
+        async Task<Dictionary<string, IEnumerable<DeviceDefinition>>> IDataLayer.GetDefinitions()
+        {
+            var devices = await this.connectionManager.ExecuteSql(
+                "hub.getdefinitions",
+                collection => { },
+                reader =>
+                    {
+                        var func = SqlDataLayer.GetDeviceFunctions(reader);
+
+                        reader.NextResult();
+
+
+                        var definitions = new Dictionary<string, IEnumerable<DeviceDefinition>>();
+                        while (reader.Read())
+                        {
+                            var id = (Guid)reader["id"];
+                            var manufacturer = (string)reader["name"];
+                            var definition = new DeviceDefinition(
+                                id,
+                                manufacturer,
+                                (DeviceType)reader["type"],
+                                func[id]);
+
+                            if (false == definitions.ContainsKey(manufacturer))
+                            {
+                                definitions.Add(manufacturer, new List<DeviceDefinition>());
+                            }
+
+                            ((List<DeviceDefinition>)definitions[manufacturer]).Add(definition);
+                        }
+
+                        return definitions;
+                    },
+                this.tokenSource.Token);
+
+            return devices;
+        }
+
+        /// <summary>
+        /// Create a new home
+        /// </summary>
+        /// <param name="home">The home to create</param>
+        /// <param name="user">The user creating the home</param>
+        /// <returns></returns>
         async Task<Home> IDataLayer.CreateHome(Home home, Guid user)
         {
             return await this.connectionManager.ExecuteSql(
@@ -96,6 +146,11 @@
                 this.tokenSource.Token);
         }
 
+        /// <summary>
+        /// Get the homes for a user
+        /// </summary>
+        /// <param name="user">The user id</param>
+        /// <returns>A list of all homes for this user</returns>
         async Task<IEnumerable<Home>> IDataLayer.GetHomes(Guid user)
         {
             return await this.connectionManager.ExecuteSql(
@@ -152,7 +207,7 @@
 
                             var device = new Device(
                                 (Guid)reader["id"],
-                                (Guid)reader["home"],
+                                home,
                                 (string)reader["name"],
                                 (string)reader["description"],
                                 definition);

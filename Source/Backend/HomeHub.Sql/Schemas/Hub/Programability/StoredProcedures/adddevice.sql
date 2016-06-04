@@ -45,9 +45,11 @@ AS
 
         -- Get the device definition
         SELECT
-            def.manufacturer
+            man.name AS manufacturer
            ,def.type
         FROM hub.devicedefinition def
+        JOIN hub.devicemanufacturer man
+          ON def.manufacturer = man.id
         WHERE def.id = @definition
 
         COMMIT TRANSACTION

@@ -3,7 +3,7 @@
    ,@user UNIQUEIDENTIFIER
 AS
 
-    IF NOT EXISTS (SELECT TOP 1 1 FROM hub.membership WHERE home = @home AND user = @user)
+    IF NOT EXISTS (SELECT TOP 1 1 FROM hub.membership WHERE [home] = @home AND [user] = @user)
     BEGIN
         ;THROW 50002, N'NO ACCESS', 0
     END
@@ -14,7 +14,7 @@ AS
        ,[name] NVARCHAR(128)
        ,[description] NVARCHAR(1024)
        ,[devicedefinition] UNIQUEIDENTIFIER
-       ,[manufacturur] NVARCHAR(64)
+       ,[manufacturer] NVARCHAR(64)
        ,[type] INT
     )
 
@@ -24,11 +24,13 @@ AS
         ,device.name
         ,device.description
         ,device.devicedefinition
-        ,def.manufacturer
+        ,man.name
         ,def.type
     FROM hub.device device
     JOIN hub.devicedefinition def
-        ON def.id = device.devicedefinition
+      ON def.id = device.devicedefinition
+    JOIN hub.devicemanufacturer man
+      ON man.id = def.manufacturer
     WHERE device.home = @home
 
     -- Get the device types

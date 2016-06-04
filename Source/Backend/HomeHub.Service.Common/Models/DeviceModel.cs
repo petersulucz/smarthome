@@ -6,24 +6,52 @@ using System.Threading.Tasks;
 
 namespace HomeHub.Service.Common.Models
 {
+    using System.ComponentModel.DataAnnotations;
+    using System.Diagnostics.CodeAnalysis;
+
+    using HomeHub.Common.Devices;
+
     /// <summary>
     /// Represents a device
     /// </summary>
+    [SuppressMessage("ReSharper", "StyleCop.SA1623")]
     public class DeviceModel
     {
         /// <summary>
-        /// The name of the device
+        /// Initializes a new instance of the <see cref="DeviceModel"/> class. 
         /// </summary>
+        /// <param name="device">The device</param>
+        public DeviceModel(Device device)
+        {
+            this.Name = device.Name;
+            this.Home = device.Home;
+            this.Description = device.Description;
+            this.Definition = new DeviceDefinitionModel(device.Definition);
+        }
+
+        /// <summary>
+        /// The definition of the device
+        /// </summary>
+        public DeviceDefinitionModel Definition { get; set; }
+
+        /// <summary>
+        /// The name of this device
+        /// </summary>
+        [MaxLength(128)]
+        [Required]
         public string Name { get; set; }
 
         /// <summary>
-        /// The type of the device
+        /// The home this device references
         /// </summary>
-        public string DeviceType { get; set; }
+        [Required]
+        public Guid Home { get; set; }
 
         /// <summary>
-        /// The list of supported actions on a device
+        /// The description of this device
         /// </summary>
-        public IEnumerable<DeviceActionModel> Actions { get; set; }
+        [MaxLength(1024)]
+        [Required]
+        public string Description { get; set; }
     }
 }
