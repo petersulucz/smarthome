@@ -2,11 +2,12 @@
     @name NVARCHAR(256)
    ,@user UNIQUEIDENTIFIER
 AS
-    DECLARE @id UNIQUEIDENtIFIER = NEWID()
+    DECLARE @id UNIQUEIDENTIFIER = NEWID()
     DECLARE @created DATETIME2 = GETUTCDATE()
 
     BEGIN TRANSACTION
     BEGIN TRY
+
         INSERT INTO hub.home
         (
             [id]
