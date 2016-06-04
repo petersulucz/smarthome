@@ -95,6 +95,7 @@
     <Build Include="Schemas\Hub\Programability\StoredProcedures\adddevice.sql" />
     <Build Include="Schemas\Hub\Tables\devicemanufacturer.sql" />
     <Build Include="Schemas\Hub\Programability\StoredProcedures\getdevices.sql" />
+    <Build Include="Schemas\Hub\Programability\StoredProcedures\getdefinitions.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="HomeHub.Sql.publish.xml" />

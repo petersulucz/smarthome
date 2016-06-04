@@ -510,11 +510,27 @@
             The controller for devices
             </summary>
         </member>
-        <member name="M:HomeHub.Service.Web.Controllers.DeviceController.GetDevices">
+        <member name="M:HomeHub.Service.Web.Controllers.DeviceController.GetDevices(System.Guid)">
             <summary>
             Get all of your devices
             </summary>
+            <param name="home">Id of the home to get devices for</param>
             <returns>A list of all devices</returns>
+        </member>
+        <member name="M:HomeHub.Service.Web.Controllers.DeviceController.CreateDevice(HomeHub.Service.Common.Models.NewDeviceModel)">
+            <summary>
+            Create a new device
+            </summary>
+            <param name="model">The model</param>
+            <returns>The created device</returns>
+        </member>
+        <member name="M:HomeHub.Service.Web.Controllers.DeviceController.GetDefinitions">
+            <summary>
+            Get all of the device definitions available
+            </summary>
+            <returns>
+            The <see cref="T:System.Threading.Tasks.Task"/>.
+            </returns>
         </member>
         <member name="T:HomeHub.Service.Web.Controllers.HomeController">
             <summary>

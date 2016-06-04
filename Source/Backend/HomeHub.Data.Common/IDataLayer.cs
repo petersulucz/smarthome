@@ -23,13 +23,6 @@
         Task<IEnumerable<Device>> GetAllDevices(Guid user, Guid home);
 
         /// <summary>
-        /// Create a device
-        /// </summary>
-        /// <param name="device">The device which has been created</param>
-        /// <returns>The created device</returns>
-        Task<Device> CreateDevice(Device device);
-
-        /// <summary>
         /// The create home.
         /// </summary>
         /// <param name="home">The home.</param>
@@ -45,5 +38,22 @@
         /// <param name="user">The user id</param>
         /// <returns>The list of accessible homes</returns>
         Task<IEnumerable<Home>> GetHomes(Guid user);
+
+        /// <summary>
+        /// Create a new device
+        /// </summary>
+        /// <param name="name">The name</param>
+        /// <param name="home">The home</param>
+        /// <param name="description">The description</param>
+        /// <param name="definition">The definition</param>
+        /// <returns>The new device</returns>
+        Task<Device> CreateDevice(string name, Guid home, string description, Guid definition);
+
+        /// <summary>
+        /// Get all device definitions
+        /// </summary>
+        /// <returns>The device definitions</returns>
+        Task<Dictionary<string, IEnumerable<DeviceDefinition>>> GetDefinitions();
+
     }
 }

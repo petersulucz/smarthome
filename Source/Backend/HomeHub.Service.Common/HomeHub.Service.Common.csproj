@@ -46,8 +46,11 @@
     <Compile Include="Helpers\IPAddressHelper.cs" />
     <Compile Include="Models\ActionArgumentModel.cs" />
     <Compile Include="Models\DeviceActionModel.cs" />
+    <Compile Include="Models\DeviceDefinitionModel.cs" />
+    <Compile Include="Models\DeviceFunctionModel.cs" />
     <Compile Include="Models\DeviceModel.cs" />
     <Compile Include="Models\HomeModel.cs" />
+    <Compile Include="Models\NewDeviceModel.cs" />
     <Compile Include="Models\NewHomeModel.cs" />
     <Compile Include="Models\Security\AuthenticationToken.cs" />
     <Compile Include="Models\Security\User.cs" />
@@ -58,6 +61,10 @@
     <Compile Include="Security\HubPrincipal.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Common\HomeHub.Common\HomeHub.Common.csproj">
+      <Project>{548DFDAD-2214-4BD5-9CE6-C3264E4089AB}</Project>
+      <Name>HomeHub.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\HomeHub.Data.Common\HomeHub.Data.Common.csproj">
       <Project>{1799EE42-505B-4B16-AB01-4C2C57D28EE1}</Project>
       <Name>HomeHub.Data.Common</Name>
