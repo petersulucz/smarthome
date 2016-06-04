@@ -14,6 +14,12 @@ AS
            ;THROW 50001, N'Definition not found', 0
         END
 
+        --  Make sure the name isnt already there in a home
+        IF EXISTS (SELECT TOP 1 1 FROM hub.device WHERE home = @home AND name = @name)
+        BEGIN
+            ;THROW 50003, N'Device with name already exists', 0
+        END
+
         SET @id = NEWID()
 
         INSERT INTO hub.device
