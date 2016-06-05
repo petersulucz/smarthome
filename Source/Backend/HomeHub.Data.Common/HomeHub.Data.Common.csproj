@@ -45,7 +45,9 @@
     <Compile Include="IDeviceLayer.cs" />
     <Compile Include="IHomeLayer.cs" />
     <Compile Include="ISecurityLayer.cs" />
-    <Compile Include="Models\Home.cs" />
+    <Compile Include="Models\Homes\Home.cs" />
+    <Compile Include="Models\Homes\HomeMembership.cs" />
+    <Compile Include="Models\Homes\HomeMembershipAccess.cs" />
     <Compile Include="Models\IValidateable.cs" />
     <Compile Include="Models\Security\AuthenticationToken.cs" />
     <Compile Include="Models\Security\CreateUser.cs" />

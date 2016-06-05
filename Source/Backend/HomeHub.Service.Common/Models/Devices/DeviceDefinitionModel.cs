@@ -1,11 +1,10 @@
-﻿namespace HomeHub.Service.Common.Models
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using HomeHub.Common.Devices;
+
+namespace HomeHub.Service.Common.Models.Devices
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-
-    using HomeHub.Common.Devices;
-
     /// <summary>
     /// The device definition model.
     /// </summary>

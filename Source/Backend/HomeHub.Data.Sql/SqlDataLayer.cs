@@ -1,4 +1,6 @@
-﻿namespace HomeHub.Data.Sql
+﻿using HomeHub.Data.Common.Models.Homes;
+
+namespace HomeHub.Data.Sql
 {
     using System;
     using System.Collections.Generic;
@@ -171,11 +173,52 @@
                 this.tokenSource.Token);
         }
 
-
-        public Task<Dictionary<string, Guid>> GetUsers(Guid home, Guid user)
+        /// <summary>
+        /// Get all of the users attached to a house
+        /// </summary>
+        /// <param name="home">The home to check</param>
+        /// <param name="user">The user calling the method</param>
+        /// <returns>The list of home memberships</returns>
+        public async Task<IEnumerable<HomeMembership>> GetHomeUsers(Guid home, Guid user)
         {
-            throw new NotImplementedException();
+            return await this.connectionManager.ExecuteSql("hub.gethomeusers", collection =>
+            {
+                collection.AddWithValue("home", home);
+                collection.AddWithValue("user", user);
+            }, reader =>
+            {
+
+                var members = new List<HomeMembership>();
+                while (reader.Read())
+                {
+                    var member = new HomeMembership((Guid) reader["user"], (HomeMembershipAccess) (byte)reader["role"]);
+                    members.Add(member);
+                }
+
+                return members;
+
+            }, this.tokenSource.Token);
         }
+
+        /// <summary>
+        /// Add a home user
+        /// </summary>
+        /// <param name="homeMembership">The home membership definition</param>
+        /// <param name="caller">The person doing the adding</param>
+        /// <returns>The home membership objecdt</returns>
+        public async Task<HomeMembership> AddHomeUser(HomeMembership homeMembership, Guid home, Guid caller)
+        {
+            await this.connectionManager.ExecuteSql("hub.addhomeuser", collection =>
+            {
+                collection.AddWithValue("home", home);
+                collection.AddWithValue("caller", caller);
+                collection.AddWithValue("user", homeMembership.User);
+                collection.AddWithValue("role", (short)homeMembership.Access);
+            }, this.tokenSource.Token);
+
+            return homeMembership;
+        }
+
 
 
         /// <summary>

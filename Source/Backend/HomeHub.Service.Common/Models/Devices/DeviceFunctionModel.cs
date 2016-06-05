@@ -1,7 +1,7 @@
-﻿namespace HomeHub.Service.Common.Models
-{
-    using HomeHub.Common.Devices;
+﻿using HomeHub.Common.Devices;
 
+namespace HomeHub.Service.Common.Models.Devices
+{
     /// <summary>
     /// The device function model.
     /// </summary>

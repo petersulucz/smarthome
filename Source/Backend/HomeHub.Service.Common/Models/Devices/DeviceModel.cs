@@ -1,16 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
+using System.Diagnostics.CodeAnalysis;
+using HomeHub.Common.Devices;
 
-namespace HomeHub.Service.Common.Models
+namespace HomeHub.Service.Common.Models.Devices
 {
-    using System.ComponentModel.DataAnnotations;
-    using System.Diagnostics.CodeAnalysis;
-
-    using HomeHub.Common.Devices;
-
     /// <summary>
     /// Represents a device
     /// </summary>

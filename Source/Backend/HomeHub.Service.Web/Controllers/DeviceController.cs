@@ -1,4 +1,6 @@
-﻿namespace HomeHub.Service.Web.Controllers
+﻿using HomeHub.Service.Common.Models.Devices;
+
+namespace HomeHub.Service.Web.Controllers
 {
     using System;
     using System.Collections.Generic;

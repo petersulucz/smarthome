@@ -1,7 +1,7 @@
-﻿namespace HomeHub.Data.Common.Models
-{
-    using System;
+﻿using System;
 
+namespace HomeHub.Data.Common.Models.Homes
+{
     /// <summary>
     /// The home.
     /// </summary>

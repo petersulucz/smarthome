@@ -550,7 +550,7 @@
                 Stuff with homes
             </summary>
         </member>
-        <member name="M:HomeHub.Service.Web.Controllers.HomesController.CreateHome(HomeHub.Service.Common.Models.NewHomeModel)">
+        <member name="M:HomeHub.Service.Web.Controllers.HomesController.CreateHome(HomeHub.Service.Common.Models.Homes.NewHomeModel)">
             <summary>
                 Create a new home
             </summary>
@@ -563,6 +563,21 @@
             </summary>
             <returns>All the homes you have access to</returns>
         </member>
+        <member name="M:HomeHub.Service.Web.Controllers.HomesController.GetUsers(System.Guid)">
+            <summary>
+            Get all of the users which have access to a home
+            </summary>
+            <param name="home">The home</param>
+            <returns>The list of home memberships</returns>
+        </member>
+        <member name="M:HomeHub.Service.Web.Controllers.HomesController.AddUser(System.Guid,HomeHub.Service.Common.Models.Homes.HomeMembershipModel)">
+            <summary>
+            Add a user to a home
+            </summary>
+            <param name="home">The home id</param>
+            <param name="model">The model of the home user</param>
+            <returns>THe home membership model</returns>
+        </member>
         <member name="T:HomeHub.Service.Web.Controllers.TestController">
             <summary>
             This is the test controller. 
@@ -573,6 +588,30 @@
             Get a test string
             </summary>
             <returns>A test string</returns>
+        </member>
+        <member name="P:HomeHub.Service.Web.Security.RequireCredentialsAttribute.AllowMultiple">
+            <summary>Gets or sets a value indicating whether more than one instance of the indicated attribute can be specified for a single program element.</summary>
+            <returns>true if more than one instance is allowed to be specified; otherwise, false. The default is false.</returns>
+        </member>
+        <member name="M:HomeHub.Service.Web.Security.RequireCredentialsAttribute.ExecuteAuthorizationFilterAsync(System.Web.Http.Controllers.HttpActionContext,System.Threading.CancellationToken,System.Func{System.Threading.Tasks.Task{System.Net.Http.HttpResponseMessage}})">
+            <summary>Executes the authorization filter to synchronize.</summary>
+            <returns>The authorization filter to synchronize.</returns>
+            <param name="actionContext">The action context.</param>
+            <param name="cancellationToken">The cancellation token associated with the filter.</param>
+            <param name="continuation">The continuation.</param>
+        </member>
+        <member name="M:HomeHub.Service.Web.Security.RequireCredentialsAttribute.UnauthorizedResponse">
+            <summary>
+            Returns a response indicating that the user is unauthorized
+            </summary>
+            <returns>The unauthorized response</returns>
+        </member>
+        <member name="M:HomeHub.Service.Web.Security.RequireCredentialsAttribute.BlacklistedResponse(System.String)">
+            <summary>
+            Return a response indicating a blacklisted account
+            </summary>
+            <param name="message">The message to the user</param>
+            <returns>The blacklisted response</returns>
         </member>
     </members>
 </doc>
