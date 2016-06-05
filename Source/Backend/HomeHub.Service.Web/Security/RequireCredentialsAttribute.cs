@@ -1,14 +1,11 @@
 ﻿using HomeHub.Service.Common.Security;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Security.Principal;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
-using System.Web.Http;
 using System.Web.Http.Controllers;
 using System.Web.Http.Filters;
 using HomeHub.Data.Common.Security;
@@ -19,6 +16,9 @@ namespace HomeHub.Service.Web.Security
     using HomeHub.Data.Common.Models.Security;
     using HomeHub.Service.Common.Data;
 
+    /// <summary>
+    /// Attribute to require credentials on api calls
+    /// </summary>
     public class RequireCredentialsAttribute : Attribute, IAuthorizationFilter
     {
         /// <summary>Gets or sets a value indicating whether more than one instance of the indicated attribute can be specified for a single program element.</summary>

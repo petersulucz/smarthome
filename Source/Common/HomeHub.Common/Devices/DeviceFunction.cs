@@ -1,7 +1,5 @@
 ﻿namespace HomeHub.Common.Devices
 {
-    using System.Collections.Generic;
-
     /// <summary>
     /// The device function.
     /// </summary>

@@ -246,3 +246,9 @@ ModelManifest.xml
 
 #deploy
 .pubxml
+
+#style
+.stylecop
+.StyleCop
+/Source/Backend/HomeHub.Service.Common/Settings.StyleCop
+/Source/Common/HomeHub.Common/Settings.StyleCop
