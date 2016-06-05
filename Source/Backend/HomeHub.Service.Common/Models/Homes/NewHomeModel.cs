@@ -1,10 +1,9 @@
-﻿namespace HomeHub.Service.Common.Models
+﻿using System;
+using System.ComponentModel.DataAnnotations;
+using HomeHub.Data.Common.Models.Homes;
+
+namespace HomeHub.Service.Common.Models.Homes
 {
-    using System;
-    using System.ComponentModel.DataAnnotations;
-
-    using HomeHub.Data.Common.Models;
-
     /// <summary>
     /// The new home model.
     /// </summary>

@@ -1,4 +1,5 @@
 ﻿using System;
+using HomeHub.Service.Common.Models.Homes;
 
 namespace HomeHub.Service.Web.Controllers
 {
@@ -55,14 +56,30 @@ namespace HomeHub.Service.Web.Controllers
         /// <summary>
         /// Get all of the users which have access to a home
         /// </summary>
-        /// <param name="home"></param>
-        /// <returns></returns>
+        /// <param name="home">The home</param>
+        /// <returns>The list of home memberships</returns>
         [HttpGet]
         [Route("{home}/access")]
-        public async Task<Dictionary<string, Guid>> GetUsers(Guid home)
+        public async Task<IEnumerable<HomeMembershipModel>> GetUsers(Guid home)
         {
-            var guid = System.Web.HttpContext.Current.User.Identity.UserId();
-            return await DataLayer.Instance.GetUsers(guid, home);
+            var user = System.Web.HttpContext.Current.User.Identity.UserId();
+            return (await DataLayer.Instance.GetHomeUsers(home, user)).Select(u => new HomeMembershipModel(u));
+        }
+
+        /// <summary>
+        /// Add a user to a home
+        /// </summary>
+        /// <param name="home">The home id</param>
+        /// <param name="model">The model of the home user</param>
+        /// <returns>THe home membership model</returns>
+        [HttpPost]
+        [Route("{home}/access")]
+        public async Task<HomeMembershipModel> AddUser([FromUri]Guid home, [FromBody]HomeMembershipModel model)
+        {
+            var user = System.Web.HttpContext.Current.User.Identity.UserId();
+            var membership = await DataLayer.Instance.AddHomeUser(model.ToHomeMembership(), home, user);
+
+            return new HomeMembershipModel(membership);
         }
     }
 }

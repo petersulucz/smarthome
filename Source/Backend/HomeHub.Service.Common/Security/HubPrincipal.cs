@@ -38,6 +38,11 @@ namespace HomeHub.Service.Common.Security
 
         public bool IsInRole(UserRoles role)
         {
+            if (role == default(UserRoles))
+            {
+                return this.roles == role;
+            }
+
             return this.roles.HasFlag(role);
         }
     }

@@ -24,14 +24,22 @@ namespace HomeHub.Service.Common.Models.Security
             this.Expiration = token.Expiration;
 
             var claims = new List<string>();
-            foreach (var role in Enum.GetValues(typeof(UserRoles)))
+
+            if (token.Claims == default(UserRoles))
             {
-                if (token.Claims.HasFlag((UserRoles)role))
-                {
-                    claims.Add(((UserRoles)role).ToString());
-                }
+                this.Claims = new[] {default(UserRoles).ToString()};
             }
-            this.Claims = claims;
+            else
+            {
+                foreach (var role in Enum.GetValues(typeof(UserRoles)))
+                {
+                    if (token.Claims.HasFlag((UserRoles) role))
+                    {
+                        claims.Add(((UserRoles) role).ToString());
+                    }
+                }
+                this.Claims = claims;
+            }
         }
 
         /// <summary>
