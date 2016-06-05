@@ -1,4 +1,7 @@
-﻿namespace HomeHub.Data.Sql
+﻿using System.Net;
+using HomeHub.Common.Exceptions;
+
+namespace HomeHub.Data.Sql
 {
     using System;
     using System.Data.SqlClient;
@@ -55,7 +58,7 @@
 
             HomeHubEventSource.Log.FetchingData(stproc);
 
-            T result;
+            var result = default(T);
 
             using (var connection = new SqlConnection(this.connectionString))
             {
@@ -66,10 +69,13 @@
 
                 parameters(command.Parameters);
 
-                using (var reader = await command.ExecuteReaderAsync(token))
+                await SqlConnectionManager.ExecSafe(async () =>
                 {
-                    result = read(reader);
-                }
+                    using (var reader = await command.ExecuteReaderAsync(token))
+                    {
+                        result = read(reader);
+                    }
+                });
             }
 
             HomeHubEventSource.Log.MethodLeave();
@@ -102,10 +108,13 @@
 
                 parameters(command.Parameters);
 
-                using (var reader = await command.ExecuteReaderAsync(token))
+                await SqlConnectionManager.ExecSafe(async () =>
                 {
-                    read(reader);
-                }
+                    using (var reader = await command.ExecuteReaderAsync(token))
+                    {
+                        read(reader);
+                    }
+                });
             }
 
             HomeHubEventSource.Log.MethodLeave();
@@ -135,10 +144,49 @@
 
                 parameters(command.Parameters);
 
-                await command.ExecuteNonQueryAsync(token);
+                await SqlConnectionManager.ExecSafe(() => command.ExecuteNonQueryAsync(token));
             }
 
             HomeHubEventSource.Log.MethodLeave();
+        }
+
+        private static async Task ExecSafe(Func<Task> action)
+        {
+            var logMessage = string.Empty;
+            var exRethrow = default(Exception);
+
+            try
+            {
+                await action();
+            }
+            catch (SqlException ex)
+            {
+                // handle sql exceptions
+                switch (ex.Number)
+                {
+                    case 50001:
+                        // NOT FOUND
+                        exRethrow = new DuplicateItemException(ex.Message);
+                        break;
+                    case 50002:
+                        // ACCESS DENIED
+                        exRethrow = new UnauthorizedDataAccessException(ex.Message);
+                        break;
+                    case 50003:
+                        // DUPLICATE
+                        exRethrow = new DuplicateItemException(ex.Message);
+                        break;
+                    default:
+                        // Well something horrible has gone wrong
+                        exRethrow = new FailureException(ex.Message, "INTERNAL ERROR",
+                            HttpStatusCode.InternalServerError);
+                        break;
+                }
+
+                ExceptionUtility.TraceException(exRethrow);
+                HomeHubEventSource.Log.Error($"Sql server error. Transaction rollback. {ex.Message}");
+                throw exRethrow;
+            }
         }
     }
 }

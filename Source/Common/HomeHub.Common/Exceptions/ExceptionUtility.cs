@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -13,7 +14,7 @@ namespace HomeHub.Common.Exceptions
     [ExcludeFromCodeCoverage]
     public static class ExceptionUtility
     {
-        private static void TraceException(Exception e)
+        public static void TraceException(Exception e)
         {
             HomeHubEventSource.Log.Error(e.Message);
         }
@@ -72,7 +73,7 @@ namespace HomeHub.Common.Exceptions
 
         public static void ThrowFailureException(string reason)
         {
-            var e = new FailureException(reason);
+            var e = new FailureException(reason, "INTERNAL ERROR", HttpStatusCode.InternalServerError);
             ExceptionUtility.TraceException(e);
             throw e;
         }

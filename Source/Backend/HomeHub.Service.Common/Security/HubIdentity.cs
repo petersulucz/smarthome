@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Security.Principal;
-using System.Text;
-using System.Threading.Tasks;
+using HomeHub.Data.Common.Security;
 
 namespace HomeHub.Service.Common.Security
 {
@@ -18,44 +15,17 @@ namespace HomeHub.Service.Common.Security
             this.user = user;
         }
 
-        public User User
-        {
-            get
-            {
-                return this.user;
-            }
-        }
+        public User User => this.user;
 
-        public string AuthenticationType
-        {
-            get
-            {
-                return String.Empty;
-            }
-        }
+        public string AuthenticationType => "GRIDDLE";
 
-        public bool IsAuthenticated
-        {
-            get
-            {
-                return true;
-            }
-        }
+        /// <summary>
+        /// Returns true if the user has been authenticated
+        /// </summary>
+        public bool IsAuthenticated => UserId != default(Guid) && false == user.Roles.HasFlag(UserRoles.BLACKLISTED);
 
-        public string Name
-        {
-            get
-            {
-                return $"{this.user.FirstName} {this.user.LastName}";
-            }
-        }
+        public string Name => $"{this.user.FirstName} {this.user.LastName}";
 
-        public Guid UserId
-        {
-            get
-            {
-                return this.user.Id;
-            }
-        }
+        public Guid UserId => this.user.Id;
     }
 }

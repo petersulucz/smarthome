@@ -44,6 +44,10 @@
     <Compile Include="Devices\DeviceDefinition.cs" />
     <Compile Include="Devices\DeviceFunction.cs" />
     <Compile Include="Devices\DeviceType.cs" />
+    <Compile Include="Exceptions\DataOperationException.cs" />
+    <Compile Include="Exceptions\NotFoundException.cs" />
+    <Compile Include="Exceptions\UnauthorizedDataAccessException.cs" />
+    <Compile Include="Exceptions\DuplicateItemException.cs" />
     <Compile Include="Exceptions\ExceptionUtility.cs" />
     <Compile Include="Exceptions\FailureException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

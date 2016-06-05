@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Security.Principal;
 using System.Threading;
@@ -10,6 +11,7 @@ using System.Web;
 using System.Web.Http;
 using System.Web.Http.Controllers;
 using System.Web.Http.Filters;
+using HomeHub.Data.Common.Security;
 using HomeHub.Service.Common.Helpers;
 
 namespace HomeHub.Service.Web.Security
@@ -19,16 +21,18 @@ namespace HomeHub.Service.Web.Security
 
     public class RequireCredentialsAttribute : Attribute, IAuthorizationFilter
     {
-        public bool AllowMultiple
-        {
-            get
-            {
-                return false;
-            }
-        }
+        /// <summary>Gets or sets a value indicating whether more than one instance of the indicated attribute can be specified for a single program element.</summary>
+        /// <returns>true if more than one instance is allowed to be specified; otherwise, false. The default is false.</returns>
+        public bool AllowMultiple => false;
 
+        /// <summary>Executes the authorization filter to synchronize.</summary>
+        /// <returns>The authorization filter to synchronize.</returns>
+        /// <param name="actionContext">The action context.</param>
+        /// <param name="cancellationToken">The cancellation token associated with the filter.</param>
+        /// <param name="continuation">The continuation.</param>
         public async Task<HttpResponseMessage> ExecuteAuthorizationFilterAsync(HttpActionContext actionContext, CancellationToken cancellationToken, Func<Task<HttpResponseMessage>> continuation)
         {
+            // Get the custom auth header. YEA THATS RIGHT CUSTOM. SCREW THE SYSTEM
             var containsAuth = actionContext.Request.Headers.Contains("sh-auth");
             
 
@@ -41,6 +45,7 @@ namespace HomeHub.Service.Web.Security
 
             User user = null;
 
+            // Get ip to log
             var ip = IPAddressHelper.GetIPAddress(actionContext.Request);
 
             try
@@ -55,16 +60,44 @@ namespace HomeHub.Service.Web.Security
             var identity = new HubIdentity(user);
 
             var principal = new HubPrincipal(identity);
+
+            // This is mostly here to screw with justin
+            if (principal.IsInRole(UserRoles.BLACKLISTED))
+            {
+                return
+                    RequireCredentialsAttribute.BlacklistedResponse(
+                        "This account has been blacklisted. All requests will be rejected.");
+            }
+
             Thread.CurrentPrincipal = principal;
             HttpContext.Current.User = principal;
 
             return await continuation();
         }
 
+        /// <summary>
+        /// Returns a response indicating that the user is unauthorized
+        /// </summary>
+        /// <returns>The unauthorized response</returns>
         private static HttpResponseMessage UnauthorizedResponse()
         {
-            var mesg = new HttpResponseMessage(System.Net.HttpStatusCode.Unauthorized);
-            mesg.ReasonPhrase = "UNAUTHORIZED";
+            var mesg = new HttpResponseMessage(System.Net.HttpStatusCode.Unauthorized) {ReasonPhrase = "UNAUTHORIZED"};
+
+            return mesg;
+        }
+
+        /// <summary>
+        /// Return a response indicating a blacklisted account
+        /// </summary>
+        /// <param name="message">The message to the user</param>
+        /// <returns>The blacklisted response</returns>
+        private static HttpResponseMessage BlacklistedResponse(string message)
+        {
+            var mesg = new HttpResponseMessage(HttpStatusCode.Forbidden)
+            {
+                ReasonPhrase = "BLACKLIST",
+                Content = new StringContent(message)
+            };
 
             return mesg;
         }

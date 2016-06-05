@@ -23,6 +23,7 @@ namespace HomeHub.Service.Common.Models
         /// <param name="device">The device</param>
         public DeviceModel(Device device)
         {
+            this.Id = device.Id;
             this.Name = device.Name;
             this.Home = device.Home;
             this.Description = device.Description;
@@ -30,9 +31,9 @@ namespace HomeHub.Service.Common.Models
         }
 
         /// <summary>
-        /// The definition of the device
+        /// The device id
         /// </summary>
-        public DeviceDefinitionModel Definition { get; set; }
+        public Guid Id { get; set; }
 
         /// <summary>
         /// The name of this device
@@ -53,5 +54,10 @@ namespace HomeHub.Service.Common.Models
         [MaxLength(1024)]
         [Required]
         public string Description { get; set; }
+
+        /// <summary>
+        /// The definition of the device
+        /// </summary>
+        public DeviceDefinitionModel Definition { get; set; }
     }
 }
