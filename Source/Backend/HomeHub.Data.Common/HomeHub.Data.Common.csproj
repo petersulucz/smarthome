@@ -41,6 +41,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IDataLayer.cs" />
+    <Compile Include="IDeviceDefinitions.cs" />
+    <Compile Include="IDeviceLayer.cs" />
+    <Compile Include="IHomeLayer.cs" />
     <Compile Include="ISecurityLayer.cs" />
     <Compile Include="Models\Home.cs" />
     <Compile Include="Models\IValidateable.cs" />

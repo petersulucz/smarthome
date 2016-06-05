@@ -13,10 +13,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeHub.Data.Common", "..\.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeHub.Data.Sql", "..\..\Source\Backend\HomeHub.Data.Sql\HomeHub.Data.Sql.csproj", "{E768475E-347E-401F-89F5-05C7E8B87032}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeHub.Data.Common.Test", "..\..\Test\Unit\HomeHub.Data.Common.Test\HomeHub.Data.Common.Test.csproj", "{31F09D88-CA3E-463B-A880-F5751B81E5BF}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeHub.Data.Sql.Test", "..\..\Test\Unit\HomeHub.Data.Sql.Test\HomeHub.Data.Sql.Test.csproj", "{C2BB55B0-03B6-44D8-9AB3-BCF3DA946C45}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeHub.Service.Common", "..\..\Source\Backend\HomeHub.Service.Common\HomeHub.Service.Common.csproj", "{9AD27AB4-D504-479D-BDA6-6DBB3A5C8BC7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeHub.Common.Integration", "..\..\Test\Integration\HomeHub.Common.Integration\HomeHub.Common.Integration.csproj", "{82445507-F4E8-4EAC-9822-1E1E326B21CD}"
@@ -121,38 +117,6 @@ Global
 		{E768475E-347E-401F-89F5-05C7E8B87032}.Release|x64.Build.0 = Release|Any CPU
 		{E768475E-347E-401F-89F5-05C7E8B87032}.Release|x86.ActiveCfg = Release|Any CPU
 		{E768475E-347E-401F-89F5-05C7E8B87032}.Release|x86.Build.0 = Release|Any CPU
-		{31F09D88-CA3E-463B-A880-F5751B81E5BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{31F09D88-CA3E-463B-A880-F5751B81E5BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{31F09D88-CA3E-463B-A880-F5751B81E5BF}.Debug|ARM.ActiveCfg = Debug|Any CPU
-		{31F09D88-CA3E-463B-A880-F5751B81E5BF}.Debug|ARM.Build.0 = Debug|Any CPU
-		{31F09D88-CA3E-463B-A880-F5751B81E5BF}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{31F09D88-CA3E-463B-A880-F5751B81E5BF}.Debug|x64.Build.0 = Debug|Any CPU
-		{31F09D88-CA3E-463B-A880-F5751B81E5BF}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{31F09D88-CA3E-463B-A880-F5751B81E5BF}.Debug|x86.Build.0 = Debug|Any CPU
-		{31F09D88-CA3E-463B-A880-F5751B81E5BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{31F09D88-CA3E-463B-A880-F5751B81E5BF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{31F09D88-CA3E-463B-A880-F5751B81E5BF}.Release|ARM.ActiveCfg = Release|Any CPU
-		{31F09D88-CA3E-463B-A880-F5751B81E5BF}.Release|ARM.Build.0 = Release|Any CPU
-		{31F09D88-CA3E-463B-A880-F5751B81E5BF}.Release|x64.ActiveCfg = Release|Any CPU
-		{31F09D88-CA3E-463B-A880-F5751B81E5BF}.Release|x64.Build.0 = Release|Any CPU
-		{31F09D88-CA3E-463B-A880-F5751B81E5BF}.Release|x86.ActiveCfg = Release|Any CPU
-		{31F09D88-CA3E-463B-A880-F5751B81E5BF}.Release|x86.Build.0 = Release|Any CPU
-		{C2BB55B0-03B6-44D8-9AB3-BCF3DA946C45}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C2BB55B0-03B6-44D8-9AB3-BCF3DA946C45}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C2BB55B0-03B6-44D8-9AB3-BCF3DA946C45}.Debug|ARM.ActiveCfg = Debug|Any CPU
-		{C2BB55B0-03B6-44D8-9AB3-BCF3DA946C45}.Debug|ARM.Build.0 = Debug|Any CPU
-		{C2BB55B0-03B6-44D8-9AB3-BCF3DA946C45}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{C2BB55B0-03B6-44D8-9AB3-BCF3DA946C45}.Debug|x64.Build.0 = Debug|Any CPU
-		{C2BB55B0-03B6-44D8-9AB3-BCF3DA946C45}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{C2BB55B0-03B6-44D8-9AB3-BCF3DA946C45}.Debug|x86.Build.0 = Debug|Any CPU
-		{C2BB55B0-03B6-44D8-9AB3-BCF3DA946C45}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C2BB55B0-03B6-44D8-9AB3-BCF3DA946C45}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C2BB55B0-03B6-44D8-9AB3-BCF3DA946C45}.Release|ARM.ActiveCfg = Release|Any CPU
-		{C2BB55B0-03B6-44D8-9AB3-BCF3DA946C45}.Release|ARM.Build.0 = Release|Any CPU
-		{C2BB55B0-03B6-44D8-9AB3-BCF3DA946C45}.Release|x64.ActiveCfg = Release|Any CPU
-		{C2BB55B0-03B6-44D8-9AB3-BCF3DA946C45}.Release|x64.Build.0 = Release|Any CPU
-		{C2BB55B0-03B6-44D8-9AB3-BCF3DA946C45}.Release|x86.ActiveCfg = Release|Any CPU
-		{C2BB55B0-03B6-44D8-9AB3-BCF3DA946C45}.Release|x86.Build.0 = Release|Any CPU
 		{9AD27AB4-D504-479D-BDA6-6DBB3A5C8BC7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9AD27AB4-D504-479D-BDA6-6DBB3A5C8BC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9AD27AB4-D504-479D-BDA6-6DBB3A5C8BC7}.Debug|ARM.ActiveCfg = Debug|Any CPU

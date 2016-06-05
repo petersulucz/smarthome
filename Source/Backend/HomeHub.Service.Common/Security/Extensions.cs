@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Security.Principal;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HomeHub.Service.Common.Security
 {
@@ -21,7 +17,7 @@ namespace HomeHub.Service.Common.Security
                 return ((HubIdentity)self).UserId;
             }
 
-            return Guid.Empty;
+            throw new NotImplementedException("One of our developers has screwed up and this will not work.");
         }
     }
 }

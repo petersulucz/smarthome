@@ -27,7 +27,7 @@
         /// <summary>
         /// Gets the id.
         /// </summary>
-        internal Guid Id { get; private set; }
+        public Guid Id { get; private set; }
 
         /// <summary>
         /// Gets the name.

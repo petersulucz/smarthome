@@ -1,4 +1,6 @@
-﻿namespace HomeHub.Service.Web.Controllers
+﻿using System;
+
+namespace HomeHub.Service.Web.Controllers
 {
     using System.Collections.Generic;
     using System.Linq;
@@ -48,6 +50,19 @@
         {
             var guid = System.Web.HttpContext.Current.User.Identity.UserId();
             return (await DataLayer.Instance.GetHomes(guid)).Select(h => new HomeModel(h));
+        }
+
+        /// <summary>
+        /// Get all of the users which have access to a home
+        /// </summary>
+        /// <param name="home"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("{home}/access")]
+        public async Task<Dictionary<string, Guid>> GetUsers(Guid home)
+        {
+            var guid = System.Web.HttpContext.Current.User.Identity.UserId();
+            return await DataLayer.Instance.GetUsers(guid, home);
         }
     }
 }

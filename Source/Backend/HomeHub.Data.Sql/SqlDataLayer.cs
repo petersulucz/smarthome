@@ -44,7 +44,7 @@
         /// <param name="description">The description</param>
         /// <param name="definition">The definition</param>
         /// <returns>The new device</returns>
-        async Task<Device> IDataLayer.CreateDevice(string name, Guid home, string description, Guid definition)
+        public async Task<Device> CreateDevice(string name, Guid home, string description, Guid definition)
         {
             return await this.connectionManager.ExecuteSql(
                 "hub.adddevice",
@@ -63,7 +63,7 @@
 
                         reader.NextResult();
 
-                        // read the functions
+                        // Read the functions
                         var functions = SqlDataLayer.GetDeviceFunctions(reader);
 
                         reader.NextResult();
@@ -85,7 +85,7 @@
         /// Get the device definitions
         /// </summary>
         /// <returns></returns>
-        async Task<Dictionary<string, IEnumerable<DeviceDefinition>>> IDataLayer.GetDefinitions()
+        public async Task<Dictionary<string, IEnumerable<DeviceDefinition>>> GetDefinitions()
         {
             var devices = await this.connectionManager.ExecuteSql(
                 "hub.getdefinitions",
@@ -129,7 +129,7 @@
         /// <param name="home">The home to create</param>
         /// <param name="user">The user creating the home</param>
         /// <returns></returns>
-        async Task<Home> IDataLayer.CreateHome(Home home, Guid user)
+        public async Task<Home> CreateHome(Home home, Guid user)
         {
             return await this.connectionManager.ExecuteSql(
                 "hub.createhome", 
@@ -151,7 +151,7 @@
         /// </summary>
         /// <param name="user">The user id</param>
         /// <returns>A list of all homes for this user</returns>
-        async Task<IEnumerable<Home>> IDataLayer.GetHomes(Guid user)
+        public async Task<IEnumerable<Home>> GetHomes(Guid user)
         {
             return await this.connectionManager.ExecuteSql(
                 "hub.gethomes",
@@ -172,6 +172,11 @@
         }
 
 
+        public Task<Dictionary<string, Guid>> GetUsers(Guid home, Guid user)
+        {
+            throw new NotImplementedException();
+        }
+
 
         /// <summary>
         /// Get all devices for a home
@@ -179,7 +184,7 @@
         /// <param name="user">The user to get for</param>
         /// <param name="home">The home</param>
         /// <returns>The list of all devices attached to a home</returns>
-        async Task<IEnumerable<Device>> IDataLayer.GetAllDevices(Guid user, Guid home)
+        public async Task<IEnumerable<Device>> GetAllDevices(Guid user, Guid home)
         {
             return await this.connectionManager.ExecuteSql(
                 "hub.getdevices",
@@ -258,7 +263,7 @@
 
             var token = PasswordHelper.GenerateRandom(64);
 
-            const UserRoles Roles = UserRoles.ADMIN | UserRoles.BASIC;
+            const UserRoles roles = UserRoles.BASIC;
 
             return await this.connectionManager.ExecuteSql(
                 "auth.createUser", 
@@ -270,7 +275,7 @@
                         collection.AddWithValue("salt", salt);
                         collection.AddWithValue("password", hashedPass);
                         collection.AddWithValue("token", token);
-                        collection.AddWithValue("roles", GenerateRolesList(Roles));
+                        collection.AddWithValue("roles", GenerateRolesList(roles));
                         collection.AddWithValue("ip", PasswordHelper.GetIPAddressInSqlForm(ip));
                     }, 
                 reader =>
@@ -278,7 +283,7 @@
                         ExceptionUtility.ThrowArgumentExceptionIfFalse(reader.Read(), "Could not create user");
                         return new AuthenticationToken
                                         {
-                                            Claims = Roles, 
+                                            Claims = roles, 
                                             Expiration = (DateTime)reader["expiration"], 
                                             Token = Convert.ToBase64String(token)
                                         };
