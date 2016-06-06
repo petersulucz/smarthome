@@ -4,6 +4,28 @@
         <name>HomeHub.Service.Web</name>
     </assembly>
     <members>
+        <member name="T:HomeHub.Service.Web.FilterConfig">
+            <summary>
+            The filter config
+            </summary>
+        </member>
+        <member name="M:HomeHub.Service.Web.FilterConfig.RegisterGlobalFilters(System.Web.Mvc.GlobalFilterCollection)">
+            <summary>
+            Register the global filters
+            </summary>
+            <param name="filters"></param>
+        </member>
+        <member name="T:HomeHub.Service.Web.WebApiConfig">
+            <summary>
+            The main config
+            </summary>
+        </member>
+        <member name="M:HomeHub.Service.Web.WebApiConfig.Register(System.Web.Http.HttpConfiguration)">
+            <summary>
+            Register
+            </summary>
+            <param name="config">Config object</param>
+        </member>
         <member name="M:HomeHub.Service.Web.Areas.HelpPage.ApiDescriptionExtensions.GetFriendlyId(System.Web.Http.Description.ApiDescription)">
             <summary>
             Generates an URI-friendly ID for the <see cref="T:System.Web.Http.Description.ApiDescription"/>. E.g. "Get-Values-id_name" instead of "GetValues/{id}?name={name}"
@@ -472,14 +494,14 @@
         </member>
         <member name="T:HomeHub.Service.Web.Areas.HelpPage.XmlDocumentationProvider">
             <summary>
-            A custom <see cref="T:System.Web.Http.Description.IDocumentationProvider"/> that reads the API documentation from an XML documentation file.
+                A custom <see cref="T:System.Web.Http.Description.IDocumentationProvider" /> that reads the API documentation from an XML documentation file.
             </summary>
         </member>
-        <member name="M:HomeHub.Service.Web.Areas.HelpPage.XmlDocumentationProvider.#ctor(System.String)">
+        <member name="M:HomeHub.Service.Web.Areas.HelpPage.XmlDocumentationProvider.#ctor(System.String[])">
             <summary>
-            Initializes a new instance of the <see cref="T:HomeHub.Service.Web.Areas.HelpPage.XmlDocumentationProvider"/> class.
+                Initializes a new instance of the <see cref="T:HomeHub.Service.Web.Areas.HelpPage.XmlDocumentationProvider" /> class.
             </summary>
-            <param name="documentPath">The physical path to XML document.</param>
+            <param name="documentPaths">The physical path to XML documents.</param>
         </member>
         <member name="T:HomeHub.Service.Web.Controllers.AuthController">
             <summary>
@@ -589,24 +611,38 @@
             </summary>
             <returns>A test string</returns>
         </member>
-        <member name="P:HomeHub.Service.Web.Security.RequireCredentialsAttribute.AllowMultiple">
+        <member name="T:HomeHub.Service.Web.Filters.FailureExceptionFilter">
+            <summary>
+            An exception filter for failure exceptions
+            </summary>
+        </member>
+        <member name="M:HomeHub.Service.Web.Filters.FailureExceptionFilter.OnException(System.Web.Http.Filters.HttpActionExecutedContext)">
+            <summary>Raises the exception event.</summary>
+            <param name="actionExecutedContext">The context for the action.</param>
+        </member>
+        <member name="T:HomeHub.Service.Web.Filters.RequireCredentialsAttribute">
+            <summary>
+            Attribute to require credentials on api calls
+            </summary>
+        </member>
+        <member name="P:HomeHub.Service.Web.Filters.RequireCredentialsAttribute.AllowMultiple">
             <summary>Gets or sets a value indicating whether more than one instance of the indicated attribute can be specified for a single program element.</summary>
             <returns>true if more than one instance is allowed to be specified; otherwise, false. The default is false.</returns>
         </member>
-        <member name="M:HomeHub.Service.Web.Security.RequireCredentialsAttribute.ExecuteAuthorizationFilterAsync(System.Web.Http.Controllers.HttpActionContext,System.Threading.CancellationToken,System.Func{System.Threading.Tasks.Task{System.Net.Http.HttpResponseMessage}})">
+        <member name="M:HomeHub.Service.Web.Filters.RequireCredentialsAttribute.ExecuteAuthorizationFilterAsync(System.Web.Http.Controllers.HttpActionContext,System.Threading.CancellationToken,System.Func{System.Threading.Tasks.Task{System.Net.Http.HttpResponseMessage}})">
             <summary>Executes the authorization filter to synchronize.</summary>
             <returns>The authorization filter to synchronize.</returns>
             <param name="actionContext">The action context.</param>
             <param name="cancellationToken">The cancellation token associated with the filter.</param>
             <param name="continuation">The continuation.</param>
         </member>
-        <member name="M:HomeHub.Service.Web.Security.RequireCredentialsAttribute.UnauthorizedResponse">
+        <member name="M:HomeHub.Service.Web.Filters.RequireCredentialsAttribute.UnauthorizedResponse">
             <summary>
             Returns a response indicating that the user is unauthorized
             </summary>
             <returns>The unauthorized response</returns>
         </member>
-        <member name="M:HomeHub.Service.Web.Security.RequireCredentialsAttribute.BlacklistedResponse(System.String)">
+        <member name="M:HomeHub.Service.Web.Filters.RequireCredentialsAttribute.BlacklistedResponse(System.String)">
             <summary>
             Return a response indicating a blacklisted account
             </summary>

@@ -34,7 +34,7 @@ namespace HomeHub.Service.Web.Areas.HelpPage
         public static void Register(HttpConfiguration config)
         {
             config.SetDocumentationProvider(new XmlDocumentationProvider(
-                HttpContext.Current.Server.MapPath("~/App_Data/HomeHub.Service.Web.XML")));
+                HttpContext.Current.Server.MapPath("~/App_Data/HomeHub.Service.Web.XML"), HttpContext.Current.Server.MapPath("~/App_Data/HomeHub.Service.Common.XML")));
 
             //// Uncomment the following to use the documentation from XML documentation file.
             //config.SetDocumentationProvider(new XmlDocumentationProvider(HttpContext.Current.Server.MapPath("~/App_Data/XmlDocument.xml")));

@@ -1,20 +1,20 @@
-﻿using HomeHub.Service.Common.Security;
-using System;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Web;
-using System.Web.Http.Controllers;
-using System.Web.Http.Filters;
-using HomeHub.Data.Common.Security;
-using HomeHub.Service.Common.Helpers;
-
-namespace HomeHub.Service.Web.Security
+﻿namespace HomeHub.Service.Web.Filters
 {
+    using System;
+    using System.Linq;
+    using System.Net;
+    using System.Net.Http;
+    using System.Threading;
+    using System.Threading.Tasks;
+    using System.Web;
+    using System.Web.Http.Controllers;
+    using System.Web.Http.Filters;
+
     using HomeHub.Data.Common.Models.Security;
+    using HomeHub.Data.Common.Security;
     using HomeHub.Service.Common.Data;
+    using HomeHub.Service.Common.Helpers;
+    using HomeHub.Service.Common.Security;
 
     /// <summary>
     /// Attribute to require credentials on api calls
