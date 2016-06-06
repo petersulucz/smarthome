@@ -1,5 +1,4 @@
-﻿using HomeHub.Service.Web.Security;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -9,10 +8,12 @@ using System.Web.Http;
 
 namespace HomeHub.Service.Web.Controllers
 {
+    using HomeHub.Service.Web.Filters;
+
     /// <summary>
     /// This is the test controller. 
     /// </summary>
-    [RequireCredentialsAttribute]
+    [RequireCredentials]
     [RoutePrefix("test")]
     public class TestController : ApiController
     {

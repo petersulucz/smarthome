@@ -12,7 +12,7 @@ namespace HomeHub.Service.Web.Controllers
     using HomeHub.Service.Common.Data;
     using HomeHub.Service.Common.Models;
     using HomeHub.Service.Common.Security;
-    using HomeHub.Service.Web.Security;
+    using HomeHub.Service.Web.Filters;
 
     /// <summary>
     ///     Stuff with homes
