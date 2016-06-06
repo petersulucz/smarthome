@@ -1,18 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Linq;
-using System.Web;
-using System.Web.Http;
-using System.Web.Mvc;
-using System.Web.Optimization;
-using System.Web.Routing;
-using HomeHub.Service.Common.Data;
-
-namespace HomeHub.Service.Web
+﻿namespace HomeHub.Service.Web
 {
-    public class WebApiApplication : System.Web.HttpApplication
+    using System.Configuration;
+    using System.Web;
+    using System.Web.Http;
+    using System.Web.Mvc;
+    using System.Web.Optimization;
+    using System.Web.Routing;
+
+    using HomeHub.Service.Common.Data;
+
+    /// <summary>
+    /// The web api application
+    /// </summary>
+    public class WebApiApplication : HttpApplication
     {
+        /// <summary>
+        /// On start
+        /// </summary>
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();

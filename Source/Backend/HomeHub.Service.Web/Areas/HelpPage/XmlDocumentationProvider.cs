@@ -48,12 +48,18 @@ namespace HomeHub.Service.Web.Areas.HelpPage
             return GetTagValue(typeNode, "summary");
         }
 
+        /// <summary> Gets the documentation based on <see cref="T:System.Web.Http.Controllers.HttpActionDescriptor" />. </summary>
+        /// <returns>The documentation for the controller.</returns>
+        /// <param name="actionDescriptor">The action descriptor.</param>
         public virtual string GetDocumentation(HttpActionDescriptor actionDescriptor)
         {
             var methodNode = this.GetMethodNode(actionDescriptor);
             return GetTagValue(methodNode, "summary");
         }
 
+        /// <summary> Gets the documentation based on <see cref="T:System.Web.Http.Controllers.HttpParameterDescriptor" />. </summary>
+        /// <returns>The documentation for the controller.</returns>
+        /// <param name="parameterDescriptor">The parameter descriptor.</param>
         public virtual string GetDocumentation(HttpParameterDescriptor parameterDescriptor)
         {
             var reflectedParameterDescriptor = parameterDescriptor as ReflectedHttpParameterDescriptor;
@@ -132,6 +138,11 @@ namespace HomeHub.Service.Web.Areas.HelpPage
             return null;
         }
 
+        /// <summary>
+        /// Get the type name
+        /// </summary>
+        /// <param name="type">The type</param>
+        /// <returns>Returns the type name</returns>
         private static string GetTypeName(Type type)
         {
             var name = type.FullName;
@@ -161,6 +172,11 @@ namespace HomeHub.Service.Web.Areas.HelpPage
             return name;
         }
 
+        /// <summary>
+        /// Get the node for a method
+        /// </summary>
+        /// <param name="actionDescriptor">The action descriptors</param>
+        /// <returns>The x path navigator</returns>
         private XPathNavigator GetMethodNode(HttpActionDescriptor actionDescriptor)
         {
             var reflectedActionDescriptor = actionDescriptor as ReflectedHttpActionDescriptor;
@@ -176,6 +192,11 @@ namespace HomeHub.Service.Web.Areas.HelpPage
             return null;
         }
 
+        /// <summary>
+        /// Get the node for a type
+        /// </summary>
+        /// <param name="type">The type</param>
+        /// <returns>The x path navigator</returns>
         private XPathNavigator GetTypeNode(Type type)
         {
             var controllerTypeName = GetTypeName(type);
@@ -183,6 +204,11 @@ namespace HomeHub.Service.Web.Areas.HelpPage
             return this.SelectSingleNode(selectExpression);
         }
 
+        /// <summary>
+        /// Select a single node, search all of the documentation files
+        /// </summary>
+        /// <param name="expression">The query</param>
+        /// <returns>The x path navigator</returns>
         private XPathNavigator SelectSingleNode(string expression)
         {
             foreach (var navigator in this._documentNavigators)
