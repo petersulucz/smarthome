@@ -3,8 +3,6 @@ using System.Web.Mvc;
 
 namespace HomeHub.Service.Web
 {
-    using HomeHub.Service.Web.Filters;
-
     /// <summary>
     /// The filter config
     /// </summary>

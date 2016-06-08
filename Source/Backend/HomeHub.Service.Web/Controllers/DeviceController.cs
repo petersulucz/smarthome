@@ -13,7 +13,7 @@ namespace HomeHub.Service.Web.Controllers
     using HomeHub.Service.Common.Data;
     using HomeHub.Service.Common.Models;
     using HomeHub.Service.Common.Security;
-    using HomeHub.Service.Web.Filters;
+    using HomeHub.Service.Web.Pipeline.Filters;
 
     /// <summary>
     /// The controller for devices

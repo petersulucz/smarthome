@@ -26,6 +26,7 @@
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
             DataLayer.Initialize(ConfigurationManager.ConnectionStrings["default"].ConnectionString);
+
         }
     }
 }

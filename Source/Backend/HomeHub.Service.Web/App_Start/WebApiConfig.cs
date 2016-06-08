@@ -3,7 +3,8 @@ using System.Web.Http.Cors;
 
 namespace HomeHub.Service.Web
 {
-    using HomeHub.Service.Web.Filters;
+    using HomeHub.Service.Web.Pipeline.Filters;
+    using HomeHub.Service.Web.Pipeline.Handlers;
 
     /// <summary>
     /// The main config
@@ -22,6 +23,8 @@ namespace HomeHub.Service.Web
 
             // Make sure failure exceptions are ok
             config.Filters.Add(new FailureExceptionFilter());
+
+            config.MessageHandlers.Add(new GriddleResponseHandler());
 
             // Web API routes
             config.MapHttpAttributeRoutes();
