@@ -8,7 +8,7 @@ using System.Web.Http;
 
 namespace HomeHub.Service.Web.Controllers
 {
-    using HomeHub.Service.Web.Filters;
+    using HomeHub.Service.Web.Pipeline.Filters;
 
     /// <summary>
     /// This is the test controller. 

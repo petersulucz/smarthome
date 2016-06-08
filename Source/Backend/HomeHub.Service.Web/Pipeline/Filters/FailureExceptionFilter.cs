@@ -1,5 +1,5 @@
 ﻿
-namespace HomeHub.Service.Web.Filters
+namespace HomeHub.Service.Web.Pipeline.Filters
 {
     using System.Net.Http;
     using System.Web.Http.Filters;

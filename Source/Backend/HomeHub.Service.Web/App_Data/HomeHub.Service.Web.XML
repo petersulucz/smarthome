@@ -503,6 +503,44 @@
             </summary>
             <param name="documentPaths">The physical path to XML documents.</param>
         </member>
+        <member name="M:HomeHub.Service.Web.Areas.HelpPage.XmlDocumentationProvider.GetDocumentation(System.Web.Http.Controllers.HttpActionDescriptor)">
+            <summary> Gets the documentation based on <see cref="T:System.Web.Http.Controllers.HttpActionDescriptor" />. </summary>
+            <returns>The documentation for the controller.</returns>
+            <param name="actionDescriptor">The action descriptor.</param>
+        </member>
+        <member name="M:HomeHub.Service.Web.Areas.HelpPage.XmlDocumentationProvider.GetDocumentation(System.Web.Http.Controllers.HttpParameterDescriptor)">
+            <summary> Gets the documentation based on <see cref="T:System.Web.Http.Controllers.HttpParameterDescriptor" />. </summary>
+            <returns>The documentation for the controller.</returns>
+            <param name="parameterDescriptor">The parameter descriptor.</param>
+        </member>
+        <member name="M:HomeHub.Service.Web.Areas.HelpPage.XmlDocumentationProvider.GetTypeName(System.Type)">
+            <summary>
+            Get the type name
+            </summary>
+            <param name="type">The type</param>
+            <returns>Returns the type name</returns>
+        </member>
+        <member name="M:HomeHub.Service.Web.Areas.HelpPage.XmlDocumentationProvider.GetMethodNode(System.Web.Http.Controllers.HttpActionDescriptor)">
+            <summary>
+            Get the node for a method
+            </summary>
+            <param name="actionDescriptor">The action descriptors</param>
+            <returns>The x path navigator</returns>
+        </member>
+        <member name="M:HomeHub.Service.Web.Areas.HelpPage.XmlDocumentationProvider.GetTypeNode(System.Type)">
+            <summary>
+            Get the node for a type
+            </summary>
+            <param name="type">The type</param>
+            <returns>The x path navigator</returns>
+        </member>
+        <member name="M:HomeHub.Service.Web.Areas.HelpPage.XmlDocumentationProvider.SelectSingleNode(System.String)">
+            <summary>
+            Select a single node, search all of the documentation files
+            </summary>
+            <param name="expression">The query</param>
+            <returns>The x path navigator</returns>
+        </member>
         <member name="T:HomeHub.Service.Web.Controllers.AuthController">
             <summary>
             Controller for authentication stuff
@@ -611,43 +649,79 @@
             </summary>
             <returns>A test string</returns>
         </member>
-        <member name="T:HomeHub.Service.Web.Filters.FailureExceptionFilter">
+        <member name="T:HomeHub.Service.Web.Pipeline.Filters.FailureExceptionFilter">
             <summary>
             An exception filter for failure exceptions
             </summary>
         </member>
-        <member name="M:HomeHub.Service.Web.Filters.FailureExceptionFilter.OnException(System.Web.Http.Filters.HttpActionExecutedContext)">
+        <member name="M:HomeHub.Service.Web.Pipeline.Filters.FailureExceptionFilter.OnException(System.Web.Http.Filters.HttpActionExecutedContext)">
             <summary>Raises the exception event.</summary>
             <param name="actionExecutedContext">The context for the action.</param>
         </member>
-        <member name="T:HomeHub.Service.Web.Filters.RequireCredentialsAttribute">
+        <member name="T:HomeHub.Service.Web.Pipeline.Filters.RequireCredentialsAttribute">
             <summary>
             Attribute to require credentials on api calls
             </summary>
         </member>
-        <member name="P:HomeHub.Service.Web.Filters.RequireCredentialsAttribute.AllowMultiple">
+        <member name="P:HomeHub.Service.Web.Pipeline.Filters.RequireCredentialsAttribute.AllowMultiple">
             <summary>Gets or sets a value indicating whether more than one instance of the indicated attribute can be specified for a single program element.</summary>
             <returns>true if more than one instance is allowed to be specified; otherwise, false. The default is false.</returns>
         </member>
-        <member name="M:HomeHub.Service.Web.Filters.RequireCredentialsAttribute.ExecuteAuthorizationFilterAsync(System.Web.Http.Controllers.HttpActionContext,System.Threading.CancellationToken,System.Func{System.Threading.Tasks.Task{System.Net.Http.HttpResponseMessage}})">
+        <member name="M:HomeHub.Service.Web.Pipeline.Filters.RequireCredentialsAttribute.ExecuteAuthorizationFilterAsync(System.Web.Http.Controllers.HttpActionContext,System.Threading.CancellationToken,System.Func{System.Threading.Tasks.Task{System.Net.Http.HttpResponseMessage}})">
             <summary>Executes the authorization filter to synchronize.</summary>
             <returns>The authorization filter to synchronize.</returns>
             <param name="actionContext">The action context.</param>
             <param name="cancellationToken">The cancellation token associated with the filter.</param>
             <param name="continuation">The continuation.</param>
         </member>
-        <member name="M:HomeHub.Service.Web.Filters.RequireCredentialsAttribute.UnauthorizedResponse">
+        <member name="M:HomeHub.Service.Web.Pipeline.Filters.RequireCredentialsAttribute.UnauthorizedResponse">
             <summary>
             Returns a response indicating that the user is unauthorized
             </summary>
             <returns>The unauthorized response</returns>
         </member>
-        <member name="M:HomeHub.Service.Web.Filters.RequireCredentialsAttribute.BlacklistedResponse(System.String)">
+        <member name="M:HomeHub.Service.Web.Pipeline.Filters.RequireCredentialsAttribute.BlacklistedResponse(System.String)">
             <summary>
             Return a response indicating a blacklisted account
             </summary>
             <param name="message">The message to the user</param>
             <returns>The blacklisted response</returns>
+        </member>
+        <member name="T:HomeHub.Service.Web.Pipeline.Handlers.GriddleResponseHandler">
+            <summary>
+            Adds the griddle response format to every response
+            </summary>
+        </member>
+        <member name="T:HomeHub.Service.Web.WebApiApplication">
+            <summary>
+            The web api application
+            </summary>
+        </member>
+        <member name="M:HomeHub.Service.Web.WebApiApplication.Application_Start">
+            <summary>
+            On start
+            </summary>
+        </member>
+        <member name="T:HomeHub.Service.Web.Models.GriddleResponse`1">
+            <summary>
+            A response from griddle
+            </summary>
+        </member>
+        <member name="M:HomeHub.Service.Web.Models.GriddleResponse`1.#ctor(`0)">
+            <summary>
+            A standard griddle response
+            </summary>
+            <param name="content">The content of the griddle response</param>
+        </member>
+        <member name="P:HomeHub.Service.Web.Models.GriddleResponse`1.Data">
+            <summary>
+            The data payload
+            </summary>
+        </member>
+        <member name="P:HomeHub.Service.Web.Models.GriddleResponse`1.Version">
+            <summary>
+            The api version
+            </summary>
         </member>
     </members>
 </doc>

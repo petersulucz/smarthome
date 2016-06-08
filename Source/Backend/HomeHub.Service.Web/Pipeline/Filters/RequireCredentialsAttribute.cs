@@ -1,4 +1,4 @@
-﻿namespace HomeHub.Service.Web.Filters
+﻿namespace HomeHub.Service.Web.Pipeline.Filters
 {
     using System;
     using System.Linq;
