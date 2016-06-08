@@ -1,14 +1,5 @@
 ﻿namespace HomeHub.Service.Web.Models
 {
-    using System.Net;
-    using System.Net.Http;
-    using System.Threading;
-    using System.Threading.Tasks;
-    using System.Web.Helpers;
-    using System.Web.Http;
-
-    using Newtonsoft.Json.Linq;
-
     /// <summary>
     /// A response from griddle
     /// </summary>
