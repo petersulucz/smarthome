@@ -21,6 +21,11 @@
     /// </summary>
     public class RequireCredentialsAttribute : Attribute, IAuthorizationFilter
     {
+        /// <summary>
+        /// The name of the authorization header which we look for
+        /// </summary>
+        public static string AuthorizationHeaderName = "sh-auth";
+
         /// <summary>Gets or sets a value indicating whether more than one instance of the indicated attribute can be specified for a single program element.</summary>
         /// <returns>true if more than one instance is allowed to be specified; otherwise, false. The default is false.</returns>
         public bool AllowMultiple => false;
@@ -32,16 +37,31 @@
         /// <param name="continuation">The continuation.</param>
         public async Task<HttpResponseMessage> ExecuteAuthorizationFilterAsync(HttpActionContext actionContext, CancellationToken cancellationToken, Func<Task<HttpResponseMessage>> continuation)
         {
-            // Get the custom auth header. YEA THATS RIGHT CUSTOM. SCREW THE SYSTEM
-            var containsAuth = actionContext.Request.Headers.Contains("sh-auth");
-            
+            var isHttps = actionContext.Request.RequestUri.Scheme == Uri.UriSchemeHttps;
 
+            // Get the custom auth header. YEA THATS RIGHT CUSTOM. SCREW THE SYSTEM
+            var containsAuth = actionContext.Request.Headers.Contains(RequireCredentialsAttribute.AuthorizationHeaderName);
+            
+            // If they didnt include the header, clearly they cant touch stuff
             if (false == containsAuth)
             {
+                // If they didnt use https yell at them for being stupid
                 return RequireCredentialsAttribute.UnauthorizedResponse();
             }
 
-            var header = actionContext.Request.Headers.GetValues("sh-auth").FirstOrDefault();
+            // Get the header
+            var header = actionContext.Request.Headers.GetValues(RequireCredentialsAttribute.AuthorizationHeaderName).FirstOrDefault();
+
+            if (false == isHttps)
+            {
+                return new HttpResponseMessage(HttpStatusCode.UpgradeRequired)
+                           {
+                               Content =
+                                   new StringContent(
+                                   $"HTTPS REQUIRED. THE TOKEN \'{header}\' HAS BEEN REVOKED BECAUSE WE CAN'T GUARANTEE SOMEONE WONT BE MESSING WITH YOUR STUFF NOW."),
+                               ReasonPhrase = "HTTPS REQUIRED"
+                           };
+            }
 
             User user = null;
 
@@ -81,7 +101,7 @@
         /// <returns>The unauthorized response</returns>
         private static HttpResponseMessage UnauthorizedResponse()
         {
-            var mesg = new HttpResponseMessage(System.Net.HttpStatusCode.Unauthorized) {ReasonPhrase = "UNAUTHORIZED"};
+            var mesg = new HttpResponseMessage(System.Net.HttpStatusCode.Unauthorized) { ReasonPhrase = "UNAUTHORIZED" };
 
             return mesg;
         }
