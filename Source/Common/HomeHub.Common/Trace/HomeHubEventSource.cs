@@ -16,30 +16,53 @@
             /// The general.
             /// </summary>
             public const EventKeywords General = (EventKeywords)1;
+
+            /// <summary>
+            /// The data.
+            /// </summary>
             public const EventKeywords Data = (EventKeywords)2;
+
+            /// <summary>
+            /// The diagnostic.
+            /// </summary>
             public const EventKeywords Diagnostic = (EventKeywords)4;
+
+            /// <summary>
+            /// The performance
+            /// </summary>
             public const EventKeywords Perf = (EventKeywords)8;
         }
 
+        /// <summary>
+        /// The tasks.
+        /// </summary>
         public class Tasks
         {
+            /// <summary>
+            /// The page.
+            /// </summary>
             public const EventTask Page = (EventTask)1;
-            public const EventTask DBQuery = (EventTask)2;
+
+            /// <summary>
+            /// The db query.
+            /// </summary>
+            public const EventTask DbQuery = (EventTask)2;
         }
 
+        /// <summary>
+        /// The event source.
+        /// </summary>
         private static HomeHubEventSource src = new HomeHubEventSource();
+
+        /// <summary>
+        /// Prevents a default instance of the <see cref="HomeHubEventSource"/> class from being created. 
+        /// </summary>
         private HomeHubEventSource()
         {
             // nothin
         }
 
-        public static HomeHubEventSource Log
-        {
-            get
-            {
-                return src;
-            }
-        }
+        public static HomeHubEventSource Log => src;
 
         [Event(1, Message = "Startup", Keywords = Keywords.General, Level = EventLevel.Informational)]
         public void Startup()
