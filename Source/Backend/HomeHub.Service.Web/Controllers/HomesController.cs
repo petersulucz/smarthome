@@ -1,8 +1,6 @@
-﻿using System;
-using HomeHub.Service.Common.Models.Homes;
-
-namespace HomeHub.Service.Web.Controllers
+﻿namespace HomeHub.Service.Web.Controllers
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Net;
@@ -11,6 +9,7 @@ namespace HomeHub.Service.Web.Controllers
 
     using HomeHub.Service.Common.Data;
     using HomeHub.Service.Common.Models;
+    using HomeHub.Service.Common.Models.Homes;
     using HomeHub.Service.Common.Security;
     using HomeHub.Service.Web.Models;
     using HomeHub.Service.Web.Pipeline.Filters;
@@ -31,6 +30,7 @@ namespace HomeHub.Service.Web.Controllers
         [Route("")]
         public async Task<HomeModel> CreateHome(NewHomeModel newHome)
         {
+            // If no model was sent. Tell people
             if (null == newHome)
             {
                 throw new HttpResponseException(HttpStatusCode.BadRequest);

@@ -1,19 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
-using System.Diagnostics.Tracing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace HomeHub.Common.Trace
+﻿namespace HomeHub.Common.Trace
 {
+    using System.Diagnostics;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Diagnostics.Tracing;
+
+    /// <summary>
+    /// The home hub event source.
+    /// </summary>
     [ExcludeFromCodeCoverage]
     public class HomeHubEventSource : EventSource
     {
         public class Keywords
         {
+            /// <summary>
+            /// The general.
+            /// </summary>
             public const EventKeywords General = (EventKeywords)1;
             public const EventKeywords Data = (EventKeywords)2;
             public const EventKeywords Diagnostic = (EventKeywords)4;
