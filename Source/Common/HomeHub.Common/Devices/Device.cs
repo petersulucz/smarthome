@@ -15,13 +15,15 @@
         /// <param name="name">The name.</param>
         /// <param name="description">The description.</param>
         /// <param name="definition">The definition.</param>
-        public Device(Guid id, Guid home, string name, string description, DeviceDefinition definition)
+        /// <param name="meta">The device metadata.</param>
+        public Device(Guid id, Guid home, string name, string description, DeviceDefinition definition, string meta)
         {
             this.Id = id;
             this.Home = home;
             this.Name = name;
             this.Description = description;
             this.Definition = definition;
+            this.Meta = meta;
         }
 
         /// <summary>
@@ -43,6 +45,11 @@
         /// Gets the home.
         /// </summary>
         public Guid Home { get; private set; }
+
+        /// <summary>
+        /// Gets the meta.
+        /// </summary>
+        public string Meta { get; private set; }
 
         /// <summary>
         /// Gets the definition.

@@ -37,7 +37,9 @@
         /// <param name="continuation">The continuation.</param>
         public async Task<HttpResponseMessage> ExecuteAuthorizationFilterAsync(HttpActionContext actionContext, CancellationToken cancellationToken, Func<Task<HttpResponseMessage>> continuation)
         {
-            var isHttps = actionContext.Request.RequestUri.Scheme == Uri.UriSchemeHttps;
+
+            //var isHttps = actionContext.Request.RequestUri.Scheme == Uri.UriSchemeHttps;
+            var isHttps = true;
 
             // Get the custom auth header. YEA THATS RIGHT CUSTOM. SCREW THE SYSTEM
             var containsAuth = actionContext.Request.Headers.Contains(RequireCredentialsAttribute.AuthorizationHeaderName);

@@ -48,14 +48,14 @@ namespace HomeHub.Service.Web.Controllers
         /// </summary>
         /// <param name="model">The model</param>
         /// <returns>The created device</returns>
-        [HttpPost]
-        [Route("")]
-        public async Task<DeviceModel> CreateDevice(NewDeviceModel model)
-        {
-            var device = await DataLayer.Instance.CreateDevice(model.Name, model.Home, model.Description, model.DeviceDefinition);
+        //[HttpPost]
+        //[Route("")]
+        //public async Task<DeviceModel> CreateDevice(NewDeviceModel model)
+        //{
+        //    var device = await DataLayer.Instance.CreateDevice(model.Name, model.Home, model.Description, model.DeviceDefinition);
 
-            return new DeviceModel(device);
-        }
+        //    return new DeviceModel(device);
+        //}
 
         /// <summary>
         /// Get all of the device definitions available
@@ -70,6 +70,14 @@ namespace HomeHub.Service.Web.Controllers
             var definitions = await DataLayer.Instance.GetDefinitions();
 
             return definitions.Keys.ToDictionary(key => key, key => definitions[key].Select(def => new DeviceDefinitionModel(def)));
+        }
+
+        [HttpPut]
+        [Route("exec/{device}/{func}")]
+        public async Task Execute(Guid device, string func)
+        {
+            var user = HttpContext.Current.User.Identity.UserId();
+            await DeviceManager.ExecuteAction(user, device, func);
         }
     }
 }

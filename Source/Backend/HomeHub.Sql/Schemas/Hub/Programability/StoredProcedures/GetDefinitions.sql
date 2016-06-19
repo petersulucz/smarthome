@@ -8,6 +8,7 @@ AS
     SELECT
         def.id
        ,def.type
+       ,def.product
        ,man.name
     FROM hub.devicedefinition def
     JOIN hub.devicemanufacturer man

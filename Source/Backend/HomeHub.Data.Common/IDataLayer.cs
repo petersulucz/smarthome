@@ -10,7 +10,7 @@
     /// <summary>
     /// The DataLayer interface.
     /// </summary>
-    public interface IDataLayer : IHomeLayer, IDeviceLayer, IDeviceDefinitions
+    public interface IDataLayer : IHomeLayer, IDeviceLayer, IDeviceDefinitions, IAccountLayer
     {
 
     }

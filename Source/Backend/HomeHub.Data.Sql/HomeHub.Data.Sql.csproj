@@ -49,6 +49,10 @@
       <Project>{548dfdad-2214-4bd5-9ce6-c3264e4089ab}</Project>
       <Name>HomeHub.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\HomeHub.Adapters\HomeHub.Adapters.Common\HomeHub.Adapters.Common.csproj">
+      <Project>{ed7c6681-b4f7-4db7-9daa-7183bbdaec3f}</Project>
+      <Name>HomeHub.Adapters.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\HomeHub.Data.Common\HomeHub.Data.Common.csproj">
       <Project>{1799ee42-505b-4b16-ab01-4c2c57d28ee1}</Project>
       <Name>HomeHub.Data.Common</Name>

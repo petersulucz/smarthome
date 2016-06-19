@@ -25,7 +25,7 @@
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-            DataLayer.Initialize(ConfigurationManager.ConnectionStrings["default"].ConnectionString);
+            DataLayer.Initialize(ConfigurationManager.ConnectionStrings["default"].ConnectionString, HttpContext.Current.Server.MapPath("~/App_Data/Adapters/"));
 
         }
     }

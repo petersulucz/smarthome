@@ -13,13 +13,15 @@
         /// </summary>
         /// <param name="id">The id.</param>
         /// <param name="manufacturer">The manufacturer.</param>
+        /// <param name="product">The product</param>
         /// <param name="type">The type.</param>
         /// <param name="functions">The functions</param>
-        public DeviceDefinition(Guid id, string manufacturer, DeviceType type, IEnumerable<DeviceFunction> functions)
+        public DeviceDefinition(Guid id, string manufacturer, string product, DeviceType type, IEnumerable<DeviceFunction> functions)
         {
             this.Id = id;
             this.Manufacturer = manufacturer;
             this.Type = type;
+            this.Product = product;
             this.Functions = new List<DeviceFunction>(functions);
         }
 
@@ -32,6 +34,11 @@
         /// Gets the manufacturer.
         /// </summary>
         public string Manufacturer { get; private set; }
+
+        /// <summary>
+        /// Gets the product.
+        /// </summary>
+        public string Product { get; private set; }
 
         /// <summary>
         /// Gets the type.

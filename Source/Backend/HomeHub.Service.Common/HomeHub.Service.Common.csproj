@@ -32,6 +32,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
@@ -43,7 +44,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\AccountManager.cs" />
+    <Compile Include="Data\AdapterManager.cs" />
     <Compile Include="Data\DataLayer.cs" />
+    <Compile Include="Data\DeviceManager.cs" />
     <Compile Include="Helpers\IPAddressHelper.cs" />
     <Compile Include="Models\ActionArgumentModel.cs" />
     <Compile Include="Models\Devices\DeviceActionModel.cs" />
@@ -66,6 +70,10 @@
     <ProjectReference Include="..\..\Common\HomeHub.Common\HomeHub.Common.csproj">
       <Project>{548DFDAD-2214-4BD5-9CE6-C3264E4089AB}</Project>
       <Name>HomeHub.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HomeHub.Adapters\HomeHub.Adapters.Common\HomeHub.Adapters.Common.csproj">
+      <Project>{ed7c6681-b4f7-4db7-9daa-7183bbdaec3f}</Project>
+      <Name>HomeHub.Adapters.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\HomeHub.Data.Common\HomeHub.Data.Common.csproj">
       <Project>{1799EE42-505B-4B16-AB01-4C2C57D28EE1}</Project>
