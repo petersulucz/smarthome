@@ -14,10 +14,16 @@ namespace HomeHub.Service.Common.Data
 
         public static ISecurityLayer Security { get; private set; }
 
-        public static void Initialize(string connectionString)
+        public static IAccountLayer Accounts { get; private set; }
+
+        public static AdapterManager AdapterManager { get; private set; }
+
+        public static void Initialize(string connectionString, string adapterFolder)
         {
             Instance = new SqlDataLayer(connectionString);
             Security = new SqlDataLayer(connectionString);
+            Accounts = new SqlDataLayer(connectionString);
+            AdapterManager = new AdapterManager(adapterFolder);
         }
     }
 }

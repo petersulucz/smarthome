@@ -3,6 +3,7 @@
    ,@home UNIQUEIDENTIFIER
    ,@description NVARCHAR(1024)
    ,@definition UNIQUEIDENTIFIER
+   ,@meta NVARCHAR(MAX)
 AS
     DECLARE @id UNIQUEIDENTIFIER
 
@@ -29,6 +30,7 @@ AS
            ,[name]
            ,[description]
            ,[devicedefinition]
+           ,[metadata]
         )
         VALUES
         (
@@ -37,6 +39,7 @@ AS
            ,@name
            ,@description
            ,@definition
+           ,@meta
         )
 
         -- Get the id
@@ -53,6 +56,7 @@ AS
         SELECT
             man.name AS manufacturer
            ,def.type
+           ,def.product
         FROM hub.devicedefinition def
         JOIN hub.devicemanufacturer man
           ON def.manufacturer = man.id

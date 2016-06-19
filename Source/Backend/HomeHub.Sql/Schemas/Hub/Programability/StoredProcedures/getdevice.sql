@@ -1,17 +1,12 @@
-﻿CREATE PROCEDURE [hub].[getdevices]
-    @home UNIQUEIDENTIFIER
-   ,@user UNIQUEIDENTIFIER
+﻿CREATE PROCEDURE [hub].[getdevice]
+    @user UNIQUEIDENTIFIER
+   ,@device UNIQUEIDENTIFIER
 AS
-
-    IF NOT EXISTS (SELECT TOP 1 1 FROM hub.membership WHERE [home] = @home AND [user] = @user)
-    BEGIN
-        ;THROW 50002, N'NO ACCESS', 0
-    END
-
     DECLARE @devices TABLE
     (
         [id] UNIQUEIDENTIFIER
        ,[name] NVARCHAR(128)
+       ,[home] UNIQUEIDENTIFIER
        ,[description] NVARCHAR(1024)
        ,[devicedefinition] UNIQUEIDENTIFIER
        ,[manufacturer] NVARCHAR(64)
@@ -24,6 +19,7 @@ AS
     SELECT
          device.id
         ,device.name
+        ,device.home
         ,device.description
         ,device.devicedefinition
         ,man.name
@@ -35,7 +31,7 @@ AS
       ON def.id = device.devicedefinition
     JOIN hub.devicemanufacturer man
       ON man.id = def.manufacturer
-    WHERE device.home = @home
+    WHERE device.id = @device
 
     -- Get the device types
     SELECT
@@ -46,5 +42,4 @@ AS
 
     -- Get the devices
     SELECT * FROM @devices
-
 RETURN 0

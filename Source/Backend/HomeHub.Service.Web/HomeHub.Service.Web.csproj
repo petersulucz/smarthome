@@ -197,11 +197,13 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\DeviceController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HomesController.cs" />
     <Compile Include="Controllers\TestController.cs" />
+    <Compile Include="Models\Manufacturer\LifxAccount.cs" />
     <Compile Include="Pipeline\Filters\FailureExceptionFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -285,6 +287,10 @@
     <ProjectReference Include="..\..\Common\HomeHub.Common\HomeHub.Common.csproj">
       <Project>{548dfdad-2214-4bd5-9ce6-c3264e4089ab}</Project>
       <Name>HomeHub.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HomeHub.Adapters\HomeHub.Adapters.Common\HomeHub.Adapters.Common.csproj">
+      <Project>{ED7C6681-B4F7-4DB7-9DAA-7183BBDAEC3F}</Project>
+      <Name>HomeHub.Adapters.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\HomeHub.Data.Common\HomeHub.Data.Common.csproj">
       <Project>{1799ee42-505b-4b16-ab01-4c2c57d28ee1}</Project>

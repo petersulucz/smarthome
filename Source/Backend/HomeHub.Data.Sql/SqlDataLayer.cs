@@ -9,7 +9,9 @@ namespace HomeHub.Data.Sql
     using System.Text;
     using System.Threading;
     using System.Threading.Tasks;
+    using System.Xml.Linq;
 
+    using HomeHub.Adapters.Common;
     using HomeHub.Common.Devices;
     using HomeHub.Common.Exceptions;
     using HomeHub.Common.Trace;
@@ -45,8 +47,9 @@ namespace HomeHub.Data.Sql
         /// <param name="home">The home</param>
         /// <param name="description">The description</param>
         /// <param name="definition">The definition</param>
+        /// <param name="meta">The metadata about the device</param>
         /// <returns>The new device</returns>
-        public async Task<Device> CreateDevice(string name, Guid home, string description, Guid definition)
+        public async Task<Device> CreateDevice(string name, Guid home, string description, Guid definition, string meta)
         {
             return await this.connectionManager.ExecuteSql(
                 "hub.adddevice",
@@ -56,6 +59,7 @@ namespace HomeHub.Data.Sql
                         collection.AddWithValue("home", home);
                         collection.AddWithValue("description", description);
                         collection.AddWithValue("definition", definition);
+                        collection.AddWithValue("meta", meta);
                     },
                 reader =>
                     {
@@ -75,10 +79,11 @@ namespace HomeHub.Data.Sql
                         var defintion = new DeviceDefinition(
                             definition,
                             (string)reader["manufacturer"],
+                            (string)reader["product"],
                             (DeviceType)reader["type"],
                             functions[definition]);
 
-                        return new Device(id, home, name, description, defintion);
+                        return new Device(id, home, name, description, defintion, meta);
                     },
                 this.tokenSource.Token);
         }
@@ -107,6 +112,7 @@ namespace HomeHub.Data.Sql
                             var definition = new DeviceDefinition(
                                 id,
                                 manufacturer,
+                                (string)reader["product"],
                                 (DeviceType)reader["type"],
                                 func[id]);
 
@@ -250,6 +256,7 @@ namespace HomeHub.Data.Sql
                             var definition = new DeviceDefinition(
                                 deviceDefinitionGuid,
                                 (string)reader["manufacturer"],
+                                (string)reader["product"],
                                 (DeviceType)reader["type"],
                                 functions[deviceDefinitionGuid]);
 
@@ -258,11 +265,58 @@ namespace HomeHub.Data.Sql
                                 home,
                                 (string)reader["name"],
                                 (string)reader["description"],
-                                definition);
+                                definition,
+                                (string)reader["meta"]);
                             devices.Add(device);
                         }
 
                         return devices;
+                    },
+                this.tokenSource.Token);
+        }
+
+        /// <summary>
+        /// The get device.
+        /// </summary>
+        /// <param name="user">The user.</param>
+        /// <param name="device">The device.</param>
+        /// <returns>
+        /// The <see cref="Task"/>.
+        /// </returns>
+        public async Task<Device> GetDevice(Guid user, Guid device)
+        {
+            return await this.connectionManager.ExecuteSql(
+                "hub.getdevice",
+                parameters =>
+                    {
+                        parameters.AddWithValue("user", user);
+                        parameters.AddWithValue("device", device);
+                    },
+                reader =>
+                    {
+                        var functions = SqlDataLayer.GetDeviceFunctions(reader);
+
+                        reader.NextResult();
+
+                        reader.Read();
+
+                        var deviceDefinitionGuid = (Guid)reader["devicedefinition"];
+
+                        var definition = new DeviceDefinition(
+                            deviceDefinitionGuid,
+                            (string)reader["manufacturer"],
+                            (string)reader["product"],
+                            (DeviceType)reader["type"],
+                            functions[deviceDefinitionGuid]);
+
+                        return new Device(
+                            (Guid)reader["id"],
+                            (Guid)reader["home"],
+                            (string)reader["name"],
+                            (string)reader["description"],
+                            definition,
+                            (string)reader["meta"]);
+
                     },
                 this.tokenSource.Token);
         }
@@ -460,6 +514,51 @@ namespace HomeHub.Data.Sql
                            Claims = claims, 
                            Expiration = expiration
                        };
+        }
+
+        async Task<UserContext> IAccountLayer.AddAccount(Guid user, string manufacturer, Dictionary<string, string> loginMeta)
+        {
+            var usercontext = new UserContext(user, manufacturer, null);
+            foreach (var keyval in loginMeta)
+            {
+                usercontext.AddLoginContext(keyval.Key, keyval.Value);
+            }
+
+            var doc = usercontext.SerializeLogin().ToString();
+
+            await this.connectionManager.ExecuteSql(
+                "hub.addaccountlogin",
+                collection =>
+                    {
+                        collection.AddWithValue("user", user);
+                        collection.AddWithValue("manufacturer", manufacturer);
+                        collection.AddWithValue("meta", doc);
+                    }, this.tokenSource.Token);
+
+            return usercontext;
+        }
+
+        async Task<UserContext> IAccountLayer.GetAccount(Guid user, string manufacturer)
+        {
+            return await this.connectionManager.ExecuteSql(
+                "hub.getaccountlogin",
+                collection =>
+                    {
+                        collection.AddWithValue("user", user);
+                        collection.AddWithValue("manufacturer", manufacturer);
+                    },
+                reader =>
+                    {
+                        reader.Read();
+                        var meta = (string)reader["meta"];
+
+                        var doc = XDocument.Parse(meta);
+                        var usercontext = new UserContext(user, manufacturer, null);
+                        usercontext.Load(doc);
+
+                        return usercontext;
+                    },
+                this.tokenSource.Token);
         }
 
         /// <summary>

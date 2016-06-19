@@ -31,6 +31,11 @@
 
         private HttpResponseMessage HandleResponseMessage(HttpResponseMessage response)
         {
+            if (null == response.Content)
+            {
+                return response;
+            }
+
             var contentType = response.Content.Headers.ContentType?.MediaType;
 
             if (null == contentType)

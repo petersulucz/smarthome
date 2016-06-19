@@ -5,6 +5,6 @@
    ,[name] NVARCHAR(256) NOT NULL
    ,[description] NVARCHAR(1024) NOT NULL
    ,[devicedefinition] UNIQUEIDENTIFIER NOT NULL
-   ,[metadata] NVARCHAR(MAX) NULL
+   ,[metadata] NVARCHAR(MAX) NOT NULL
    ,PRIMARY KEY ([home], [id])
 )

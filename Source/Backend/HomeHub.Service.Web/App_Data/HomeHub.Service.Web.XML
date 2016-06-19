@@ -541,6 +541,19 @@
             <param name="expression">The query</param>
             <returns>The x path navigator</returns>
         </member>
+        <member name="T:HomeHub.Service.Web.Controllers.AccountController">
+            <summary>
+            The account controller
+            </summary>
+        </member>
+        <member name="M:HomeHub.Service.Web.Controllers.AccountController.AddLifxAccount(System.Guid,HomeHub.Service.Web.Models.Manufacturer.LifxAccount)">
+            <summary>
+            Add a lifx account to this subscription
+            </summary>
+            <param name="home">The home to attach to</param>
+            <param name="account">The account parameters</param>
+            <returns>No content</returns>
+        </member>
         <member name="T:HomeHub.Service.Web.Controllers.AuthController">
             <summary>
             Controller for authentication stuff
@@ -576,13 +589,6 @@
             </summary>
             <param name="home">Id of the home to get devices for</param>
             <returns>A list of all devices</returns>
-        </member>
-        <member name="M:HomeHub.Service.Web.Controllers.DeviceController.CreateDevice(HomeHub.Service.Common.Models.NewDeviceModel)">
-            <summary>
-            Create a new device
-            </summary>
-            <param name="model">The model</param>
-            <returns>The created device</returns>
         </member>
         <member name="M:HomeHub.Service.Web.Controllers.DeviceController.GetDefinitions">
             <summary>
@@ -649,6 +655,37 @@
             </summary>
             <returns>A test string</returns>
         </member>
+        <member name="T:HomeHub.Service.Web.Models.Manufacturer.LifxAccount">
+            <summary>
+            A lifx account link
+            </summary>
+        </member>
+        <member name="P:HomeHub.Service.Web.Models.Manufacturer.LifxAccount.AppKey">
+            <summary>
+            The application key
+            </summary>
+        </member>
+        <member name="T:HomeHub.Service.Web.Models.GriddleResponse`1">
+            <summary>
+            A response from griddle
+            </summary>
+        </member>
+        <member name="M:HomeHub.Service.Web.Models.GriddleResponse`1.#ctor(`0)">
+            <summary>
+            A standard griddle response
+            </summary>
+            <param name="content">The content of the griddle response</param>
+        </member>
+        <member name="P:HomeHub.Service.Web.Models.GriddleResponse`1.Data">
+            <summary>
+            The data payload
+            </summary>
+        </member>
+        <member name="P:HomeHub.Service.Web.Models.GriddleResponse`1.Version">
+            <summary>
+            The api version
+            </summary>
+        </member>
         <member name="T:HomeHub.Service.Web.Pipeline.Filters.FailureExceptionFilter">
             <summary>
             An exception filter for failure exceptions
@@ -661,6 +698,11 @@
         <member name="T:HomeHub.Service.Web.Pipeline.Filters.RequireCredentialsAttribute">
             <summary>
             Attribute to require credentials on api calls
+            </summary>
+        </member>
+        <member name="F:HomeHub.Service.Web.Pipeline.Filters.RequireCredentialsAttribute.AuthorizationHeaderName">
+            <summary>
+            The name of the authorization header which we look for
             </summary>
         </member>
         <member name="P:HomeHub.Service.Web.Pipeline.Filters.RequireCredentialsAttribute.AllowMultiple">
@@ -692,6 +734,27 @@
             Adds the griddle response format to every response
             </summary>
         </member>
+        <member name="M:HomeHub.Service.Web.Pipeline.Handlers.GriddleResponseHandler.SendAsync(System.Net.Http.HttpRequestMessage,System.Threading.CancellationToken)">
+            <summary>Sends an HTTP request to the inner handler to send to the server as an asynchronous operation.</summary>
+            <returns>Returns <see cref="T:System.Threading.Tasks.Task`1" />. The task object representing the asynchronous operation.</returns>
+            <param name="request">The HTTP request message to send to the server.</param>
+            <param name="cancellationToken">A cancellation token to cancel operation.</param>
+            <exception cref="T:System.ArgumentNullException">The <paramref name="request" /> was null.</exception>
+        </member>
+        <member name="M:HomeHub.Service.Web.Pipeline.Handlers.GriddleResponseHandler.GetWrappedJsonResponse(System.Net.Http.HttpResponseMessage)">
+            <summary>
+            Gets wrapped json content
+            </summary>
+            <param name="message">The http response message to pull stuff out of</param>
+            <returns>The same http response message, but with new content</returns>
+        </member>
+        <member name="M:HomeHub.Service.Web.Pipeline.Handlers.GriddleResponseHandler.GetGriddleResponse(System.Net.Http.ObjectContent)">
+            <summary>
+            Get a griddle response with extra params
+            </summary>
+            <param name="payload">The payload to wrap in a griddle</param>
+            <returns>A new object content</returns>
+        </member>
         <member name="T:HomeHub.Service.Web.WebApiApplication">
             <summary>
             The web api application
@@ -700,27 +763,6 @@
         <member name="M:HomeHub.Service.Web.WebApiApplication.Application_Start">
             <summary>
             On start
-            </summary>
-        </member>
-        <member name="T:HomeHub.Service.Web.Models.GriddleResponse`1">
-            <summary>
-            A response from griddle
-            </summary>
-        </member>
-        <member name="M:HomeHub.Service.Web.Models.GriddleResponse`1.#ctor(`0)">
-            <summary>
-            A standard griddle response
-            </summary>
-            <param name="content">The content of the griddle response</param>
-        </member>
-        <member name="P:HomeHub.Service.Web.Models.GriddleResponse`1.Data">
-            <summary>
-            The data payload
-            </summary>
-        </member>
-        <member name="P:HomeHub.Service.Web.Models.GriddleResponse`1.Version">
-            <summary>
-            The api version
             </summary>
         </member>
     </members>

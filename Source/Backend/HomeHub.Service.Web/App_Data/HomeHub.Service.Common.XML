@@ -4,6 +4,41 @@
         <name>HomeHub.Service.Common</name>
     </assembly>
     <members>
+        <member name="M:HomeHub.Service.Common.Data.AccountManager.LinkAccount(System.Guid,System.Guid,System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            Link an account
+            </summary>
+            <param name="user">The user id</param>
+            <param name="manufacturer">The manufacturer</param>
+            <param name="loginMeta">The login meta data</param>
+            <returns>On completion</returns>
+        </member>
+        <member name="T:HomeHub.Service.Common.Data.AdapterManager">
+            <summary>
+            The adapter manager.
+            </summary>
+        </member>
+        <member name="M:HomeHub.Service.Common.Data.AdapterManager.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:HomeHub.Service.Common.Data.AdapterManager"/> class. 
+            </summary>
+            <param name="adapterFolder">
+            The adapter Folder.
+            </param>
+            <exception cref="T:System.Exception">
+            If we cant find the folder
+            </exception>
+        </member>
+        <member name="P:HomeHub.Service.Common.Data.AdapterManager.AdapterMap">
+            <summary>
+            Gets the adapter map.
+            </summary>
+        </member>
+        <member name="P:HomeHub.Service.Common.Data.AdapterManager.Adapters">
+            <summary>
+            Gets the adapters.
+            </summary>
+        </member>
         <member name="T:HomeHub.Service.Common.Models.ActionArgumentModel">
             <summary>
             An action argument
