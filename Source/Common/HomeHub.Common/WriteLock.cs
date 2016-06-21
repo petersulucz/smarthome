@@ -6,16 +6,34 @@
     /// <summary>
     /// The write lock.
     /// </summary>
-    public sealed class WriteLock : Disposable<ReaderWriterLockSlim>
+    public sealed class WriteLock : Disposable<ReaderWriterLock>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="WriteLock"/> class.
         /// </summary>
         /// <param name="readWriteLock">The lock</param>
-        internal WriteLock(ReaderWriterLockSlim readWriteLock)
-            : base(readWriteLock, (rw) => rw.ExitWriteLock())
+        internal WriteLock(ReaderWriterLock readWriteLock)
+            : base(readWriteLock,
+                (rw) =>
+                    {
+                        if (rw.IsReaderLockHeld)
+                        {
+                            rw.ReleaseReaderLock();
+                        }
+                        else if (rw.IsWriterLockHeld)
+                        {
+                            rw.ReleaseWriterLock();
+                        }
+                    })
         {
-            readWriteLock.TryEnterWriteLock(TimeSpan.FromSeconds(10));
+            if (readWriteLock.IsReaderLockHeld)
+            {
+                readWriteLock.UpgradeToWriterLock(TimeSpan.FromSeconds(10));
+            }
+            else
+            {
+                readWriteLock.AcquireWriterLock(TimeSpan.FromSeconds(10));
+            }
         }
     }
 }

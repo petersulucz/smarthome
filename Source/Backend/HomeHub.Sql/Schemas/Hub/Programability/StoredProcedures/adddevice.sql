@@ -12,13 +12,13 @@ AS
 
         IF NOT EXISTS (SELECT TOP 1 1 FROM hub.devicedefinition WHERE id = @definition)
         BEGIN
-           ;THROW 50001, N'Definition not found', 0
+           ;THROW 50001, N'Definition not found', 1;
         END
 
         --  Make sure the name isnt already there in a home
         IF EXISTS (SELECT TOP 1 1 FROM hub.device WHERE home = @home AND name = @name)
         BEGIN
-            ;THROW 50003, N'Device with name already exists', 0
+            ;THROW 50003, N'Device with name already exists', 1;
         END
 
         SET @id = NEWID()
@@ -65,7 +65,7 @@ AS
         COMMIT TRANSACTION
     END TRY
     BEGIN CATCH
-        ROLLBACK TRANSACTION
-        THROW
+        ROLLBACK TRANSACTION;
+       ;THROW
     END CATCH
 RETURN 0

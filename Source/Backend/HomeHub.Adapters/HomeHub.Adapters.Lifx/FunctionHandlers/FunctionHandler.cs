@@ -27,9 +27,7 @@
 
         public Task Execute(UserContext context, LifxMetaData meta)
         {
-            var client = new HttpClient();
-
-
+            var client = Helpers.GetClient(context.GetLogin("appkey"));
 
             return this.execute(context, meta, client).ContinueWith(
                 result =>

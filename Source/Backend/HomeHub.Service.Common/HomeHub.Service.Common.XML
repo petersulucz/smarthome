@@ -1,0 +1,404 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>HomeHub.Service.Common</name>
+    </assembly>
+    <members>
+        <member name="T:HomeHub.Service.Common.Data.AccountManager">
+            <summary>
+            The account manager.
+            </summary>
+        </member>
+        <member name="M:HomeHub.Service.Common.Data.AccountManager.LinkAccount(System.Guid,System.Guid,System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            Link an account
+            </summary>
+            <param name="user">The user id</param>
+            <param name="home">The home.</param>
+            <param name="manufacturer">The manufacturer</param>
+            <param name="loginMeta">The login meta data</param>
+            <returns>
+            On completion
+            </returns>
+        </member>
+        <member name="T:HomeHub.Service.Common.Data.AdapterManager">
+            <summary>
+            The adapter manager.
+            </summary>
+        </member>
+        <member name="M:HomeHub.Service.Common.Data.AdapterManager.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:HomeHub.Service.Common.Data.AdapterManager"/> class. 
+            </summary>
+            <param name="adapterFolder">
+            The adapter Folder.
+            </param>
+            <exception cref="T:System.Exception">
+            If we cant find the folder
+            </exception>
+        </member>
+        <member name="P:HomeHub.Service.Common.Data.AdapterManager.AdapterMap">
+            <summary>
+            Gets the adapter map.
+            </summary>
+        </member>
+        <member name="P:HomeHub.Service.Common.Data.AdapterManager.Adapters">
+            <summary>
+            Gets the adapters.
+            </summary>
+        </member>
+        <member name="T:HomeHub.Service.Common.Data.DeviceDataLayer">
+            <summary>
+            The device data layer.
+            </summary>
+        </member>
+        <member name="F:HomeHub.Service.Common.Data.DeviceDataLayer.definitions">
+            <summary>
+            The definitions.
+            </summary>
+        </member>
+        <member name="M:HomeHub.Service.Common.Data.DeviceDataLayer.GetDeviceDefinitions">
+            <summary>
+            Get the device definitions. Using the cache.
+            </summary>
+            <returns>The device definitions</returns>
+        </member>
+        <member name="T:HomeHub.Service.Common.Data.DeviceManager">
+            <summary>
+            The device amanager.
+            </summary>
+        </member>
+        <member name="M:HomeHub.Service.Common.Data.DeviceManager.ExecuteAction(System.Guid,System.Guid,System.String)">
+            <summary>
+            Execute an action on a device
+            </summary>
+            <param name="user">The user of the device</param>
+            <param name="device">The device id</param>
+            <param name="function">The function</param>
+            <returns>Nothing</returns>
+        </member>
+        <member name="T:HomeHub.Service.Common.Models.ActionArgumentModel">
+            <summary>
+            An action argument
+            </summary>
+        </member>
+        <member name="P:HomeHub.Service.Common.Models.ActionArgumentModel.Key">
+            <summary>
+            The name of the argument
+            </summary>
+        </member>
+        <member name="P:HomeHub.Service.Common.Models.ActionArgumentModel.Value">
+            <summary>
+            The value of the argument
+            </summary>
+        </member>
+        <member name="T:HomeHub.Service.Common.Models.Devices.DeviceActionModel">
+            <summary>
+            The device action model.
+            </summary>
+        </member>
+        <member name="P:HomeHub.Service.Common.Models.Devices.DeviceActionModel.Name">
+            <summary>
+            The name of the supported action.
+            </summary>
+        </member>
+        <member name="P:HomeHub.Service.Common.Models.Devices.DeviceActionModel.Arguments">
+            <summary>
+            The list of arguments for an action
+            </summary>
+        </member>
+        <member name="T:HomeHub.Service.Common.Models.Devices.DeviceDefinitionModel">
+            <summary>
+            The device definition model.
+            </summary>
+        </member>
+        <member name="M:HomeHub.Service.Common.Models.Devices.DeviceDefinitionModel.#ctor(HomeHub.Common.Devices.DeviceDefinition)">
+            <summary>
+            Initializes a new instance of the <see cref="T:HomeHub.Service.Common.Models.Devices.DeviceDefinitionModel"/> class.
+            </summary>
+            <param name="definition">The definition.</param>
+        </member>
+        <member name="P:HomeHub.Service.Common.Models.Devices.DeviceDefinitionModel.Functions">
+            <summary>
+            The functions that this device is capable of
+            </summary>
+        </member>
+        <member name="P:HomeHub.Service.Common.Models.Devices.DeviceDefinitionModel.Type">
+            <summary>
+            The type of this device
+            </summary>
+        </member>
+        <member name="P:HomeHub.Service.Common.Models.Devices.DeviceDefinitionModel.Manufacturer">
+            <summary>
+            The manufacturer of this device
+            </summary>
+        </member>
+        <member name="P:HomeHub.Service.Common.Models.Devices.DeviceDefinitionModel.Id">
+            <summary>
+            The id of this defintion
+            </summary>
+        </member>
+        <member name="T:HomeHub.Service.Common.Models.Devices.DeviceFunctionModel">
+            <summary>
+            The device function model.
+            </summary>
+        </member>
+        <member name="M:HomeHub.Service.Common.Models.Devices.DeviceFunctionModel.#ctor(HomeHub.Common.Devices.DeviceFunction)">
+            <summary>
+            Initializes a new instance of the <see cref="T:HomeHub.Service.Common.Models.Devices.DeviceFunctionModel"/> class.
+            </summary>
+            <param name="function">The function.</param>
+        </member>
+        <member name="P:HomeHub.Service.Common.Models.Devices.DeviceFunctionModel.Name">
+            <summary>
+            The name of this function
+            </summary>
+        </member>
+        <member name="T:HomeHub.Service.Common.Models.Devices.DeviceModel">
+            <summary>
+            Represents a device
+            </summary>
+        </member>
+        <member name="M:HomeHub.Service.Common.Models.Devices.DeviceModel.#ctor(HomeHub.Common.Devices.Device)">
+            <summary>
+            Initializes a new instance of the <see cref="T:HomeHub.Service.Common.Models.Devices.DeviceModel"/> class. 
+            </summary>
+            <param name="device">The device</param>
+        </member>
+        <member name="P:HomeHub.Service.Common.Models.Devices.DeviceModel.Id">
+            <summary>
+            The device id
+            </summary>
+        </member>
+        <member name="P:HomeHub.Service.Common.Models.Devices.DeviceModel.Name">
+            <summary>
+            The name of this device
+            </summary>
+        </member>
+        <member name="P:HomeHub.Service.Common.Models.Devices.DeviceModel.Home">
+            <summary>
+            The home this device references
+            </summary>
+        </member>
+        <member name="P:HomeHub.Service.Common.Models.Devices.DeviceModel.Description">
+            <summary>
+            The description of this device
+            </summary>
+        </member>
+        <member name="P:HomeHub.Service.Common.Models.Devices.DeviceModel.Definition">
+            <summary>
+            The definition of the device
+            </summary>
+        </member>
+        <member name="T:HomeHub.Service.Common.Models.Homes.HomeMembershipModel">
+            <summary>
+            The home membership model
+            </summary>
+        </member>
+        <member name="M:HomeHub.Service.Common.Models.Homes.HomeMembershipModel.#ctor">
+            <summary>
+            Constructor for asp
+            </summary>
+        </member>
+        <member name="M:HomeHub.Service.Common.Models.Homes.HomeMembershipModel.#ctor(HomeHub.Data.Common.Models.Homes.HomeMembership)">
+            <summary>
+            Intializes a new instance of the <see cref="T:HomeHub.Service.Common.Models.Homes.HomeMembershipModel"/> class.
+            </summary>
+            <param name="membership">The membership object</param>
+        </member>
+        <member name="P:HomeHub.Service.Common.Models.Homes.HomeMembershipModel.User">
+            <summary>
+            The user id
+            </summary>
+        </member>
+        <member name="P:HomeHub.Service.Common.Models.Homes.HomeMembershipModel.Roles">
+            <summary>
+            The list of roles
+            </summary>
+        </member>
+        <member name="M:HomeHub.Service.Common.Models.Homes.HomeMembershipModel.ToHomeMembership">
+            <summary>
+            Gets the home membership model from this set
+            </summary>
+            <returns>The home membership model</returns>
+        </member>
+        <member name="M:HomeHub.Service.Common.Models.Homes.HomeMembershipModel.GetHomeMembershipAccessFromStrings(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Get Home membership access result from a list of string roles
+            </summary>
+            <param name="roles">The list of roles</param>
+            <returns>A home membership access bit field</returns>
+        </member>
+        <member name="M:HomeHub.Service.Common.Models.Homes.HomeMembershipModel.GetRoles(HomeHub.Data.Common.Models.Homes.HomeMembershipAccess)">
+            <summary>
+            Get the roles list of membership
+            </summary>
+            <param name="roles">The roles</param>
+            <returns>A list of the string roles</returns>
+        </member>
+        <member name="T:HomeHub.Service.Common.Models.Homes.HomeModel">
+            <summary>
+            The home model.
+            </summary>
+        </member>
+        <member name="M:HomeHub.Service.Common.Models.Homes.HomeModel.#ctor(HomeHub.Data.Common.Models.Homes.Home)">
+            <summary>
+            Initializes a new instance of the <see cref="T:HomeHub.Service.Common.Models.Homes.HomeModel"/> class.
+            </summary>
+            <param name="home">
+            The home.
+            </param>
+        </member>
+        <member name="P:HomeHub.Service.Common.Models.Homes.HomeModel.Id">
+            <summary>
+            Gets or sets the id of the home
+            </summary>
+        </member>
+        <member name="P:HomeHub.Service.Common.Models.Homes.HomeModel.Name">
+            <summary>
+            Gets or sets the name.
+            </summary>
+        </member>
+        <member name="P:HomeHub.Service.Common.Models.Homes.HomeModel.Created">
+            <summary>
+            Gets or sets the created date time in UTC.
+            </summary>
+        </member>
+        <member name="M:HomeHub.Service.Common.Models.Homes.HomeModel.ToHome">
+            <summary>
+            Conver to a common home.
+            </summary>
+            <returns>
+            The <see cref="T:HomeHub.Data.Common.Models.Homes.Home"/>.
+            </returns>
+        </member>
+        <member name="T:HomeHub.Service.Common.Models.Homes.NewHomeModel">
+            <summary>
+            The new home model.
+            </summary>
+        </member>
+        <member name="P:HomeHub.Service.Common.Models.Homes.NewHomeModel.Name">
+            <summary>
+            Gets or sets the name.
+            </summary>
+        </member>
+        <member name="M:HomeHub.Service.Common.Models.Homes.NewHomeModel.ToHome">
+            <summary>
+            Converts to a common home
+            </summary>
+            <returns>
+            The <see cref="T:HomeHub.Data.Common.Models.Homes.Home"/>.
+            </returns>
+        </member>
+        <member name="T:HomeHub.Service.Common.Models.NewDeviceModel">
+            <summary>
+            The new device model.
+            </summary>
+        </member>
+        <member name="P:HomeHub.Service.Common.Models.NewDeviceModel.Name">
+            <summary>
+            The name of this device
+            </summary>
+        </member>
+        <member name="P:HomeHub.Service.Common.Models.NewDeviceModel.Home">
+            <summary>
+            The home this device references
+            </summary>
+        </member>
+        <member name="P:HomeHub.Service.Common.Models.NewDeviceModel.Description">
+            <summary>
+            The description of this device
+            </summary>
+        </member>
+        <member name="P:HomeHub.Service.Common.Models.NewDeviceModel.DeviceDefinition">
+            <summary>
+            The device definition
+            </summary>
+        </member>
+        <member name="T:HomeHub.Service.Common.Models.Security.AuthenticationToken">
+            <summary>
+            An authentication token
+            </summary>
+        </member>
+        <member name="M:HomeHub.Service.Common.Models.Security.AuthenticationToken.#ctor(HomeHub.Data.Common.Models.Security.AuthenticationToken)">
+            <summary>
+            Gets a new authentication token
+            </summary>
+            <param name="token"></param>
+        </member>
+        <member name="P:HomeHub.Service.Common.Models.Security.AuthenticationToken.Token">
+            <summary>
+            The token
+            </summary>
+        </member>
+        <member name="P:HomeHub.Service.Common.Models.Security.AuthenticationToken.Expiration">
+            <summary>
+            The expiration date in UTC
+            </summary>
+        </member>
+        <member name="P:HomeHub.Service.Common.Models.Security.AuthenticationToken.Claims">
+            <summary>
+            The list of claims
+            </summary>
+        </member>
+        <member name="T:HomeHub.Service.Common.Models.Security.User">
+            <summary>
+            Creates a new user
+            </summary>
+        </member>
+        <member name="P:HomeHub.Service.Common.Models.Security.User.FirstName">
+            <summary>
+            The first name
+            </summary>
+        </member>
+        <member name="P:HomeHub.Service.Common.Models.Security.User.LastName">
+            <summary>
+            User last name
+            </summary>
+        </member>
+        <member name="P:HomeHub.Service.Common.Models.Security.User.LoginInfo">
+            <summary>
+            The email and password
+            </summary>
+        </member>
+        <member name="M:HomeHub.Service.Common.Models.Security.User.ToSecurityUser">
+            <summary>
+            To a security user
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:HomeHub.Service.Common.Models.Security.UserPass">
+            <summary>
+            An email password combo
+            </summary>
+        </member>
+        <member name="P:HomeHub.Service.Common.Models.Security.UserPass.Email">
+            <summary>
+            The email address
+            </summary>
+        </member>
+        <member name="P:HomeHub.Service.Common.Models.Security.UserPass.Password">
+            <summary>
+            The user password
+            </summary>
+        </member>
+        <member name="M:HomeHub.Service.Common.Models.Security.UserPass.ToSecurityUserPass">
+            <summary>
+            Get the security version of this object
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HomeHub.Service.Common.Security.Extensions.UserId(System.Security.Principal.IIdentity)">
+            <summary>
+            Get the user id
+            </summary>
+            <param name="self">myself</param>
+            <returns>A guid</returns>
+        </member>
+        <member name="P:HomeHub.Service.Common.Security.HubIdentity.IsAuthenticated">
+            <summary>
+            Returns true if the user has been authenticated
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -28,19 +28,39 @@
         {
             Log.MethodEnter();
 
+            var adapter = DataLayer.AdapterManager.AdapterMap[manufacturer];
+
             Log.Verbose("Getting user context.");
             var context = await DataLayer.Accounts.AddAccount(user, home, manufacturer, loginMeta);
 
             Log.Verbose("Getting devices for user.");
-            var devices = await DataLayer.AdapterManager.AdapterMap[manufacturer].GetDevices(context);
+            var devices = await adapter.GetDevices(context);
 
             Log.Verbose("Get device definitions.");
-            var definitionsDict = await DataLayer.Instance.GetDefinitions();
+            var definitionsDict = await DeviceDataLayer.GetDeviceDefinitions();
             var definitions = definitionsDict[manufacturer];
+
+            Log.Verbose("Getting existing devices.");
+            var existing = Enumerable.Empty<DeviceImport>();
+            try
+            {
+                var extem = await DataLayer.Instance.GetAllDevices(user, home);
+                existing = extem.Select(e => new DeviceImport(e.Name, e.Definition.Product, e.Meta));
+            }
+            catch
+            { 
+                // nothing
+            }
+
 
             var output = new List<Device>();
             foreach (var device in devices)
             {
+                if (true == existing.Any(e => adapter.Compare(e, device)))
+                {
+                    continue;
+                }
+
                 var def = definitions.FirstOrDefault(d => d.Product.Equals(device.DeviceDescriptor));
 
                 if (null != def)

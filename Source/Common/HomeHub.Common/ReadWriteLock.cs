@@ -6,19 +6,19 @@
     /// <summary>
     /// The read write lock.
     /// </summary>
-    public class ReadWriteLock : IDisposable
+    public class ReadWriteLock
     {
         /// <summary>
         /// The actual lock.
         /// </summary>
-        private readonly ReaderWriterLockSlim rwls;
+        private readonly ReaderWriterLock rwls;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ReadWriteLock"/> class.
         /// </summary>
         public ReadWriteLock()
         {
-            this.rwls = new ReaderWriterLockSlim();
+            this.rwls = new ReaderWriterLock();
         }
 
         /// <summary>
@@ -30,13 +30,5 @@
         /// Enter a write lock
         /// </summary>
         public WriteLock Write => new WriteLock(this.rwls);
-
-        /// <summary>
-        /// The dispose.
-        /// </summary>
-        public void Dispose()
-        {
-            this.rwls.Dispose();
-        }
     }
 }

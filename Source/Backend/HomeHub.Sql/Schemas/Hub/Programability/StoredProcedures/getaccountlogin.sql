@@ -1,5 +1,6 @@
 ﻿CREATE PROCEDURE [hub].[getaccountlogin]
     @user UNIQUEIDENTIFIER
+   ,@home UNIQUEIDENTIFIER
    ,@manufacturer NVARCHAR(128)
 AS
     DECLARE @manId INT
@@ -10,6 +11,6 @@ AS
 
     SELECT [meta]
     FROM [hub].[accountcredentials]
-    WHERE [user] = @user AND [manufacturer] = @manId
+    WHERE [user] = @user AND [manufacturer] = @manId AND [home] = @home
 
 RETURN 0

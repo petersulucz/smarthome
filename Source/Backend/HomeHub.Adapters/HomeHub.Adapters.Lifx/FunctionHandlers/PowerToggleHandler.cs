@@ -19,7 +19,7 @@
 
         protected override Task execute(UserContext context, LifxMetaData meta, HttpClient client)
         {
-            throw new NotImplementedException();
+            return client.PostAsync($"https://api.lifx.com/v1/lights/{meta.Id}/toggle", new StringContent(String.Empty));
         }
     }
 }
