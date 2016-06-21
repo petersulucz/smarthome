@@ -1,4 +1,7 @@
-﻿CREATE TABLE [auth].[roles]
+﻿/*
+* List of roles for each user
+*/
+CREATE TABLE [auth].[roles]
 (
     [id] UNIQUEIDENTIFIER NOT NULL
    ,[claim] NVARCHAR(48) NOT NULL
