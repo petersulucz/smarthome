@@ -5,4 +5,5 @@ CREATE TABLE [hub].[devicefunctionmapping]
 (
     [device] UNIQUEIDENTIFIER NOT NULL
    ,[function] INT NOT NULL
+   ,PRIMARY KEY ([device], [function])
 )
