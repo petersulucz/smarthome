@@ -92,7 +92,6 @@
     <Build Include="Schemas\Hub\Programability\StoredProcedures\gethomes.sql" />
     <Build Include="Schemas\Hub\Tables\devicedefinition.sql" />
     <Build Include="Schemas\Hub\Tables\devicetype.sql" />
-    <Build Include="Schemas\Hub\Tables\devicefunction.sql" />
     <Build Include="Schemas\Hub\Programability\StoredProcedures\adddevice.sql" />
     <Build Include="Schemas\Hub\Tables\devicemanufacturer.sql" />
     <Build Include="Schemas\Hub\Programability\StoredProcedures\getdevices.sql" />
@@ -104,6 +103,8 @@
     <Build Include="Schemas\Hub\Programability\StoredProcedures\getaccountlogin.sql" />
     <Build Include="Schemas\Hub\Programability\StoredProcedures\getdevice.sql" />
     <Build Include="Schemas\Hub\Index\idx_uncl_manufacturer.sql" />
+    <Build Include="Schemas\Hub\Tables\functiondefinition.sql" />
+    <Build Include="Schemas\Hub\Tables\devicefunctionmapping.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="HomeHub.Sql.publish.xml" />

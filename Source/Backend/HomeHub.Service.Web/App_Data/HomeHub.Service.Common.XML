@@ -154,6 +154,11 @@
             The name of this function
             </summary>
         </member>
+        <member name="P:HomeHub.Service.Common.Models.Devices.DeviceFunctionModel.ArgumentType">
+            <summary>
+            The argument type of the function.
+            </summary>
+        </member>
         <member name="T:HomeHub.Service.Common.Models.Devices.DeviceModel">
             <summary>
             Represents a device

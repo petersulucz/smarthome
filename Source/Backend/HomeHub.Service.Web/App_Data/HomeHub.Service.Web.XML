@@ -598,6 +598,14 @@
             The <see cref="T:System.Threading.Tasks.Task"/>.
             </returns>
         </member>
+        <member name="M:HomeHub.Service.Web.Controllers.DeviceController.Execute(System.Guid,System.String)">
+            <summary>
+            Execute an action on a device
+            </summary>
+            <param name="device">The device to execute the action on.</param>
+            <param name="func">The function to execute.</param>
+            <returns>No content. Or an error.</returns>
+        </member>
         <member name="T:HomeHub.Service.Web.Controllers.HomeController">
             <summary>
             Gets the home page

@@ -1,9 +1,12 @@
 ﻿CREATE PROCEDURE [hub].[getdefinitions]
 AS
     SELECT
-        func.device
+        map.device
        ,func.name
-    FROM hub.devicefunction func
+       ,func.argumenttype
+    FROM hub.functiondefinition func
+    JOIN hub.devicefunctionmapping map
+      ON func.id = map.[function]
 
     SELECT
         def.id

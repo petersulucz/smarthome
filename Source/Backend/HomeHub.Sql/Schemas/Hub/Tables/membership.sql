@@ -1,4 +1,7 @@
-﻿CREATE TABLE [hub].[membership]
+﻿/*
+* Definies membership into a home
+*/
+CREATE TABLE [hub].[membership]
 (
     [home] UNIQUEIDENTIFIER NOT NULL
    ,[user] UNIQUEIDENTIFIER NOT NULL

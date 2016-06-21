@@ -13,7 +13,7 @@
     internal class PowerToggleHandler : FunctionHandler
     {
         public PowerToggleHandler()
-            : base(new DeviceFunction("power"))
+            : base(new DeviceFunction("power", FunctionArgumentType.None))
         {
         }
 
