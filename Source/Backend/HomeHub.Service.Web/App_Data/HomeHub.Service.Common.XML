@@ -4,14 +4,22 @@
         <name>HomeHub.Service.Common</name>
     </assembly>
     <members>
+        <member name="T:HomeHub.Service.Common.Data.AccountManager">
+            <summary>
+            The account manager.
+            </summary>
+        </member>
         <member name="M:HomeHub.Service.Common.Data.AccountManager.LinkAccount(System.Guid,System.Guid,System.String,System.Collections.Generic.Dictionary{System.String,System.String})">
             <summary>
             Link an account
             </summary>
             <param name="user">The user id</param>
+            <param name="home">The home.</param>
             <param name="manufacturer">The manufacturer</param>
             <param name="loginMeta">The login meta data</param>
-            <returns>On completion</returns>
+            <returns>
+            On completion
+            </returns>
         </member>
         <member name="T:HomeHub.Service.Common.Data.AdapterManager">
             <summary>
@@ -38,6 +46,36 @@
             <summary>
             Gets the adapters.
             </summary>
+        </member>
+        <member name="T:HomeHub.Service.Common.Data.DeviceDataLayer">
+            <summary>
+            The device data layer.
+            </summary>
+        </member>
+        <member name="F:HomeHub.Service.Common.Data.DeviceDataLayer.definitions">
+            <summary>
+            The definitions.
+            </summary>
+        </member>
+        <member name="M:HomeHub.Service.Common.Data.DeviceDataLayer.GetDeviceDefinitions">
+            <summary>
+            Get the device definitions. Using the cache.
+            </summary>
+            <returns>The device definitions</returns>
+        </member>
+        <member name="T:HomeHub.Service.Common.Data.DeviceManager">
+            <summary>
+            The device amanager.
+            </summary>
+        </member>
+        <member name="M:HomeHub.Service.Common.Data.DeviceManager.ExecuteAction(System.Guid,System.Guid,System.String)">
+            <summary>
+            Execute an action on a device
+            </summary>
+            <param name="user">The user of the device</param>
+            <param name="device">The device id</param>
+            <param name="function">The function</param>
+            <returns>Nothing</returns>
         </member>
         <member name="T:HomeHub.Service.Common.Models.ActionArgumentModel">
             <summary>

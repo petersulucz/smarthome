@@ -1,13 +1,14 @@
-﻿using System;
-
-namespace HomeHub.Service.Common.Data
+﻿namespace HomeHub.Service.Common.Data
 {
+    using System;
     using System.Collections.Generic;
     using System.ComponentModel.Composition;
     using System.ComponentModel.Composition.Hosting;
     using System.IO;
 
     using HomeHub.Adapters.Common;
+
+    using static HomeHub.Common.Trace.HomeHubEventSource;
 
     /// <summary>
     /// The adapter manager.
@@ -25,6 +26,8 @@ namespace HomeHub.Service.Common.Data
         /// </exception>
         public AdapterManager(string adapterFolder)
         {
+            Log.MethodEnter();
+
             if (false == Directory.Exists(adapterFolder))
             {
                 throw new Exception("NO ADAPTERS FOLDER. LOAD ERROR");
@@ -34,6 +37,7 @@ namespace HomeHub.Service.Common.Data
 
             foreach (var folder in Directory.GetDirectories(adapterFolder))
             {
+                Log.Info($"Loading adapters in folder {folder}");
                 catalog.Catalogs.Add(new DirectoryCatalog(folder));
             }
 
@@ -45,8 +49,11 @@ namespace HomeHub.Service.Common.Data
 
             foreach (var adapter in this.Adapters)
             {
+                Log.Info($"Founder adapter for {adapter.Manufacturer}");
                 this.AdapterMap[adapter.Manufacturer] = adapter;
             }
+
+            Log.MethodLeave();
         }
 
         /// <summary>

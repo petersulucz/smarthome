@@ -20,8 +20,8 @@ AS
         END
 
         MERGE INTO [hub].[accountcredentials] AS S
-        USING [hub].[accountcredentials] AS T
-        ON (S.[user] = @user AND S.[manufacturer] = @manId AND S.[home] = @home)
+        USING (SELECT @user AS [user], @manId AS [manufacturer], @home AS [home], @meta AS [meta]) AS T
+           ON (S.[user] = T.[user] AND S.[manufacturer] = T.[manufacturer] AND S.[home] = T.[home])
         WHEN NOT MATCHED BY TARGET THEN
         INSERT 
         (
@@ -32,14 +32,14 @@ AS
         )
         VALUES
         (
-            @user
-           ,@home
-           ,@manId
-           ,@meta
+            T.[user]
+           ,T.[home]
+           ,T.[manufacturer]
+           ,T.[meta]
         )
         WHEN MATCHED THEN
         UPDATE
-        SET [meta] = @meta;
+        SET S.[meta] = @meta;
 
 
         COMMIT TRANSACTION
