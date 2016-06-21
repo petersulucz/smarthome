@@ -1,4 +1,7 @@
-﻿CREATE TABLE [auth].[user]
+﻿/*
+* User information
+*/
+CREATE TABLE [auth].[user]
 (
     [id] UNIQUEIDENTIFIER NOT NULL PRIMARY KEY
    ,[first] NVARCHAR(64) NOT NULL

@@ -1,4 +1,7 @@
-﻿CREATE TABLE [auth].[identity]
+﻿/*
+* List of user identities
+*/
+CREATE TABLE [auth].[identity]
 (
     [id] UNIQUEIDENTIFIER NOT NULL PRIMARY KEY
    ,[email] NVARCHAR(128) NOT NULL
