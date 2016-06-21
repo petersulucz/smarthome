@@ -68,6 +68,7 @@
     <Folder Include="Schemas\Hub\Tables" />
     <Folder Include="Schemas\Hub\Programability" />
     <Folder Include="Schemas\Hub\Programability\StoredProcedures" />
+    <Folder Include="Schemas\Hub\Index" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Schemas\Hub\hub.sql" />
@@ -102,6 +103,7 @@
     <Build Include="Schemas\Hub\Programability\StoredProcedures\addaccountlogin.sql" />
     <Build Include="Schemas\Hub\Programability\StoredProcedures\getaccountlogin.sql" />
     <Build Include="Schemas\Hub\Programability\StoredProcedures\getdevice.sql" />
+    <Build Include="Schemas\Hub\Index\idx_uncl_manufacturer.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="HomeHub.Sql.publish.xml" />

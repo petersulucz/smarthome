@@ -1,5 +1,6 @@
 ﻿CREATE PROCEDURE [hub].[addaccountlogin]
     @user UNIQUEIDENTIFIER
+   ,@home UNIQUEIDENTIFIER
    ,@manufacturer NVARCHAR(128)
    ,@meta NVARCHAR(MAX)
 AS
@@ -20,17 +21,19 @@ AS
 
         MERGE INTO [hub].[accountcredentials] AS S
         USING [hub].[accountcredentials] AS T
-        ON (S.[user] = @user AND S.[manufacturer] = @manId)
+        ON (S.[user] = @user AND S.[manufacturer] = @manId AND S.[home] = @home)
         WHEN NOT MATCHED BY TARGET THEN
         INSERT 
         (
             [user]
+           ,[home]
            ,[manufacturer]
            ,[meta]
         )
         VALUES
         (
             @user
+           ,@home
            ,@manId
            ,@meta
         )

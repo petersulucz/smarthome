@@ -516,7 +516,7 @@ namespace HomeHub.Data.Sql
                        };
         }
 
-        async Task<UserContext> IAccountLayer.AddAccount(Guid user, string manufacturer, Dictionary<string, string> loginMeta)
+        async Task<UserContext> IAccountLayer.AddAccount(Guid user, Guid home, string manufacturer, Dictionary<string, string> loginMeta)
         {
             var usercontext = new UserContext(user, manufacturer, null);
             foreach (var keyval in loginMeta)
@@ -531,6 +531,7 @@ namespace HomeHub.Data.Sql
                 collection =>
                     {
                         collection.AddWithValue("user", user);
+                        collection.AddWithValue("home", home);
                         collection.AddWithValue("manufacturer", manufacturer);
                         collection.AddWithValue("meta", doc);
                     }, this.tokenSource.Token);
@@ -538,13 +539,14 @@ namespace HomeHub.Data.Sql
             return usercontext;
         }
 
-        async Task<UserContext> IAccountLayer.GetAccount(Guid user, string manufacturer)
+        async Task<UserContext> IAccountLayer.GetAccount(Guid user, Guid home, string manufacturer)
         {
             return await this.connectionManager.ExecuteSql(
                 "hub.getaccountlogin",
                 collection =>
                     {
                         collection.AddWithValue("user", user);
+                        collection.AddWithValue("home", home);
                         collection.AddWithValue("manufacturer", manufacturer);
                     },
                 reader =>
