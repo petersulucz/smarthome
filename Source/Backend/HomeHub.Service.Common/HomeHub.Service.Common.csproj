@@ -47,6 +47,7 @@
     <Compile Include="Data\AccountManager.cs" />
     <Compile Include="Data\AdapterManager.cs" />
     <Compile Include="Data\DataLayer.cs" />
+    <Compile Include="Data\DeviceDataLayer.cs" />
     <Compile Include="Data\DeviceManager.cs" />
     <Compile Include="Helpers\IPAddressHelper.cs" />
     <Compile Include="Models\ActionArgumentModel.cs" />
