@@ -1,4 +1,7 @@
-﻿CREATE TABLE [hub].[accountcredentials]
+﻿/*
+* Stores credentials for connected services
+*/
+CREATE TABLE [hub].[accountcredentials]
 (
     [user] UNIQUEIDENTIFIER NOT NULL
    ,[home] UNIQUEIDENTIFIER NOT NULL

@@ -30,7 +30,7 @@
 
             if (false == Directory.Exists(adapterFolder))
             {
-                throw new Exception("NO ADAPTERS FOLDER. LOAD ERROR");
+                throw new Exception($"NO ADAPTERS FOLDER \'{adapterFolder}\'. LOAD ERROR");
             }
 
             var catalog = new AggregateCatalog();

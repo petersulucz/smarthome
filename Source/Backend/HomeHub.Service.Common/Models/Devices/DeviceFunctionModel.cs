@@ -14,11 +14,17 @@ namespace HomeHub.Service.Common.Models.Devices
         public DeviceFunctionModel(DeviceFunction function)
         {
             this.Name = function.Name;
+            this.ArgumentType = function.ArgumentType.ToString();
         }
 
         /// <summary>
         /// The name of this function
         /// </summary>
         public string Name { get; set; }
+
+        /// <summary>
+        /// The argument type of the function.
+        /// </summary>
+        public string ArgumentType { get; set; }
     }
 }

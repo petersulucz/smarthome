@@ -39,10 +39,13 @@ AS
 
     -- Get the device types
     SELECT
-        func.device
+        map.device
        ,func.name
-    FROM hub.devicefunction func
-    WHERE func.device IN (SELECT devicedefinition FROM @devices)
+       ,func.argumenttype
+    FROM hub.devicefunctionmapping map
+    JOIN hub.functiondefinition func
+      ON func.id = map.[function]
+    WHERE map.device IN (SELECT devicedefinition FROM @devices)
 
     -- Get the devices
     SELECT * FROM @devices

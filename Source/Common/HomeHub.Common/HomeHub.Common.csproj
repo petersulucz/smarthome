@@ -45,6 +45,7 @@
     <Compile Include="Devices\DeviceFunction.cs" />
     <Compile Include="Devices\DeviceImport.cs" />
     <Compile Include="Devices\DeviceType.cs" />
+    <Compile Include="Devices\FunctionArgumentType.cs" />
     <Compile Include="Disposable.cs" />
     <Compile Include="Exceptions\DataOperationException.cs" />
     <Compile Include="Exceptions\NotFoundException.cs" />

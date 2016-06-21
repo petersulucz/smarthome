@@ -214,6 +214,30 @@
     <Compile Include="Pipeline\Filters\RequireCredentialsAttribute.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\Adapters\HomeHub.Adapters.Lifx\HomeHub.Adapters.Lifx.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Adapters\HomeHub.Adapters.Lifx\HomeHub.Adapters.Lifx.pdb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Adapters\HomeHub.Adapters.Lifx\HomeHub.Adapters.Common.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Adapters\HomeHub.Adapters.Lifx\HomeHub.Adapters.Common.pdb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Adapters\HomeHub.Adapters.Lifx\HomeHub.Common.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Adapters\HomeHub.Adapters.Lifx\HomeHub.Common.pdb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Adapters\HomeHub.Adapters.Lifx\Newtonsoft.Json.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="App_Data\Adapters\HomeHub.Adapters.Lifx\Newtonsoft.Json.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="App_Data\HomeHub.Service.Common.XML" />
     <Content Include="App_Data\HomeHub.Service.Web.XML" />
     <Content Include="Areas\HelpPage\HelpPage.css" />

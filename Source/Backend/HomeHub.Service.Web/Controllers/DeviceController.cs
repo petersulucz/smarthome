@@ -72,6 +72,12 @@ namespace HomeHub.Service.Web.Controllers
             return definitions.Keys.ToDictionary(key => key, key => definitions[key].Select(def => new DeviceDefinitionModel(def)));
         }
 
+        /// <summary>
+        /// Execute an action on a device
+        /// </summary>
+        /// <param name="device">The device to execute the action on.</param>
+        /// <param name="func">The function to execute.</param>
+        /// <returns>No content. Or an error.</returns>
         [HttpPut]
         [Route("exec/{device}/{func}")]
         public async Task Execute(Guid device, string func)

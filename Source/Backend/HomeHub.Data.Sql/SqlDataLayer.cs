@@ -334,7 +334,7 @@ namespace HomeHub.Data.Sql
             while (reader.Read())
             {
                 var dev = (Guid)reader["device"];
-                var func = new DeviceFunction((string)reader["name"]);
+                var func = new DeviceFunction((string)reader["name"], (FunctionArgumentType)(int)reader["argumenttype"]);
 
                 if (false == functions.ContainsKey(dev))
                 {

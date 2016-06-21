@@ -1,4 +1,7 @@
-﻿CREATE TABLE [hub].[device]
+﻿/*
+* Stores user's devices.
+*/
+CREATE TABLE [hub].[device]
 (
     [id] UNIQUEIDENTIFIER NOT NULL
    ,[home] UNIQUEIDENTIFIER NOT NULL
