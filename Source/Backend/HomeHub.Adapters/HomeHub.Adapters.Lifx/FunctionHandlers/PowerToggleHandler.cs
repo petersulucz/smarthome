@@ -1,0 +1,25 @@
+﻿namespace HomeHub.Adapters.Lifx.FunctionHandlers
+{
+    using System;
+    using System.Net.Http;
+    using System.Threading.Tasks;
+
+    using HomeHub.Adapters.Common;
+    using HomeHub.Common.Devices;
+
+    /// <summary>
+    /// The power toggle handler.
+    /// </summary>
+    internal class PowerToggleHandler : FunctionHandler
+    {
+        public PowerToggleHandler()
+            : base(new DeviceFunction("power"))
+        {
+        }
+
+        protected override Task execute(UserContext context, LifxMetaData meta, HttpClient client)
+        {
+            throw new NotImplementedException();
+        }
+    }
+}

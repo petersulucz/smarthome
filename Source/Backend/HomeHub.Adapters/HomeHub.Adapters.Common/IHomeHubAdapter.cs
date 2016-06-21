@@ -16,28 +16,33 @@
         string Manufacturer { get; }
 
         /// <summary>
+        /// Check if two devices are the same devices within griddle
+        /// </summary>
+        /// <param name="a">The a.</param>
+        /// <param name="b">The b.</param>
+        /// <returns>
+        /// True if the devices are the same physical device. False otherwise.
+        /// </returns>
+        bool Compare(DeviceImport a, DeviceImport b);
+
+        /// <summary>
         /// The get devices.
         /// </summary>
+        /// <param name="context">The user context.</param>
         /// <returns>
-        /// The <see cref="Task"/>.
+        /// A task.
         /// </returns>
         Task<IEnumerable<DeviceImport>> GetDevices(UserContext context);
 
         /// <summary>
-        /// The execute function.
+        /// Execute a function on a device
         /// </summary>
-        /// <param name="context">
-        /// The context.
-        /// </param>
-        /// <param name="deviceData">
-        /// The device data.
-        /// </param>
-        /// <param name="function">
-        /// The function.
-        /// </param>
+        /// <param name="context">The user context.</param>
+        /// <param name="deviceData">The device data.</param>
+        /// <param name="function">The function to execute.</param>
         /// <returns>
-        /// The <see cref="Task"/>.
+        /// A task.
         /// </returns>
-        Task ExecuteFunction(UserContext context, DeviceImport deviceData, string function);
+        Task ExecuteFunction(UserContext context, DeviceImport deviceData, DeviceFunction function);
     }
 }

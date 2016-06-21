@@ -1,20 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace HomeHub.Adapters.Lifx
+﻿namespace HomeHub.Adapters.Lifx
 {
+    using System;
+    using System.Collections.Generic;
     using System.ComponentModel.Composition;
-    using System.Net.Http;
-    using System.Net.Http.Headers;
+    using System.Linq;
+    using System.Net;
     using System.Threading;
+    using System.Threading.Tasks;
 
     using HomeHub.Adapters.Common;
+    using HomeHub.Adapters.Lifx.FunctionHandlers;
     using HomeHub.Common.Devices;
+    using HomeHub.Common.Exceptions;
 
     using Newtonsoft.Json.Linq;
+
+    using static HomeHub.Common.Trace.HomeHubEventSource;
 
     [Export(typeof(IHomeHubAdapter))]
     public class LifxAdapter : IHomeHubAdapter
@@ -25,63 +26,73 @@ namespace HomeHub.Adapters.Lifx
         string IHomeHubAdapter.Manufacturer => "lifx";
 
         /// <summary>
+        /// Check if two devices are the same devices within griddle
+        /// </summary>
+        /// <param name="a">The a.</param>
+        /// <param name="b">The b.</param>
+        /// <returns>
+        /// True if the devices are the same physical device. False otherwise.
+        /// </returns>
+        public bool Compare(DeviceImport a, DeviceImport b)
+        {
+            var aData = LifxMetaData.FromString(a.MetaData);
+            var bData = LifxMetaData.FromString(b.MetaData);
+
+            return string.Equals(aData.Id, bData.Id, StringComparison.Ordinal)
+                   && string.Equals(aData.UUID, bData.UUID, StringComparison.Ordinal);
+        }
+
+        /// <summary>
         /// The get devices.
         /// </summary>
+        /// <param name="context">The user context.</param>
         /// <returns>
-        /// The <see cref="Task"/>.
+        /// A task.
         /// </returns>
         public async Task<IEnumerable<DeviceImport>> GetDevices(UserContext context)
         {
             var token = context.GetLogin("appkey");
-            var str = await LifxAdapter.Get(new Uri("https://api.lifx.com/v1/lights/all"), token, CancellationToken.None);
-
-            var lightJsonArray = JArray.Parse(str);
-
             var lights = new List<DeviceImport>();
 
-            foreach (var lightJson in lightJsonArray)
+            // Ask lifx for all data
+            using (var client = Helpers.GetClient(token))
             {
-                var name = lightJson["label"].ToString();
+                var response = await client.GetAsync(new Uri("https://api.lifx.com/v1/lights/all"), CancellationToken.None);
 
-                var descriptor = lightJson["product"]["identifier"].ToString();
+                if (response.StatusCode != HttpStatusCode.OK)
+                {
+                    Log.Error($"Failed to retreive devices");
+                    ExceptionUtility.ThrowFailureException($"Could not load data for user.");
+                }
 
-                var meta = new LifxMetaData(lightJson["id"].ToString(), lightJson["uuid"].ToString());
+                var str = await response.Content.ReadAsStringAsync();
 
-                lights.Add(new DeviceImport(name, descriptor, meta.GetXmlString()));
+                // We are only getting lights
+                var lightJsonArray = JArray.Parse(str);
+
+                lights.AddRange(lightJsonArray.Select(Helpers.LoadFromJson));
             }
 
             return lights;
         }
 
-        public async Task ExecuteFunction(UserContext context, DeviceImport deviceData, string function)
+        /// <summary>
+        /// Execute a function on a device
+        /// </summary>
+        /// <param name="context">The user context.</param>
+        /// <param name="deviceData">The device data.</param>
+        /// <param name="function">The function to execute.</param>
+        /// <returns>
+        /// A task.
+        /// </returns>
+        public Task ExecuteFunction(UserContext context, DeviceImport deviceData, DeviceFunction function)
         {
-            var token = context.GetLogin("appkey");
+            // Get the device meta for execute
             var meta = LifxMetaData.FromString(deviceData.MetaData);
-            await Post(new Uri($"https://api.lifx.com/v1/lights/{meta.Id}/toggle"), token, CancellationToken.None);
+
+            return Handlers.ExecuteFunction(context, meta, function);
         }
 
-        private static async Task<string> Get(Uri uri, string bearerToken, CancellationToken token)
-        {
-            using (var client = new HttpClient())
-            {
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("text/json"));
-                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", bearerToken);
-                var result = await client.GetAsync(uri, token);
-                var str = await result.Content.ReadAsStringAsync();
-                return await result.Content.ReadAsStringAsync();
-            }
-        }
 
-        private static async Task<string> Post(Uri uri, string bearerToken, CancellationToken token)
-        {
-            using (var client = new HttpClient())
-            {
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("text/json"));
-                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", bearerToken);
-                var result = await client.PostAsync(uri, new StringContent(String.Empty), token);
-                var str = await result.Content.ReadAsStringAsync();
-                return await result.Content.ReadAsStringAsync();
-            }
-        }
     }
 }

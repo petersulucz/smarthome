@@ -15,21 +15,23 @@
         /// The add account.
         /// </summary>
         /// <param name="user">The user.</param>
+        /// <param name="home">The home.</param>
         /// <param name="manufacturer">The manufacturer.</param>
         /// <param name="loginMeta">The login meta.</param>
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
-        Task<UserContext> AddAccount(Guid user, string manufacturer, Dictionary<string, string> loginMeta);
+        Task<UserContext> AddAccount(Guid user, Guid home, string manufacturer, Dictionary<string, string> loginMeta);
 
         /// <summary>
         /// The get account.
         /// </summary>
         /// <param name="user">The user.</param>
+        /// <param name="home">The home this is attached too.</param>
         /// <param name="manufacturer">The manufacturer.</param>
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
-        Task<UserContext> GetAccount(Guid user, string manufacturer);
+        Task<UserContext> GetAccount(Guid user, Guid home, string manufacturer);
     }
 }

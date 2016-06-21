@@ -19,7 +19,7 @@ namespace HomeHub.Service.Common.Data
         /// <returns>On completion</returns>
         public static async Task<IEnumerable<Device>>  LinkAccount(Guid user, Guid home, string manufacturer, Dictionary<string, string> loginMeta)
         {
-            var context = await DataLayer.Accounts.AddAccount(user, manufacturer, loginMeta);
+            var context = await DataLayer.Accounts.AddAccount(user, home, manufacturer, loginMeta);
             var devices = await DataLayer.AdapterManager.AdapterMap[manufacturer].GetDevices(context);
 
             var definitionsDict = await DataLayer.Instance.GetDefinitions();
