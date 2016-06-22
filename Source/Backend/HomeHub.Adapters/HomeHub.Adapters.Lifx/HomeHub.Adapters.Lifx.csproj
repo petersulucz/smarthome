@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FunctionHandlers\ColorHandler.cs" />
     <Compile Include="FunctionHandlers\FunctionHandler.cs" />
     <Compile Include="FunctionHandlers\Handlers.cs" />
     <Compile Include="FunctionHandlers\PowerToggleHandler.cs" />

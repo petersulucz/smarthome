@@ -203,6 +203,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HomesController.cs" />
     <Compile Include="Controllers\TestController.cs" />
+    <Compile Include="Models\FunctionArgumentModel.cs" />
     <Compile Include="Models\Manufacturer\LifxAccount.cs" />
     <Compile Include="Pipeline\Filters\FailureExceptionFilter.cs" />
     <Compile Include="Global.asax.cs">

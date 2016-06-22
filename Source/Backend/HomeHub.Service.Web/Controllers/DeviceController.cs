@@ -13,6 +13,7 @@ namespace HomeHub.Service.Web.Controllers
     using HomeHub.Service.Common.Data;
     using HomeHub.Service.Common.Models;
     using HomeHub.Service.Common.Security;
+    using HomeHub.Service.Web.Models;
     using HomeHub.Service.Web.Pipeline.Filters;
 
     /// <summary>
@@ -77,13 +78,14 @@ namespace HomeHub.Service.Web.Controllers
         /// </summary>
         /// <param name="device">The device to execute the action on.</param>
         /// <param name="func">The function to execute.</param>
+        /// <param name="argument">The argument. If no argument. Can pass either empty, or no body</param>
         /// <returns>No content. Or an error.</returns>
         [HttpPut]
         [Route("exec/{device}/{func}")]
-        public async Task Execute(Guid device, string func)
+        public async Task Execute([FromUri] Guid device, [FromUri] string func, [FromBody] FunctionArgumentModel argument)
         {
             var user = HttpContext.Current.User.Identity.UserId();
-            await DeviceManager.ExecuteAction(user, device, func);
+            await DeviceManager.ExecuteAction(user, device, func, argument?.Argument);
         }
     }
 }

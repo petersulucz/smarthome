@@ -48,6 +48,7 @@
     <Compile Include="Devices\FunctionArgumentType.cs" />
     <Compile Include="Disposable.cs" />
     <Compile Include="Exceptions\DataOperationException.cs" />
+    <Compile Include="Exceptions\InvalidArgumentException.cs" />
     <Compile Include="Exceptions\NotFoundException.cs" />
     <Compile Include="Exceptions\UnauthorizedDataAccessException.cs" />
     <Compile Include="Exceptions\DuplicateItemException.cs" />
