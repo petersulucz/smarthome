@@ -82,15 +82,16 @@
         /// <param name="context">The user context.</param>
         /// <param name="deviceData">The device data.</param>
         /// <param name="function">The function to execute.</param>
+        /// <param name="argument">The argument to the function</param>
         /// <returns>
         /// A task.
         /// </returns>
-        public Task ExecuteFunction(UserContext context, DeviceImport deviceData, DeviceFunction function)
+        public Task ExecuteFunction(UserContext context, DeviceImport deviceData, DeviceFunction function, object argument)
         {
             // Get the device meta for execute
             var meta = LifxMetaData.FromString(deviceData.MetaData);
 
-            return Handlers.ExecuteFunction(context, meta, function);
+            return Handlers.ExecuteFunction(context, meta, function, argument);
         }
 
 

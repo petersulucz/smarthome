@@ -40,9 +40,10 @@
         /// <param name="context">The user context.</param>
         /// <param name="deviceData">The device data.</param>
         /// <param name="function">The function to execute.</param>
+        /// <param name="argument">The funciton argument</param>
         /// <returns>
         /// A task.
         /// </returns>
-        Task ExecuteFunction(UserContext context, DeviceImport deviceData, DeviceFunction function);
+        Task ExecuteFunction(UserContext context, DeviceImport deviceData, DeviceFunction function, object argument);
     }
 }

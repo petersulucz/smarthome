@@ -50,6 +50,7 @@
     <Compile Include="Data\DeviceDataLayer.cs" />
     <Compile Include="Data\DeviceManager.cs" />
     <Compile Include="Helpers\IPAddressHelper.cs" />
+    <Compile Include="Helpers\Typeconverter.cs" />
     <Compile Include="Models\ActionArgumentModel.cs" />
     <Compile Include="Models\Devices\DeviceActionModel.cs" />
     <Compile Include="Models\Devices\DeviceDefinitionModel.cs" />

@@ -598,12 +598,13 @@
             The <see cref="T:System.Threading.Tasks.Task"/>.
             </returns>
         </member>
-        <member name="M:HomeHub.Service.Web.Controllers.DeviceController.Execute(System.Guid,System.String)">
+        <member name="M:HomeHub.Service.Web.Controllers.DeviceController.Execute(System.Guid,System.String,HomeHub.Service.Web.Models.FunctionArgumentModel)">
             <summary>
             Execute an action on a device
             </summary>
             <param name="device">The device to execute the action on.</param>
             <param name="func">The function to execute.</param>
+            <param name="argument">The argument. If no argument. Can pass either empty, or no body</param>
             <returns>No content. Or an error.</returns>
         </member>
         <member name="T:HomeHub.Service.Web.Controllers.HomeController">
@@ -662,6 +663,16 @@
             Get a test string
             </summary>
             <returns>A test string</returns>
+        </member>
+        <member name="T:HomeHub.Service.Web.Models.FunctionArgumentModel">
+            <summary>
+            An argument
+            </summary>
+        </member>
+        <member name="P:HomeHub.Service.Web.Models.FunctionArgumentModel.Argument">
+            <summary>
+            The argument
+            </summary>
         </member>
         <member name="T:HomeHub.Service.Web.Models.Manufacturer.LifxAccount">
             <summary>

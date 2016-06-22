@@ -6,20 +6,24 @@
 
     using HomeHub.Common.Devices;
     using HomeHub.Common.Exceptions;
+    using HomeHub.Service.Common.Helpers;
 
     /// <summary>
-    /// The device amanager.
+    /// The device a manager.
     /// </summary>
     public static class DeviceManager
     {
+
         /// <summary>
-        /// Execute an action on a device
+        /// Execute an action. Delegates to the proper API.
         /// </summary>
-        /// <param name="user">The user of the device</param>
-        /// <param name="device">The device id</param>
-        /// <param name="function">The function</param>
-        /// <returns>Nothing</returns>
-        public static async Task ExecuteAction(Guid user, Guid device, string function)
+        /// <param name="user">The user id.</param>
+        /// <param name="device">The device id.</param>
+        /// <param name="function">The function to call.</param>
+        /// <param name="argument">The argument.</param>
+        /// <returns>An async task.</returns>
+        /// <exception cref="NotFoundException">If the device or user is not found.</exception>
+        public static async Task ExecuteAction(Guid user, Guid device, string function, string argument)
         {
             // Get the target device
             var target = await DataLayer.Instance.GetDevice(user, device);
@@ -39,10 +43,12 @@
             var adapter = DataLayer.AdapterManager.AdapterMap[target.Definition.Manufacturer];
 
             // Execute the function on the device
-            await adapter.ExecuteFunction(
-                context,
-                new DeviceImport(target.Name, target.Definition.Product, target.Meta),
-                func);
+            await
+                adapter.ExecuteFunction(
+                    context,
+                    new DeviceImport(target.Name, target.Definition.Product, target.Meta),
+                    func,
+                    Typeconverter.Convert(func.ArgumentType, argument));
         }
     }
 }

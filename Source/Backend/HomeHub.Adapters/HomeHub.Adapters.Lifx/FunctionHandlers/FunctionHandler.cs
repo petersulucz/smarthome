@@ -25,11 +25,11 @@
         /// </summary>
         public string Key { get; private set; }
 
-        public Task Execute(UserContext context, LifxMetaData meta)
+        public Task Execute(UserContext context, LifxMetaData meta, object argument)
         {
             var client = Helpers.GetClient(context.GetLogin("appkey"));
 
-            return this.execute(context, meta, client).ContinueWith(
+            return this.execute(context, meta, argument, client).ContinueWith(
                 result =>
                     {
                         client.Dispose();
@@ -42,8 +42,9 @@
         /// </summary>
         /// <param name="context">The user context info.</param>
         /// <param name="meta">The metadata</param>
+        /// <param name="argument">The argument.</param>
         /// <param name="client">The http client.</param>
         /// <returns>A task.</returns>
-        protected abstract Task execute(UserContext context, LifxMetaData meta, HttpClient client);
+        protected abstract Task execute(UserContext context, LifxMetaData meta, object argument, HttpClient client);
     }
 }

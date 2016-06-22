@@ -17,7 +17,7 @@
         {
         }
 
-        protected override Task execute(UserContext context, LifxMetaData meta, HttpClient client)
+        protected override Task execute(UserContext context, LifxMetaData meta, object argument, HttpClient client)
         {
             return client.PostAsync($"https://api.lifx.com/v1/lights/{meta.Id}/toggle", new StringContent(String.Empty));
         }
