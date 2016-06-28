@@ -1,17 +1,39 @@
 ﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px;
+    margin: 0;
+    padding: 0;
+    font-family: monospace;
 }
 
-/* Set padding to keep content from hitting the edges */
-.body-content {
-    padding-left: 15px;
-    padding-right: 15px;
+.center-flex {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
 
-/* Set width on the form input elements since they're 100% wide by default */
-input,
-select,
-textarea {
-    max-width: 280px;
+.slide-title{
+    width: 100vw;
+    height: 100vh;
+}
+.slide-content {
+    width: 100vw;
+}
+.maintitle {
+    font-size: 3em;
+}
+
+.apibutton {
+    padding: 10px 20px 10px 20px;
+    -ms-border-radius: 5px;
+    border-radius: 5px;
+    background-color:red;
+    color: white;
+    text-decoration: none;
+    border-color: whitesmoke;
+    border-style: solid;
+    border-width: 1px;
+}
+.apibutton:hover {
+    background-color: darkred;
 }

@@ -1,4 +1,67 @@
-﻿<div class="jumbotron">
-    <h1>Welcome to griddle.</h1>
-    <p>To talk to griddle, please use pancake</p>
+﻿<div class="slide-title center-flex">
+    <div>
+        <h1 class="maintitle">griddle</h1>
+    </div>
+</div>
+<div class="slide-content center-flex">
+    <div style="max-width: 70vw">
+        <p>
+            We are proud to announce that we support the following manufacturers
+        </p>
+        <ul>
+            lifx --> yup just that one
+        </ul>
+        <p>
+            Griddle is the front end of the home devices managment application. The UI is currently under development.
+            You can check out how things are doing over on github.
+        </p>
+        <blockquote>
+            Griddles fantastic source code is available at: https://github.com/petersulucz/smarthome
+        </blockquote>
+        <p>
+            Griddle is just a sweet web api, so if you need to use it, you can either get real good with Fiddler, or try out the UI.
+            The UI is not done yet, but the source is available on github.
+        </p>
+        <blockquote>
+            Pancake source code is available at http://github.com/justaniles/smart-home-portal
+        </blockquote>
+        <p>
+            If you have gotten this far, you have probably realized that the only reason I am still typing is to fill up space on the page so it doesn't look so empty.
+            SO, here comes a sweet spec on how this thing actually works
+        </p>
+        <p>
+            Lets get started.<br/><br/>
+
+            Griddle: This thing is called griddle because the UI is called pancake... and when once chooses to make a pancake,
+            one uses a griddle.<br/><br/>
+
+            To get started:
+            You need to create an account with us. If I remember what I wrote, you probably need an email and a password.
+            We do some password magic, so if you forget your password, its never coming back.
+            Once you have all that going for you, we send back a token. Every single request from then on needs a token stuck to it.
+            We look for the header 'sh-auth: ~token~' in every single request. Yea cool right, invented my own header for no reason.
+            <br/>
+            <br/>
+
+            Home:
+            A home is just the name for a group of objects. A home can have multiple users attached to it.
+            To add smart devices to a home, you will need to give us credentials to your smart home device manufacturer account.
+            Currently supported devices live in a list on this page.
+            <br/>
+            <br/>
+            Device:
+            Exactly what it sounds like. A smart home device.
+            <br/>
+            <br/>
+            Device Definition:
+            This is the product 'what device we are controlling'. This is pretty much the brand name of your smart device
+            <br/>
+            <br/>
+            Device Function:
+            The set of functions on each device that we support.
+            I know, I realize that some of your things can do more than just the supported functions.
+            I really just thought it was better for the world if we left Lifx's "spooky mode" out of it.
+        </p>
+    </div>
+    @Html.ActionLink("API", "Index", "Help", new { area = "" }, new {@class = "apibutton"})
 </div>
