@@ -47,10 +47,13 @@ AS
 
         -- Get the functions for the device
         SELECT
-            func.device
+            map.device
            ,func.name
-        FROM hub.devicefunction func
-        WHERE func.device = @definition
+           ,func.argumenttype
+        FROM hub.devicefunctionmapping map
+        JOIN hub.functiondefinition func
+          ON func.id = map.[function]
+        WHERE map.device = @definition
 
         -- Get the device definition
         SELECT
