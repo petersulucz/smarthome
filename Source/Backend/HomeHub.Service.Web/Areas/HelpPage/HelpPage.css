@@ -1,14 +1,12 @@
-.help-page h1,
-.help-page .h1,
-.help-page h2,
-.help-page .h2,
-.help-page h3,
-.help-page .h3,
-#body.help-page,
-.help-page-table th,
-.help-page-table pre,
-.help-page-table p {
-    font-family: "Segoe UI Light", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
+body {
+    font-family: monospace;
+}
+
+.back-link {
+    padding: 10px 20px 10px 20px;
+    font-size: 5em;
+    text-decoration: none;
+    color: blue;
 }
 
 .help-page pre.wrapped {
@@ -29,13 +27,13 @@
 .help-page-table {
     width: 100%;
     border-collapse: collapse;
-    text-align: left;
     margin: 0px 0px 20px 0px;
     border-top: 1px solid #D4D4D4;
+    text-align: center;
 }
 
 .help-page-table th {
-    text-align: left;
+    text-align: center;
     font-weight: bold;
     border-bottom: 1px solid #D4D4D4;
     padding: 5px 6px 5px 6px;
@@ -80,10 +78,12 @@
     background: #FFFFFF;
     border: 2px solid #D4D4D4;
     margin: 0px 0px 10px 0px;
+    text-align: left;
 }
 
 .help-page .api-name {
     width: 40%;
+    text-align: right;
 }
 
 .help-page .api-documentation {
@@ -131,4 +131,12 @@
 .help-page a {
     color: #0000EE;
     text-decoration: none;
+}
+
+.main-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
