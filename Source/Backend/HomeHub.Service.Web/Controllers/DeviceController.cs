@@ -17,20 +17,23 @@ namespace HomeHub.Service.Web.Controllers
     using HomeHub.Service.Web.Pipeline.Filters;
 
     /// <summary>
-    /// The controller for devices
+    /// This is the controller for all devices. It is used to access and perform operations on each device.
+    /// This is probably one of the most important controllers to use. 
     /// </summary>
     [RequireCredentials]
     [RoutePrefix("device")]
     public class DeviceController : ApiController
     {
         /// <summary>
-        /// Get all of your devices
+        /// Get all of your devices attached to a home.
+        /// To come, add some sort of search functionality here.
+        /// Maybe then finally justin will be happy. But for now, gets every device attached to a home.
         /// </summary>
-        /// <param name="home">Id of the home to get devices for</param>
-        /// <returns>A list of all devices</returns>
+        /// <param name="home">The guid for the home to list all of the devices for.</param>
+        /// <returns>A list of all devices. Includes their definitions and functions and stuff.</returns>
         [HttpGet]
         [Route("{home}")]
-        public async Task<IEnumerable<DeviceModel>> GetDevices(Guid home)
+        public async Task<IEnumerable<DeviceModel>> GetDevices([FromUri] Guid home)
         {
             // who knows wtf they are trying to do. throw exception
             if (default(Guid) == home)

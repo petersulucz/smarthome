@@ -116,7 +116,7 @@
         </member>
         <member name="T:HomeHub.Service.Common.Models.Devices.DeviceDefinitionModel">
             <summary>
-            The device definition model.
+            This is the model for the physical device. It is what we see the device as, and what the supported function are.
             </summary>
         </member>
         <member name="M:HomeHub.Service.Common.Models.Devices.DeviceDefinitionModel.#ctor(HomeHub.Common.Devices.DeviceDefinition)">
@@ -127,27 +127,27 @@
         </member>
         <member name="P:HomeHub.Service.Common.Models.Devices.DeviceDefinitionModel.Functions">
             <summary>
-            The functions that this device is capable of
+            The functions that this device is capable of performing. This may not be all of the functions. But its all the functions we support so deal with it.
             </summary>
         </member>
         <member name="P:HomeHub.Service.Common.Models.Devices.DeviceDefinitionModel.Type">
             <summary>
-            The type of this device
+            The type of this device. This is a string. LIGHT, TV whatever
             </summary>
         </member>
         <member name="P:HomeHub.Service.Common.Models.Devices.DeviceDefinitionModel.Manufacturer">
             <summary>
-            The manufacturer of this device
+            The manufacturer name of this device
             </summary>
         </member>
         <member name="P:HomeHub.Service.Common.Models.Devices.DeviceDefinitionModel.Id">
             <summary>
-            The id of this defintion
+            The unique identifier for this definition
             </summary>
         </member>
         <member name="T:HomeHub.Service.Common.Models.Devices.DeviceFunctionModel">
             <summary>
-            The device function model.
+            The device funtion model. This represents all of the functions which a device is capable of performing.
             </summary>
         </member>
         <member name="M:HomeHub.Service.Common.Models.Devices.DeviceFunctionModel.#ctor(HomeHub.Common.Devices.DeviceFunction)">
@@ -163,12 +163,13 @@
         </member>
         <member name="P:HomeHub.Service.Common.Models.Devices.DeviceFunctionModel.ArgumentType">
             <summary>
-            The argument type of the function.
+            The argument type of the function. This is the actual value type that this takes. STRING, INT, DOUBLE
             </summary>
         </member>
         <member name="T:HomeHub.Service.Common.Models.Devices.DeviceModel">
             <summary>
-            Represents a device
+            This models a device in terms of of smart home. This contains information, along with all of the functions which are supported.
+            Also the actual product definition for this device are actually included in this thing.
             </summary>
         </member>
         <member name="M:HomeHub.Service.Common.Models.Devices.DeviceModel.#ctor(HomeHub.Common.Devices.Device)">
@@ -179,27 +180,30 @@
         </member>
         <member name="P:HomeHub.Service.Common.Models.Devices.DeviceModel.Id">
             <summary>
-            The device id
+            The unique identifier for this device.
+            This is just a guid. It has nothing to do with the product.
+            It is just a way for us to address this thing.
             </summary>
         </member>
         <member name="P:HomeHub.Service.Common.Models.Devices.DeviceModel.Name">
             <summary>
-            The name of this device
+            The name of this device. Need I say more. This is the name you give the device.
             </summary>
         </member>
         <member name="P:HomeHub.Service.Common.Models.Devices.DeviceModel.Home">
             <summary>
-            The home this device references
+            THe unique identifier for the home which this device belongs too.
             </summary>
         </member>
         <member name="P:HomeHub.Service.Common.Models.Devices.DeviceModel.Description">
             <summary>
-            The description of this device
+            The string description for this device. For now this field is always blank.
             </summary>
         </member>
         <member name="P:HomeHub.Service.Common.Models.Devices.DeviceModel.Definition">
             <summary>
-            The definition of the device
+            The definition model for this device.
+            This contains information about what this device is and what functions it supports.
             </summary>
         </member>
         <member name="T:HomeHub.Service.Common.Models.Homes.HomeMembershipModel">
@@ -334,23 +338,25 @@
         </member>
         <member name="M:HomeHub.Service.Common.Models.Security.AuthenticationToken.#ctor(HomeHub.Data.Common.Models.Security.AuthenticationToken)">
             <summary>
+            Initializes a new instance of the <see cref="T:HomeHub.Service.Common.Models.Security.AuthenticationToken"/> class. 
             Gets a new authentication token
             </summary>
-            <param name="token"></param>
+            <param name="token">The token we are using.</param>
         </member>
         <member name="P:HomeHub.Service.Common.Models.Security.AuthenticationToken.Token">
             <summary>
-            The token
+            The actual token. This is a base64 encoded binary string. Its 512 bits of binary, which is 64 bytes.
+            Not exactly sure what this translates to, but its probably something like 87 characters.
             </summary>
         </member>
         <member name="P:HomeHub.Service.Common.Models.Security.AuthenticationToken.Expiration">
             <summary>
-            The expiration date in UTC
+            The expiration date of the token in UTC. 
             </summary>
         </member>
         <member name="P:HomeHub.Service.Common.Models.Security.AuthenticationToken.Claims">
             <summary>
-            The list of claims
+            The list of claims for the user.
             </summary>
         </member>
         <member name="T:HomeHub.Service.Common.Models.Security.User">

@@ -1,9 +1,9 @@
-﻿using HomeHub.Common.Devices;
-
-namespace HomeHub.Service.Common.Models.Devices
+﻿namespace HomeHub.Service.Common.Models.Devices
 {
+    using HomeHub.Common.Devices;
+
     /// <summary>
-    /// The device function model.
+    /// The device funtion model. This represents all of the functions which a device is capable of performing.
     /// </summary>
     public class DeviceFunctionModel
     {
@@ -23,7 +23,7 @@ namespace HomeHub.Service.Common.Models.Devices
         public string Name { get; set; }
 
         /// <summary>
-        /// The argument type of the function.
+        /// The argument type of the function. This is the actual value type that this takes. STRING, INT, DOUBLE
         /// </summary>
         public string ArgumentType { get; set; }
     }

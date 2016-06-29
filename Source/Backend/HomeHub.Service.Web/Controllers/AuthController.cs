@@ -11,7 +11,7 @@
     using HomeHub.Service.Common.Models.Security;
 
     /// <summary>
-    /// Controller for authentication stuff
+    /// This is the controller for doing authentication related things.
     /// </summary>
     [RoutePrefix("auth")]
     public class AuthController : ApiController
