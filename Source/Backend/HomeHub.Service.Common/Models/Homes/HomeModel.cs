@@ -1,11 +1,13 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
-using HomeHub.Data.Common.Models.Homes;
-
-namespace HomeHub.Service.Common.Models.Homes
+﻿namespace HomeHub.Service.Common.Models.Homes
 {
+    using System;
+    using System.ComponentModel.DataAnnotations;
+
+    using HomeHub.Data.Common.Models.Homes;
+
     /// <summary>
-    /// The home model.
+    /// Our idea of a home, which just contains basic information. Pretty much just a grouping object
+    /// We could add more stuff to this... Like for example who has access to the home. But ill get to that later.
     /// </summary>
     public class HomeModel
     {
@@ -23,25 +25,26 @@ namespace HomeHub.Service.Common.Models.Homes
         }
 
         /// <summary>
-        /// Gets or sets the id of the home
+        /// The unique identifier for the home.
+        /// This can be used to ... uniquely identify a home
         /// </summary>
         [Required]
         public Guid Id { get; set; }
 
         /// <summary>
-        /// Gets or sets the name.
+        /// The name of the home.
         /// </summary>
         [MaxLength(256)]
         [Required]
         public string Name { get; set; }
 
         /// <summary>
-        /// Gets or sets the created date time in UTC.
+        /// The time that this home was created in UTC
         /// </summary>
         public DateTime Created { get; set; }
 
         /// <summary>
-        /// Conver to a common home.
+        /// Convert to a common home.
         /// </summary>
         /// <returns>
         /// The <see cref="Home"/>.

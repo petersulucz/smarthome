@@ -43,15 +43,21 @@
         }
 
         /// <summary>
-        ///     Get all of the homes you have access to
+        /// Get all of the homes which you have access too. Takes an optional search parameter
         /// </summary>
-        /// <returns>All the homes you have access to</returns>
+        /// <param name="name">
+        /// Optional query parameter to search for a specific name.
+        /// This search is not case sensitive.
+        /// </param>
+        /// <returns>
+        /// All the homes you have access to, filtered by search.
+        /// </returns>
         [HttpGet]
         [Route("")]
-        public async Task<IEnumerable<HomeModel>> GetHomes()
+        public async Task<IEnumerable<HomeModel>> GetHomes([FromUri] string name)
         {
-            var guid = System.Web.HttpContext.Current.User.Identity.UserId();
-            return (await DataLayer.Instance.GetHomes(guid)).Select(h => new HomeModel(h));
+            var user = System.Web.HttpContext.Current.User.Identity.UserId();
+            return await HomeManager.GetHomes(user, name);
         }
 
         /// <summary>
