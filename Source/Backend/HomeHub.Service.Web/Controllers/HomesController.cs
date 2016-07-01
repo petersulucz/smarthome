@@ -55,7 +55,7 @@
         /// </returns>
         [HttpGet]
         [Route("")]
-        public async Task<IEnumerable<HomeModel>> GetHomes([FromUri] string name)
+        public async Task<IEnumerable<HomeModel>> GetHomes([FromUri] string name = null)
         {
             var user = System.Web.HttpContext.Current.User.Identity.UserId();
             return await HomeManager.GetHomes(user, name);
