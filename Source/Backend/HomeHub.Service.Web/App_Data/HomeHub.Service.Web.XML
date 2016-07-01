@@ -633,7 +633,8 @@
         </member>
         <member name="T:HomeHub.Service.Web.Controllers.HomesController">
             <summary>
-                Stuff with homes
+            This is the main interface for home stuff. Getting homes, access control etc.
+            Uses this to figure out what you have access too and to create homes and stuff.
             </summary>
         </member>
         <member name="M:HomeHub.Service.Web.Controllers.HomesController.CreateHome(HomeHub.Service.Common.Models.Homes.NewHomeModel)">
@@ -643,11 +644,17 @@
             <param name="newHome">The new home object</param>
             <returns>The new home result</returns>
         </member>
-        <member name="M:HomeHub.Service.Web.Controllers.HomesController.GetHomes">
+        <member name="M:HomeHub.Service.Web.Controllers.HomesController.GetHomes(System.String)">
             <summary>
-                Get all of the homes you have access to
+            Get all of the homes which you have access too. Takes an optional search parameter
             </summary>
-            <returns>All the homes you have access to</returns>
+            <param name="name">
+            Optional query parameter to search for a specific name.
+            This search is not case sensitive.
+            </param>
+            <returns>
+            All the homes you have access to, filtered by search.
+            </returns>
         </member>
         <member name="M:HomeHub.Service.Web.Controllers.HomesController.GetUsers(System.Guid)">
             <summary>

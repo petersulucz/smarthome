@@ -15,7 +15,8 @@
     using HomeHub.Service.Web.Pipeline.Filters;
 
     /// <summary>
-    ///     Stuff with homes
+    /// This is the main interface for home stuff. Getting homes, access control etc.
+    /// Uses this to figure out what you have access too and to create homes and stuff.
     /// </summary>
     [RoutePrefix("homes")]
     [RequireCredentials]

@@ -79,6 +79,19 @@
             <returns>An async task.</returns>
             <exception cref="T:HomeHub.Common.Exceptions.NotFoundException">If the device or user is not found.</exception>
         </member>
+        <member name="T:HomeHub.Service.Common.Data.HomeManager">
+            <summary>
+            The home manager
+            </summary>
+        </member>
+        <member name="M:HomeHub.Service.Common.Data.HomeManager.GetHomes(System.Guid,System.String)">
+            <summary>
+            Get homes for a user
+            </summary>
+            <param name="user">The id of the user</param>
+            <param name="name">The name of the home</param>
+            <returns>The task which gets the homes</returns>
+        </member>
         <member name="T:HomeHub.Service.Common.Helpers.Typeconverter">
             <summary>
             The typeconverter.
@@ -254,7 +267,8 @@
         </member>
         <member name="T:HomeHub.Service.Common.Models.Homes.HomeModel">
             <summary>
-            The home model.
+            Our idea of a home, which just contains basic information. Pretty much just a grouping object
+            We could add more stuff to this... Like for example who has access to the home. But ill get to that later.
             </summary>
         </member>
         <member name="M:HomeHub.Service.Common.Models.Homes.HomeModel.#ctor(HomeHub.Data.Common.Models.Homes.Home)">
@@ -267,22 +281,23 @@
         </member>
         <member name="P:HomeHub.Service.Common.Models.Homes.HomeModel.Id">
             <summary>
-            Gets or sets the id of the home
+            The unique identifier for the home.
+            This can be used to ... uniquely identify a home
             </summary>
         </member>
         <member name="P:HomeHub.Service.Common.Models.Homes.HomeModel.Name">
             <summary>
-            Gets or sets the name.
+            The name of the home.
             </summary>
         </member>
         <member name="P:HomeHub.Service.Common.Models.Homes.HomeModel.Created">
             <summary>
-            Gets or sets the created date time in UTC.
+            The time that this home was created in UTC
             </summary>
         </member>
         <member name="M:HomeHub.Service.Common.Models.Homes.HomeModel.ToHome">
             <summary>
-            Conver to a common home.
+            Convert to a common home.
             </summary>
             <returns>
             The <see cref="T:HomeHub.Data.Common.Models.Homes.Home"/>.
