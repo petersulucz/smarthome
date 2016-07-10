@@ -2,6 +2,7 @@
 {
     using System;
     using System.Net.Http;
+    using System.Net.Http.Headers;
     using System.Threading.Tasks;
 
     using HomeHub.Adapters.Common;
@@ -36,7 +37,9 @@
 
             var colorStr = "#" + colorInt.ToString("X6");
 
-            var result = await client.PostAsync(uri, new StringContent($"{{\"color\" = \"{colorStr}\"}}"));
+            var content = new StringContent($"{{\"color\": \"{colorStr}\"}}");
+            content.Headers.ContentType = new MediaTypeHeaderValue("text/json");
+            var result = await client.PutAsync(uri, content);
 
             result.EnsureSuccessStatusCode();
 

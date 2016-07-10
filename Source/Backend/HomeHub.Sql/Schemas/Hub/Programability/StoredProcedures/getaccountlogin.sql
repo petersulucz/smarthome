@@ -1,16 +1,14 @@
-﻿CREATE PROCEDURE [hub].[getaccountlogin]
+﻿CREATE PROCEDURE [hub].[getaccountlogins]
     @user UNIQUEIDENTIFIER
    ,@home UNIQUEIDENTIFIER
-   ,@manufacturer NVARCHAR(128)
 AS
-    DECLARE @manId INT
 
-    SELECT @manId = [id]
-    FROM [hub].[devicemanufacturer]
-    WHERE [name] = @manufacturer
-
-    SELECT [meta]
-    FROM [hub].[accountcredentials]
-    WHERE [user] = @user AND [manufacturer] = @manId AND [home] = @home
+    SELECT cred.[meta]
+          ,man.[name] AS manufacturer
+          ,cred.[user]
+    FROM [hub].[accountcredentials] cred
+    JOIN [hub].[devicemanufacturer] man
+      ON cred.[manufacturer] = man.[id]
+    WHERE cred.[home] = @home
 
 RETURN 0

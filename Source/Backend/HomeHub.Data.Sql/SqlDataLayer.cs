@@ -539,26 +539,30 @@ namespace HomeHub.Data.Sql
             return usercontext;
         }
 
-        async Task<UserContext> IAccountLayer.GetAccount(Guid user, Guid home, string manufacturer)
+        async Task<IEnumerable<UserContext>> IAccountLayer.GetAccount(Guid user, Guid home)
         {
             return await this.connectionManager.ExecuteSql(
-                "hub.getaccountlogin",
+                "hub.getaccountlogins",
                 collection =>
                     {
                         collection.AddWithValue("user", user);
                         collection.AddWithValue("home", home);
-                        collection.AddWithValue("manufacturer", manufacturer);
                     },
                 reader =>
                     {
-                        reader.Read();
-                        var meta = (string)reader["meta"];
+                        var contexts = new List<UserContext>();
+                        while (reader.Read())
+                        {
+                            var meta = (string)reader["meta"];
+                            var manufacturer = (string)reader["manufacturer"];
+                            var accountUser = (Guid)reader["user"];
 
-                        var doc = XDocument.Parse(meta);
-                        var usercontext = new UserContext(user, manufacturer, null);
-                        usercontext.Load(doc);
-
-                        return usercontext;
+                            var doc = XDocument.Parse(meta);
+                            var usercontext = new UserContext(accountUser, manufacturer, null);
+                            usercontext.Load(doc);
+                            contexts.Add(usercontext);
+                        }
+                        return contexts;
                     },
                 this.tokenSource.Token);
         }

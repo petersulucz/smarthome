@@ -109,5 +109,6 @@
   <ItemGroup>
     <None Include="HomeHub.Sql.publish.xml" />
     <None Include="errors.sql" />
+    <None Include="HomeHub_1.Sql.publish.xml" />
   </ItemGroup>
 </Project>

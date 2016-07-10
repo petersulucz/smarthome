@@ -45,13 +45,12 @@
             try
             {
                 var extem = await DataLayer.Instance.GetAllDevices(user, home);
-                existing = extem.Select(e => new DeviceImport(e.Name, e.Definition.Product, e.Meta));
+                existing = extem.Select(e => new DeviceImport(e.Name, e.Definition.Product, e.Meta, null));
             }
             catch
             { 
                 // nothing
             }
-
 
             var output = new List<Device>();
             foreach (var device in devices)

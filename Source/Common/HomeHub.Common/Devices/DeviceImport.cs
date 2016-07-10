@@ -5,12 +5,18 @@
     /// </summary>
     public class DeviceImport
     {
-        public DeviceImport(string name, string deviceDescriptor, string metaData)
+        public DeviceImport(string name, string deviceDescriptor, string metaData, DeviceState state)
         {
             this.MetaData = metaData;
             this.DeviceDescriptor = deviceDescriptor;
             this.Name = name;
+            this.DeviceState = state;
         }
+
+        /// <summary>
+        /// Gets the device state.
+        /// </summary>
+        public DeviceState DeviceState { get; private set; }
 
         /// <summary>
         /// Gets the name.

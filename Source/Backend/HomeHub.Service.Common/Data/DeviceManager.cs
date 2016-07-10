@@ -29,7 +29,7 @@
             var target = await DataLayer.Instance.GetDevice(user, device);
 
             // Get the assosciated account
-            var context = await DataLayer.Accounts.GetAccount(user, target.Home, target.Definition.Manufacturer);
+            var context = (await DataLayer.Accounts.GetAccount(user, target.Home)).FirstOrDefault(account => account.Manufacturer.Equals(target.Definition.Manufacturer));
 
             // Find the function
             var func = target.Definition.Functions.FirstOrDefault(f => string.Equals(f.Name, function, StringComparison.OrdinalIgnoreCase));
@@ -46,7 +46,7 @@
             await
                 adapter.ExecuteFunction(
                     context,
-                    new DeviceImport(target.Name, target.Definition.Product, target.Meta),
+                    new DeviceImport(target.Name, target.Definition.Product, target.Meta, null),
                     func,
                     Typeconverter.Convert(func.ArgumentType, argument));
         }

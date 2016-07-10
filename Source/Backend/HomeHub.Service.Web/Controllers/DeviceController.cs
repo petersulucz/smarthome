@@ -33,7 +33,7 @@ namespace HomeHub.Service.Web.Controllers
         /// <returns>A list of all devices. Includes their definitions and functions and stuff.</returns>
         [HttpGet]
         [Route("{home}")]
-        public async Task<IEnumerable<DeviceModel>> GetDevices([FromUri] Guid home)
+        public Task<IEnumerable<DeviceModel>> GetDevices([FromUri] Guid home)
         {
             // who knows wtf they are trying to do. throw exception
             if (default(Guid) == home)
@@ -42,9 +42,7 @@ namespace HomeHub.Service.Web.Controllers
             }
 
             var user = HttpContext.Current.User.Identity.UserId();
-            var devs = await DataLayer.Instance.GetAllDevices(user, home);
-
-            return devs.Select(d => new DeviceModel(d));
+            return DeviceDataLayer.GetDevices(home, user);
         }
 
         /// <summary>

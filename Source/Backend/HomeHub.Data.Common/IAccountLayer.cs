@@ -28,10 +28,9 @@
         /// </summary>
         /// <param name="user">The user.</param>
         /// <param name="home">The home this is attached too.</param>
-        /// <param name="manufacturer">The manufacturer.</param>
         /// <returns>
         /// The <see cref="Task"/>.
         /// </returns>
-        Task<UserContext> GetAccount(Guid user, Guid home, string manufacturer);
+        Task<IEnumerable<UserContext>> GetAccount(Guid user, Guid home);
     }
 }

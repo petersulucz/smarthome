@@ -27,6 +27,11 @@
         }
 
         /// <summary>
+        /// Gets the state.
+        /// </summary>
+        public DeviceState State { get; private set; }
+
+        /// <summary>
         /// Gets the id.
         /// </summary>
         public Guid Id { get; private set; }

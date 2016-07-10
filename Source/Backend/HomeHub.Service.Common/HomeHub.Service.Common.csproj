@@ -57,6 +57,8 @@
     <Compile Include="Models\Devices\DeviceDefinitionModel.cs" />
     <Compile Include="Models\Devices\DeviceFunctionModel.cs" />
     <Compile Include="Models\Devices\DeviceModel.cs" />
+    <Compile Include="Models\Devices\DeviceStateModel.cs" />
+    <Compile Include="Models\Devices\Lights\LightStateModel.cs" />
     <Compile Include="Models\Homes\HomeMembershipModel.cs" />
     <Compile Include="Models\Homes\HomeModel.cs" />
     <Compile Include="Models\NewDeviceModel.cs" />

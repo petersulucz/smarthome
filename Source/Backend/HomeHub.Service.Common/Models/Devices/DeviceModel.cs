@@ -17,13 +17,15 @@
         /// Initializes a new instance of the <see cref="DeviceModel"/> class. 
         /// </summary>
         /// <param name="device">The device</param>
-        public DeviceModel(Device device)
+        /// <param name="state">The current state of the device</param>
+        public DeviceModel(Device device, DeviceStateModel state)
         {
             this.Id = device.Id;
             this.Name = device.Name;
             this.Home = device.Home;
             this.Description = device.Description;
             this.Definition = new DeviceDefinitionModel(device.Definition);
+            this.State = state;
         }
 
         /// <summary>
@@ -58,5 +60,10 @@
         /// This contains information about what this device is and what functions it supports.
         /// </summary>
         public DeviceDefinitionModel Definition { get; set; }
+
+        /// <summary>
+        /// The current state of the device
+        /// </summary>
+        public DeviceStateModel State { get; set; }
     }
 }

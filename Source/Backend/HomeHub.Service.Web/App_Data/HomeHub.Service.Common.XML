@@ -63,6 +63,14 @@
             </summary>
             <returns>The device definitions</returns>
         </member>
+        <member name="M:HomeHub.Service.Common.Data.DeviceDataLayer.GetDevices(System.Guid,System.Guid)">
+            <summary>
+            Get all devices
+            </summary>
+            <param name="home">The home</param>
+            <param name="user">The user</param>
+            <returns>All of the devices for a home</returns>
+        </member>
         <member name="T:HomeHub.Service.Common.Data.DeviceManager">
             <summary>
             The device a manager.
@@ -185,11 +193,12 @@
             Also the actual product definition for this device are actually included in this thing.
             </summary>
         </member>
-        <member name="M:HomeHub.Service.Common.Models.Devices.DeviceModel.#ctor(HomeHub.Common.Devices.Device)">
+        <member name="M:HomeHub.Service.Common.Models.Devices.DeviceModel.#ctor(HomeHub.Common.Devices.Device,HomeHub.Service.Common.Models.Devices.DeviceStateModel)">
             <summary>
             Initializes a new instance of the <see cref="T:HomeHub.Service.Common.Models.Devices.DeviceModel"/> class. 
             </summary>
             <param name="device">The device</param>
+            <param name="state">The current state of the device</param>
         </member>
         <member name="P:HomeHub.Service.Common.Models.Devices.DeviceModel.Id">
             <summary>
@@ -217,6 +226,56 @@
             <summary>
             The definition model for this device.
             This contains information about what this device is and what functions it supports.
+            </summary>
+        </member>
+        <member name="P:HomeHub.Service.Common.Models.Devices.DeviceModel.State">
+            <summary>
+            The current state of the device
+            </summary>
+        </member>
+        <member name="T:HomeHub.Service.Common.Models.Devices.DeviceStateModel">
+            <summary>
+            The model which shows the device state
+            </summary>
+        </member>
+        <member name="M:HomeHub.Service.Common.Models.Devices.DeviceStateModel.#ctor(HomeHub.Common.Devices.DeviceState)">
+            <summary>
+            Initializes a new instance of the <see cref="T:HomeHub.Service.Common.Models.Devices.DeviceStateModel"/> class. 
+            </summary>
+            <param name="state">
+            </param>
+        </member>
+        <member name="P:HomeHub.Service.Common.Models.Devices.DeviceStateModel.Type">
+            <summary>
+            Gets the type of the device. Whether it is a light or whatever
+            </summary>
+        </member>
+        <member name="P:HomeHub.Service.Common.Models.Devices.DeviceStateModel.IsConnected">
+            <summary>
+            Gets whether the device can currently be reached
+            </summary>
+        </member>
+        <member name="P:HomeHub.Service.Common.Models.Devices.DeviceStateModel.IsOn">
+            <summary>
+            Gets whether the device is powered
+            </summary>
+        </member>
+        <member name="T:HomeHub.Service.Common.Models.Devices.Lights.LightStateModel">
+            <summary>
+            The light state model.
+            </summary>
+        </member>
+        <member name="M:HomeHub.Service.Common.Models.Devices.Lights.LightStateModel.#ctor(HomeHub.Common.Devices.Light.LightState)">
+            <summary>
+            Initializes a new instance of the <see cref="T:HomeHub.Service.Common.Models.Devices.Lights.LightStateModel"/> class. 
+            </summary>
+            <param name="state">
+            The current state of the device
+            </param>
+        </member>
+        <member name="P:HomeHub.Service.Common.Models.Devices.Lights.LightStateModel.Color">
+            <summary>
+            Gets the current color of the light
             </summary>
         </member>
         <member name="T:HomeHub.Service.Common.Models.Homes.HomeMembershipModel">
