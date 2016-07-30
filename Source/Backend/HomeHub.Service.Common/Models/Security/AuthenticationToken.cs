@@ -44,7 +44,7 @@ namespace HomeHub.Service.Common.Models.Security
 
         /// <summary>
         /// The actual token. This is a base64 encoded binary string. Its 512 bits of binary, which is 64 bytes.
-        /// Not exactly sure what this translates to, but its probably something like 87 characters.
+        /// Not exactly sure what this translates to, but its probably something like 86 characters.
         /// </summary>
         public string Token { get; set; }
 

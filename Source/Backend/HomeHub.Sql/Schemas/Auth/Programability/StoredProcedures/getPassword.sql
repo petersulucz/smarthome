@@ -6,4 +6,6 @@ AS
        ,[salt]
        ,[password]
     FROM auth.[identity]
+    WHERE [email] = @email
+
 RETURN 0
