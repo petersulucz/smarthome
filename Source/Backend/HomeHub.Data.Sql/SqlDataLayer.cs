@@ -16,7 +16,6 @@ namespace HomeHub.Data.Sql
     using HomeHub.Common.Exceptions;
     using HomeHub.Common.Trace;
     using HomeHub.Data.Common;
-    using HomeHub.Data.Common.Models;
     using HomeHub.Data.Common.Models.Security;
     using HomeHub.Data.Common.Security;
 
