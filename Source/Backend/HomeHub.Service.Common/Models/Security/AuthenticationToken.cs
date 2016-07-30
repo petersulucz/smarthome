@@ -32,13 +32,12 @@ namespace HomeHub.Service.Common.Models.Security
             }
             else
             {
-                foreach (var role in Enum.GetValues(typeof(UserRoles)))
-                {
-                    if (token.Claims.HasFlag((UserRoles) role))
-                    {
-                        claims.Add(((UserRoles)role).ToString());
-                    }
-                }
+                claims.AddRange(
+                    from UserRoles role in Enum.GetValues(typeof(UserRoles))
+                    where default(UserRoles) != role
+                    where token.Claims.HasFlag(role)
+                    select role.ToString());
+
                 this.Claims = claims;
             }
         }
