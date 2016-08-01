@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Data;
     using System.Threading.Tasks;
 
     using HomeHub.Data.Common;
@@ -115,6 +116,10 @@
             return homeMembership;
         }
 
+        private static Home ReadHome(IDataRecord reader)
+        {
+            return new Home((string)reader["name"], (DateTime)reader["created"], (Guid)reader["id"]);
+        }
 
     }
 }

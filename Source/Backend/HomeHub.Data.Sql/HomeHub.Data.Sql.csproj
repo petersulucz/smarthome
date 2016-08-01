@@ -41,6 +41,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SqlDataLayer.DeviceDefinitions.cs" />
+    <Compile Include="SqlDataLayer.Devices.cs" />
     <Compile Include="SqlDataLayer.Homes.cs" />
     <Compile Include="SqlDataLayer.Security.cs" />
     <Compile Include="SqlConnectionManager.cs" />
