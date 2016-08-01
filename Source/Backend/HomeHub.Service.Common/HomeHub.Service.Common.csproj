@@ -72,6 +72,10 @@
     <Compile Include="Security\HubPrincipal.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Common\HomeHub.Common.Security\HomeHub.Common.Security.csproj">
+      <Project>{E3D3BF71-3125-4C13-9559-3ADF7787DBFB}</Project>
+      <Name>HomeHub.Common.Security</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Common\HomeHub.Common\HomeHub.Common.csproj">
       <Project>{548DFDAD-2214-4BD5-9CE6-C3264E4089AB}</Project>
       <Name>HomeHub.Common</Name>

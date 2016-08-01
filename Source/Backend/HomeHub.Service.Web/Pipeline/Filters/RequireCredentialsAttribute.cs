@@ -10,6 +10,7 @@
     using System.Web.Http.Controllers;
     using System.Web.Http.Filters;
 
+    using HomeHub.Common.Security;
     using HomeHub.Data.Common.Models.Security;
     using HomeHub.Data.Common.Security;
     using HomeHub.Service.Common.Data;
@@ -70,16 +71,18 @@
             // Get ip to log
             var ip = IPAddressHelper.GetIPAddress(actionContext.Request);
 
+            var token = new AccountToken(header);
+
             try
             {
-                user = await DataLayer.Security.GetUser(header, ip, TimeSpan.FromMinutes(5));
+                user = await DataLayer.Security.GetUser(token, ip, TimeSpan.FromMinutes(5));
             }
             catch (UnauthorizedAccessException)
             {
                 return RequireCredentialsAttribute.UnauthorizedResponse();
             }
 
-            var identity = new HubIdentity(user, header);
+            var identity = new HubIdentity(user, token);
 
             var principal = new HubPrincipal(identity);
 

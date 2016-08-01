@@ -19,5 +19,6 @@ namespace HomeHub.Service.Common.Security
 
             throw new NotImplementedException("One of our developers has screwed up and this will not work.");
         }
+
     }
 }

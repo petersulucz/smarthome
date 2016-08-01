@@ -4,15 +4,16 @@ using HomeHub.Data.Common.Security;
 
 namespace HomeHub.Service.Common.Security
 {
+    using HomeHub.Common.Security;
     using HomeHub.Data.Common.Models.Security;
 
     public class HubIdentity : IIdentity
     {
         private readonly User user;
 
-        private readonly string token;
+        private readonly AccountToken token;
 
-        public HubIdentity(User user, string token)
+        public HubIdentity(User user, AccountToken token)
         {
             this.user = user;
             this.token = token;
@@ -31,6 +32,6 @@ namespace HomeHub.Service.Common.Security
 
         public Guid UserId => this.user.Id;
 
-        public string Token => this.token;
+        public AccountToken Token => this.token;
     }
 }

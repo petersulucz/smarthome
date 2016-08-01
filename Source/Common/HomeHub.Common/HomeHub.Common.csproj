@@ -49,6 +49,7 @@
     <Compile Include="Devices\FunctionArgumentType.cs" />
     <Compile Include="Devices\Light\LightState.cs" />
     <Compile Include="Disposable.cs" />
+    <Compile Include="Exceptions\BadTokenException.cs" />
     <Compile Include="Exceptions\DataOperationException.cs" />
     <Compile Include="Exceptions\InvalidArgumentException.cs" />
     <Compile Include="Exceptions\NotFoundException.cs" />

@@ -41,10 +41,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SqlDataLayer.Homes.cs" />
+    <Compile Include="SqlDataLayer.Security.cs" />
     <Compile Include="SqlConnectionManager.cs" />
     <Compile Include="SqlDataLayer.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Common\HomeHub.Common.Security\HomeHub.Common.Security.csproj">
+      <Project>{E3D3BF71-3125-4C13-9559-3ADF7787DBFB}</Project>
+      <Name>HomeHub.Common.Security</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Common\HomeHub.Common\HomeHub.Common.csproj">
       <Project>{548dfdad-2214-4bd5-9ce6-c3264e4089ab}</Project>
       <Name>HomeHub.Common</Name>
@@ -57,6 +63,9 @@
       <Project>{1799ee42-505b-4b16-ab01-4c2c57d28ee1}</Project>
       <Name>HomeHub.Data.Common</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="SqlDataLayer.Accounts.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -21,7 +21,7 @@
             On completion
             </returns>
         </member>
-        <member name="M:HomeHub.Service.Common.Data.AccountManager.RevokeToken(System.Guid,System.String)">
+        <member name="M:HomeHub.Service.Common.Data.AccountManager.RevokeToken(System.Guid,HomeHub.Common.Security.AccountToken)">
             <summary>
             Revoke a token
             </summary>

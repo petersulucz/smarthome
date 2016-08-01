@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace HomeHub.Data.Common
+﻿namespace HomeHub.Data.Common
 {
+    using System;
+    using System.Net;
+    using System.Threading.Tasks;
+
+    using HomeHub.Common.Security;
     using HomeHub.Data.Common.Models.Security;
 
     public interface ISecurityLayer
@@ -15,9 +13,9 @@ namespace HomeHub.Data.Common
 
         Task<AuthenticationToken> LoginUser(UserPass userpass, IPAddress ip);
 
-        Task<User> GetUser(string token, IPAddress ip, TimeSpan expiration);
+        Task<User> GetUser(AccountToken token, IPAddress ip, TimeSpan expiration);
 
-        Task RevokeToken(Guid user, string token);
+        Task RevokeToken(Guid user, AccountToken token);
 
         Task RevokeAllToken(Guid user);
     }

@@ -6,6 +6,7 @@
     using System.Threading.Tasks;
 
     using HomeHub.Common.Devices;
+    using HomeHub.Common.Security;
 
     using static HomeHub.Common.Trace.HomeHubEventSource;
 
@@ -78,7 +79,7 @@
         /// <param name="user">The user to revoke for</param>
         /// <param name="token">The token to revoke</param>
         /// <returns>An async task</returns>
-        public static Task RevokeToken(Guid user, string token)
+        public static Task RevokeToken(Guid user, AccountToken token)
         {
             return DataLayer.Security.RevokeToken(user, token);
         }
