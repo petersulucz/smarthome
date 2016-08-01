@@ -72,14 +72,14 @@
 
             try
             {
-                user = await DataLayer.Security.GetUser(header, ip);
+                user = await DataLayer.Security.GetUser(header, ip, TimeSpan.FromMinutes(5));
             }
             catch (UnauthorizedAccessException)
             {
                 return RequireCredentialsAttribute.UnauthorizedResponse();
             }
 
-            var identity = new HubIdentity(user);
+            var identity = new HubIdentity(user, header);
 
             var principal = new HubPrincipal(identity);
 

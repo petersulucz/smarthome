@@ -10,7 +10,6 @@ AS
     DECLARE @result INT             = 0
     DECLARE @error NVARCHAR(2048)   = NULL
     DECLARE @UtcNow     DATETIME2   = GETUTCDATE()
-    DECLARE @expiration DATETIME2   = DATEADD(DAY, 10, @UtcNow)
 
     -- find the user id
     SELECT
@@ -31,7 +30,6 @@ AS
         (
              @id
             ,@token
-            ,@expiration
             ,@UtcNow
         )
 
@@ -43,7 +41,6 @@ AS
     SELECT
         @id AS id
        ,@token AS token
-       ,@expiration AS expiration
        ,@UtcNow AS assigned
 
     SELECT

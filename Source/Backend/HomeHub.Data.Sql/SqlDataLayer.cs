@@ -379,15 +379,14 @@ namespace HomeHub.Data.Sql
                         ExceptionUtility.ThrowArgumentExceptionIfFalse(reader.Read(), "Could not create user");
                         return new AuthenticationToken
                                         {
-                                            Claims = roles, 
-                                            Expiration = (DateTime)reader["expiration"], 
+                                            Claims = roles,
                                             Token = Convert.ToBase64String(token)
                                         };
                     }, 
                 this.tokenSource.Token);
         }
 
-        async Task<User> ISecurityLayer.GetUser(string token, IPAddress ip)
+        async Task<User> ISecurityLayer.GetUser(string token, IPAddress ip, TimeSpan expiration)
         {
             var bytes = Convert.FromBase64String(token);
 
@@ -397,6 +396,7 @@ namespace HomeHub.Data.Sql
                     {
                         parameters.AddWithValue("token", bytes);
                         parameters.AddWithValue("ip", PasswordHelper.GetIPAddressInSqlForm(ip));
+                        parameters.AddWithValue("expiration", (int)expiration.TotalMinutes);
                     }, 
                 reader =>
                     {
@@ -435,6 +435,29 @@ namespace HomeHub.Data.Sql
             }
 
             return result;
+        }
+
+        async Task ISecurityLayer.RevokeToken(Guid user, string token)
+        {
+            var bytes = Convert.FromBase64String(token);
+            await
+                this.connectionManager.ExecuteSql(
+                    "auth.revoketoken",
+                    collection =>
+                        {
+                            collection.AddWithValue("id", user);
+                            collection.AddWithValue("token", bytes);
+                        },
+                    CancellationToken.None);
+        }
+
+        async Task ISecurityLayer.RevokeAllToken(Guid user)
+        {
+            await
+                this.connectionManager.ExecuteSql(
+                    "auth.revokealltoken",
+                    collection => { collection.AddWithValue("id", user); },
+                    CancellationToken.None);
         }
 
         async Task<AuthenticationToken> ISecurityLayer.LoginUser(UserPass userpass, IPAddress ip)
@@ -495,7 +518,6 @@ namespace HomeHub.Data.Sql
                         id = (Guid)reader["id"];
                         newToken = (byte[])reader["token"];
                         assigned = (DateTime)reader["assigned"];
-                        expiration = (DateTime)reader["expiration"];
 
                         reader.NextResult();
 
@@ -510,8 +532,7 @@ namespace HomeHub.Data.Sql
             return new AuthenticationToken
                        {
                            Token = Convert.ToBase64String(newToken), 
-                           Claims = claims, 
-                           Expiration = expiration
+                           Claims = claims,
                        };
         }
 

@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeHub.Adapters.Common", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeHub.Adapters.Lifx", "..\..\Source\Backend\HomeHub.Adapters\HomeHub.Adapters.Lifx\HomeHub.Adapters.Lifx.csproj", "{50E2BD4A-4BB7-42DE-997A-E807F253D46F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeHub.Common.Security", "..\..\Source\Common\HomeHub.Common.Security\HomeHub.Common.Security.csproj", "{E3D3BF71-3125-4C13-9559-3ADF7787DBFB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -167,6 +169,22 @@ Global
 		{50E2BD4A-4BB7-42DE-997A-E807F253D46F}.Release|x64.Build.0 = Release|Any CPU
 		{50E2BD4A-4BB7-42DE-997A-E807F253D46F}.Release|x86.ActiveCfg = Release|Any CPU
 		{50E2BD4A-4BB7-42DE-997A-E807F253D46F}.Release|x86.Build.0 = Release|Any CPU
+		{E3D3BF71-3125-4C13-9559-3ADF7787DBFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E3D3BF71-3125-4C13-9559-3ADF7787DBFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E3D3BF71-3125-4C13-9559-3ADF7787DBFB}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{E3D3BF71-3125-4C13-9559-3ADF7787DBFB}.Debug|ARM.Build.0 = Debug|Any CPU
+		{E3D3BF71-3125-4C13-9559-3ADF7787DBFB}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{E3D3BF71-3125-4C13-9559-3ADF7787DBFB}.Debug|x64.Build.0 = Debug|Any CPU
+		{E3D3BF71-3125-4C13-9559-3ADF7787DBFB}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{E3D3BF71-3125-4C13-9559-3ADF7787DBFB}.Debug|x86.Build.0 = Debug|Any CPU
+		{E3D3BF71-3125-4C13-9559-3ADF7787DBFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E3D3BF71-3125-4C13-9559-3ADF7787DBFB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E3D3BF71-3125-4C13-9559-3ADF7787DBFB}.Release|ARM.ActiveCfg = Release|Any CPU
+		{E3D3BF71-3125-4C13-9559-3ADF7787DBFB}.Release|ARM.Build.0 = Release|Any CPU
+		{E3D3BF71-3125-4C13-9559-3ADF7787DBFB}.Release|x64.ActiveCfg = Release|Any CPU
+		{E3D3BF71-3125-4C13-9559-3ADF7787DBFB}.Release|x64.Build.0 = Release|Any CPU
+		{E3D3BF71-3125-4C13-9559-3ADF7787DBFB}.Release|x86.ActiveCfg = Release|Any CPU
+		{E3D3BF71-3125-4C13-9559-3ADF7787DBFB}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

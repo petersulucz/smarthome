@@ -15,6 +15,10 @@ namespace HomeHub.Data.Common
 
         Task<AuthenticationToken> LoginUser(UserPass userpass, IPAddress ip);
 
-        Task<User> GetUser(string token, IPAddress ip);
+        Task<User> GetUser(string token, IPAddress ip, TimeSpan expiration);
+
+        Task RevokeToken(Guid user, string token);
+
+        Task RevokeAllToken(Guid user);
     }
 }

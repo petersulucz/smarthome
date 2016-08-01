@@ -21,6 +21,21 @@
             On completion
             </returns>
         </member>
+        <member name="M:HomeHub.Service.Common.Data.AccountManager.RevokeToken(System.Guid,System.String)">
+            <summary>
+            Revoke a token
+            </summary>
+            <param name="user">The user to revoke for</param>
+            <param name="token">The token to revoke</param>
+            <returns>An async task</returns>
+        </member>
+        <member name="M:HomeHub.Service.Common.Data.AccountManager.RevokeAllToken(System.Guid)">
+            <summary>
+            Revoke all of the tokens for a user
+            </summary>
+            <param name="user">The user</param>
+            <returns>An async task</returns>
+        </member>
         <member name="T:HomeHub.Service.Common.Data.AdapterManager">
             <summary>
             The adapter manager.
@@ -421,11 +436,6 @@
             <summary>
             The actual token. This is a base64 encoded binary string. Its 512 bits of binary, which is 64 bytes.
             Not exactly sure what this translates to, but its probably something like 86 characters.
-            </summary>
-        </member>
-        <member name="P:HomeHub.Service.Common.Models.Security.AuthenticationToken.Expiration">
-            <summary>
-            The expiration date of the token in UTC. 
             </summary>
         </member>
         <member name="P:HomeHub.Service.Common.Models.Security.AuthenticationToken.Claims">

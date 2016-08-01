@@ -16,8 +16,6 @@ AS
     DECLARE @UtcNow     DATETIME2 = GETUTCDATE()
     DECLARE @id         UNIQUEIDENTIFIER = NEWID()
 
-    DECLARE @expiration DATETIME2 = DATEADD(DAY, 10, @UtcNow)
-
     BEGIN TRANSACTION
 
         IF EXISTS (SELECT TOP 1 1 FROM auth.[identity]
@@ -51,7 +49,6 @@ AS
             (
                 @id
                ,@token
-               ,@expiration
                ,@UtcNow
             )
 
@@ -69,7 +66,6 @@ AS
     SELECT
         @id AS id
        ,@token AS token
-       ,@expiration AS expiration
        ,@UtcNow AS assigned
 
 RETURN @result

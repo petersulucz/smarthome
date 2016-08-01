@@ -586,6 +586,19 @@
             If shit is unauthorized. Could be a 401
             </exception>
         </member>
+        <member name="M:HomeHub.Service.Web.Controllers.AuthController.Logout">
+            <summary>
+            Revoke the token which was used to make this request
+            </summary>
+            <returns>No content. Or probably an internal server error.</returns>
+        </member>
+        <member name="M:HomeHub.Service.Web.Controllers.AuthController.Revoke">
+            <summary>
+            Just kill it all. Revoke all tokens which have been assigned to this user.
+            YOU WILL NEVER ENTER AGAIN.
+            </summary>
+            <returns>Nothing.</returns>
+        </member>
         <member name="T:HomeHub.Service.Web.Controllers.DeviceController">
             <summary>
             This is the controller for all devices. It is used to access and perform operations on each device.

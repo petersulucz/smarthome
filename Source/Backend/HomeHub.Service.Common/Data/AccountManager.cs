@@ -71,5 +71,26 @@
             Log.MethodLeave();
             return output;
         }
+
+        /// <summary>
+        /// Revoke a token
+        /// </summary>
+        /// <param name="user">The user to revoke for</param>
+        /// <param name="token">The token to revoke</param>
+        /// <returns>An async task</returns>
+        public static Task RevokeToken(Guid user, string token)
+        {
+            return DataLayer.Security.RevokeToken(user, token);
+        }
+
+        /// <summary>
+        /// Revoke all of the tokens for a user
+        /// </summary>
+        /// <param name="user">The user</param>
+        /// <returns>An async task</returns>
+        public static Task RevokeAllToken(Guid user)
+        {
+            return DataLayer.Security.RevokeAllToken(user);
+        }
     }
 }

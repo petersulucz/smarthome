@@ -22,7 +22,6 @@ namespace HomeHub.Service.Common.Models.Security
         public AuthenticationToken(HomeHub.Data.Common.Models.Security.AuthenticationToken token)
         {
             this.Token = token.Token;
-            this.Expiration = token.Expiration;
 
             var claims = new List<string>();
 
@@ -47,11 +46,6 @@ namespace HomeHub.Service.Common.Models.Security
         /// Not exactly sure what this translates to, but its probably something like 86 characters.
         /// </summary>
         public string Token { get; set; }
-
-        /// <summary>
-        /// The expiration date of the token in UTC. 
-        /// </summary>
-        public DateTime Expiration { get; set; }
 
         /// <summary>
         /// The list of claims for the user.

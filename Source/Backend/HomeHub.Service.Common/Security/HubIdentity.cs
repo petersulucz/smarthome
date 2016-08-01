@@ -10,9 +10,12 @@ namespace HomeHub.Service.Common.Security
     {
         private readonly User user;
 
-        public HubIdentity(User user)
+        private readonly string token;
+
+        public HubIdentity(User user, string token)
         {
             this.user = user;
+            this.token = token;
         }
 
         public User User => this.user;
@@ -27,5 +30,7 @@ namespace HomeHub.Service.Common.Security
         public string Name => $"{this.user.FirstName} {this.user.LastName}";
 
         public Guid UserId => this.user.Id;
+
+        public string Token => this.token;
     }
 }

@@ -1,7 +1,9 @@
 ﻿CREATE PROCEDURE [auth].[getUser]
-    @token  BINARY(64)
-   ,@ip     BINARY(16)
+    @token      BINARY(64)
+   ,@ip         BINARY(16)
+   ,@expiration INT
 AS
+    DECLARE @Unauthorized INT = 50002;
 
     BEGIN TRANSACTION
 
@@ -9,9 +11,15 @@ AS
     BEGIN
         DECLARE @id UNIQUEIDENTIFIER = NULL
 
-        SELECT @id = id
-        FROM auth.token
+        SELECT @id = [id]
+        FROM auth.[token]
         WHERE token = @token
+          AND DATEADD(MINUTE, @expiration, [assigned]) > GETUTCDATE()
+
+        IF (@id IS NULL)
+        BEGIN
+           ;THROW @Unauthorized, N'Token not found', 1
+        END
 
         SELECT 
             usr.[id]

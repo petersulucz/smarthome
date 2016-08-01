@@ -105,10 +105,12 @@
     <Build Include="Schemas\Hub\Index\idx_uncl_manufacturer.sql" />
     <Build Include="Schemas\Hub\Tables\functiondefinition.sql" />
     <Build Include="Schemas\Hub\Tables\devicefunctionmapping.sql" />
+    <Build Include="Schemas\Auth\Programability\StoredProcedures\deleteuser.sql" />
+    <Build Include="Schemas\Auth\Programability\StoredProcedures\revoketoken.sql" />
+    <Build Include="Schemas\Auth\Programability\StoredProcedures\revokealltoken.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="HomeHub.Sql.publish.xml" />
     <None Include="errors.sql" />
-    <None Include="HomeHub_1.Sql.publish.xml" />
   </ItemGroup>
 </Project>
