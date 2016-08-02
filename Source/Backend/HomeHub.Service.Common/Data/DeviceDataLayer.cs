@@ -8,6 +8,7 @@
     using HomeHub.Common;
     using HomeHub.Common.Devices;
     using HomeHub.Common.Devices.Light;
+    using HomeHub.Common.Exceptions;
     using HomeHub.Service.Common.Models.Devices;
     using HomeHub.Service.Common.Models.Devices.Lights;
 
@@ -57,9 +58,14 @@
                 var extem = await DataLayer.Instance.GetAllDevices(user, home);
                 existing = extem.ToDictionary(e => new DeviceImport(e.Name, e.Definition.Product, e.Meta, null));
             }
-            catch
+            catch (UnauthorizedDataAccessException e)
             {
+                throw e;
                 // nothing
+            }
+            catch (Exception)
+            {
+                // Nothin
             }
 
             var tasks = new List<Task<IEnumerable<DeviceModel>>>();

@@ -75,7 +75,7 @@
 
             try
             {
-                user = await DataLayer.Security.GetUser(token, ip, TimeSpan.FromMinutes(5));
+                user = await DataLayer.Security.GetUser(token, ip, TimeSpan.FromDays(5));
             }
             catch (UnauthorizedAccessException)
             {

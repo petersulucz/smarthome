@@ -5,7 +5,7 @@ AS
 
     IF NOT EXISTS (SELECT TOP 1 1 FROM hub.membership WHERE [home] = @home AND [user] = @user)
     BEGIN
-        ;THROW 50002, N'NO ACCESS', 0
+        ;THROW 50002, N'This user has no access to this home.', 0
     END
 
     DECLARE @devices TABLE
