@@ -170,11 +170,14 @@ namespace HomeHub.Data.Sql
                         break;
                     case 50002:
                         // ACCESS DENIED
-                        exRethrow = new UnauthorizedDataAccessException(ex.Message);
+                        exRethrow = new ForbiddenDataAccessException(ex.Message);
                         break;
                     case 50003:
                         // DUPLICATE
                         exRethrow = new DuplicateItemException(ex.Message);
+                        break;
+                    case 50004:
+                        exRethrow = new UnauthorizedDataAccessException(ex.Message);
                         break;
                     default:
                         // Well something horrible has gone wrong

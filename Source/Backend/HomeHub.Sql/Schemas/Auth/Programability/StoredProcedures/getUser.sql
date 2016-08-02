@@ -3,7 +3,7 @@
    ,@ip         BINARY(16)
    ,@expiration INT
 AS
-    DECLARE @Unauthorized INT = 50002;
+    DECLARE @AuthFail INT = 50004;
 
     BEGIN TRANSACTION
 
@@ -18,7 +18,7 @@ AS
 
         IF (@id IS NULL)
         BEGIN
-           ;THROW @Unauthorized, N'Token not found', 1
+           ;THROW @AuthFail, N'Invalid Token', 1
         END
 
         SELECT 

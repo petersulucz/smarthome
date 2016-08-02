@@ -58,7 +58,7 @@
                 var extem = await DataLayer.Instance.GetAllDevices(user, home);
                 existing = extem.ToDictionary(e => new DeviceImport(e.Name, e.Definition.Product, e.Meta, null));
             }
-            catch (UnauthorizedDataAccessException e)
+            catch (ForbiddenDataAccessException e)
             {
                 throw e;
                 // nothing
