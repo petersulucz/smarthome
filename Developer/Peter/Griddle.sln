@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeHub.Adapters.Lifx", "..
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeHub.Common.Security", "..\..\Source\Common\HomeHub.Common.Security\HomeHub.Common.Security.csproj", "{E3D3BF71-3125-4C13-9559-3ADF7787DBFB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeHub.Common.Security.Test", "..\..\Test\HomeHub.Common.Security.Test\HomeHub.Common.Security.Test.csproj", "{7BD2CFC2-76B3-4A2C-B40A-AB4FFF21E5EB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -185,6 +187,22 @@ Global
 		{E3D3BF71-3125-4C13-9559-3ADF7787DBFB}.Release|x64.Build.0 = Release|Any CPU
 		{E3D3BF71-3125-4C13-9559-3ADF7787DBFB}.Release|x86.ActiveCfg = Release|Any CPU
 		{E3D3BF71-3125-4C13-9559-3ADF7787DBFB}.Release|x86.Build.0 = Release|Any CPU
+		{7BD2CFC2-76B3-4A2C-B40A-AB4FFF21E5EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7BD2CFC2-76B3-4A2C-B40A-AB4FFF21E5EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7BD2CFC2-76B3-4A2C-B40A-AB4FFF21E5EB}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{7BD2CFC2-76B3-4A2C-B40A-AB4FFF21E5EB}.Debug|ARM.Build.0 = Debug|Any CPU
+		{7BD2CFC2-76B3-4A2C-B40A-AB4FFF21E5EB}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{7BD2CFC2-76B3-4A2C-B40A-AB4FFF21E5EB}.Debug|x64.Build.0 = Debug|Any CPU
+		{7BD2CFC2-76B3-4A2C-B40A-AB4FFF21E5EB}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{7BD2CFC2-76B3-4A2C-B40A-AB4FFF21E5EB}.Debug|x86.Build.0 = Debug|Any CPU
+		{7BD2CFC2-76B3-4A2C-B40A-AB4FFF21E5EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7BD2CFC2-76B3-4A2C-B40A-AB4FFF21E5EB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7BD2CFC2-76B3-4A2C-B40A-AB4FFF21E5EB}.Release|ARM.ActiveCfg = Release|Any CPU
+		{7BD2CFC2-76B3-4A2C-B40A-AB4FFF21E5EB}.Release|ARM.Build.0 = Release|Any CPU
+		{7BD2CFC2-76B3-4A2C-B40A-AB4FFF21E5EB}.Release|x64.ActiveCfg = Release|Any CPU
+		{7BD2CFC2-76B3-4A2C-B40A-AB4FFF21E5EB}.Release|x64.Build.0 = Release|Any CPU
+		{7BD2CFC2-76B3-4A2C-B40A-AB4FFF21E5EB}.Release|x86.ActiveCfg = Release|Any CPU
+		{7BD2CFC2-76B3-4A2C-B40A-AB4FFF21E5EB}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
