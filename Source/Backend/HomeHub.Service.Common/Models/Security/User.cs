@@ -11,7 +11,8 @@ namespace HomeHub.Service.Common.Models.Security
         /// The first name
         /// </summary>
         [Required]
-        [MaxLength(64)]
+        [MaxLength(64, ErrorMessage = "First Name SHALL BE SHORTER THAN 64 characters")]
+        [MinLength(2, ErrorMessage = "Your name is longer than 1 character.")]
         public string FirstName { get; set; }
 
         /// <summary>

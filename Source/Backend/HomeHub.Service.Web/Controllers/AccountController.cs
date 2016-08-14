@@ -41,5 +41,11 @@
 
             await AccountManager.LinkAccount(user, home, "lifx", dict);
         }
+
+
+        public async Task GetAccounts([FromUri] Guid home)
+        {
+            
+        }
     }
 }

@@ -35,7 +35,6 @@
     <Compile Include="CertificateStore.cs" />
     <Compile Include="Configuration\SecurityConfiguration.cs" />
     <Compile Include="Data\DataTransform.cs" />
-    <Compile Include="Data\TransformationPayload.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

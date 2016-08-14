@@ -13,7 +13,8 @@ namespace HomeHub.Service.Common.Models.Homes
         /// Gets or sets the name.
         /// </summary>
         [Required]
-        [MaxLength(256)]
+        [MaxLength(256, ErrorMessage = "Home name SHALL NOT be longer than 256 characters.")]
+        [MinLength(4, ErrorMessage = "Home name SHALL be longer than 4 characters.")]
         public string Name { get; set; }
 
         /// <summary>

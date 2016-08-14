@@ -11,6 +11,7 @@
     using HomeHub.Service.Common.Helpers;
     using HomeHub.Service.Common.Models.Security;
     using HomeHub.Service.Common.Security;
+    using HomeHub.Service.Web.Exceptions;
     using HomeHub.Service.Web.Pipeline.Filters;
 
     /// <summary>
@@ -28,6 +29,11 @@
         [Route("create")]
         public async Task<AuthenticationToken> CreateAccount(User user)
         {
+            if (false == ModelState.IsValid)
+            {
+                throw new ModelValidationException(this.ModelState);
+            }
+
             var ip = IPAddressHelper.GetIPAddress(this.Request);
             var token = await DataLayer.Security.CreateUser(user.ToSecurityUser(), ip);
 

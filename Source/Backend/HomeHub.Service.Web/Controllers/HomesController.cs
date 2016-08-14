@@ -4,13 +4,16 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Net;
+    using System.Net.Http;
     using System.Threading.Tasks;
+    using System.Web;
     using System.Web.Http;
 
     using HomeHub.Service.Common.Data;
     using HomeHub.Service.Common.Models;
     using HomeHub.Service.Common.Models.Homes;
     using HomeHub.Service.Common.Security;
+    using HomeHub.Service.Web.Exceptions;
     using HomeHub.Service.Web.Models;
     using HomeHub.Service.Web.Pipeline.Filters;
 
@@ -31,6 +34,11 @@
         [Route("")]
         public async Task<HomeModel> CreateHome(NewHomeModel newHome)
         {
+            if (false == ModelState.IsValid)
+            {
+                throw new ModelValidationException(this.ModelState);
+            }
+
             // If no model was sent. Tell people
             if (null == newHome)
             {

@@ -1,17 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace HomeHub.Common.Security.Data
+﻿namespace HomeHub.Common.Security.Data
 {
-    using System.Globalization;
+    using System;
     using System.IO;
     using System.Security.Cryptography;
-    using System.Xml;
-    using System.Xml.Linq;
     using System.Security.Cryptography.X509Certificates;
+    using System.Text;
+    using System.Xml.Linq;
 
     using HomeHub.Common.Security.Configuration;
 
@@ -20,12 +14,33 @@ namespace HomeHub.Common.Security.Data
     /// </summary>
     public static class DataTransform
     {
+        /// <summary>
+        /// The encrypt.
+        /// </summary>
+        /// <param name="payload">
+        /// The payload.
+        /// </param>
+        /// <returns>
+        /// The <see cref="string"/>.
+        /// </returns>
         public static string Encrypt(string payload)
         {
             var key = SecurityConfiguration.Configuration.CertificateFingerprint;
             return DataTransform.Encrypt(key, payload);
         }
 
+        /// <summary>
+        /// The encrypt.
+        /// </summary>
+        /// <param name="fingerprint">
+        /// The fingerprint.
+        /// </param>
+        /// <param name="payload">
+        /// The payload.
+        /// </param>
+        /// <returns>
+        /// The <see cref="string"/>.
+        /// </returns>
         internal static string Encrypt(string fingerprint, string payload)
         {
             using (var store = new CertificateStore(fingerprint))
@@ -70,6 +85,15 @@ namespace HomeHub.Common.Security.Data
             }
         }
 
+        /// <summary>
+        /// The decrypt.
+        /// </summary>
+        /// <param name="payload">
+        /// The payload.
+        /// </param>
+        /// <returns>
+        /// The <see cref="string"/>.
+        /// </returns>
         public static string Decrypt(string payload)
         {
             var doc = XDocument.Parse(payload);

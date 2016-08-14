@@ -17,14 +17,14 @@ namespace HomeHub.Service.Common.Models.Security
         /// The email address
         /// </summary>
         [Required]
-        [EmailAddress]
+        [EmailAddress(ErrorMessage = "Yo email better be valid yo.")]
         public string Email { get; set; }
 
         /// <summary>
         /// The user password
         /// </summary>
         [Required]
-        [MinLength(8, ErrorMessage = "Come on. Atleast 8 characters")]
+        [MinLength(8, ErrorMessage = "Your password is shit.")]
         public string Password { get; set; }
 
         /// <summary>

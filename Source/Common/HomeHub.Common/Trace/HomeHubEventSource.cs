@@ -3,6 +3,7 @@
     using System.Diagnostics;
     using System.Diagnostics.CodeAnalysis;
     using System.Diagnostics.Tracing;
+    using System.Runtime.CompilerServices;
 
     /// <summary>
     /// The home hub event source.
@@ -76,53 +77,49 @@
             this.WriteEvent(2);
         }
 
-        [Event(3, Keywords = Keywords.Diagnostic, Level = EventLevel.Critical)]
+        [Event(3, Message = "{0}", Keywords = Keywords.Diagnostic, Level = EventLevel.Critical)]
         public void Critical(string message)
         {
             this.WriteEvent(3, message);
         }
 
-        [Event(4, Keywords = Keywords.Diagnostic, Level = EventLevel.Error)]
+        [Event(4, Message = "{0}", Keywords = Keywords.Diagnostic, Level = EventLevel.Error)]
         public void Error(string message)
         {
             this.WriteEvent(4, message);
         }
 
-        [Event(5, Keywords = Keywords.Diagnostic, Level = EventLevel.Warning)]
+        [Event(5, Message = "{0}", Keywords = Keywords.Diagnostic, Level = EventLevel.Warning)]
         public void Warning(string message)
         {
             this.WriteEvent(5, message);
         }
 
-        [Event(6, Keywords = Keywords.Diagnostic, Level = EventLevel.Informational)]
+        [Event(6, Message = "{0}", Keywords = Keywords.Diagnostic, Level = EventLevel.Informational)]
         public void Info(string message)
         {
             this.WriteEvent(6, message);
         }
 
-        [Event(7, Keywords = Keywords.Diagnostic, Level = EventLevel.Verbose)]
+        [Event(7, Message = "{0}", Keywords = Keywords.Diagnostic, Level = EventLevel.Verbose)]
         public void Verbose(string message)
         {
             this.WriteEvent(7, message);
         }
 
-        [Event(8, Keywords = Keywords.General, Level = EventLevel.Verbose)]
-        public void MethodEnter()
+        [Event(8, Message = "Method Enter: {0}", Keywords = Keywords.General, Level = EventLevel.Verbose)]
+        public void MethodEnter([CallerMemberName] string method = "")
         {
-            var stack = new StackTrace();
-            var method = stack.GetFrame(1).GetMethod().Name;
             this.WriteEvent(8, method);
         }
 
-        [Event(9, Keywords = Keywords.General, Level = EventLevel.Verbose)]
-        public void MethodLeave()
-        {
-            var stack = new StackTrace();
-            var method = stack.GetFrame(1).GetMethod().Name;
+        [Event(9, Message = "Method Leave: {0}", Keywords = Keywords.General, Level = EventLevel.Verbose)]
+        public void MethodLeave([CallerMemberName] string method = "")
+        { 
             this.WriteEvent(9, method);
         }
 
-        [Event(10, Keywords = Keywords.Data, Level = EventLevel.Verbose)]
+        [Event(10, Message = "Fetching data: {0}", Keywords = Keywords.Data, Level = EventLevel.Verbose)]
         public void FetchingData(string info)
         {
             this.WriteEvent(10, info);

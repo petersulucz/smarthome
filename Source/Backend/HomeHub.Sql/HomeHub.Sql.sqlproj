@@ -69,6 +69,10 @@
     <Folder Include="Schemas\Hub\Programability" />
     <Folder Include="Schemas\Hub\Programability\StoredProcedures" />
     <Folder Include="Schemas\Hub\Index" />
+    <Folder Include="Schemas\Security" />
+    <Folder Include="Schemas\Security\Tables" />
+    <Folder Include="Schemas\Security\Programability" />
+    <Folder Include="Schemas\Security\Programability\StoredProcedures" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Schemas\Hub\hub.sql" />
@@ -108,6 +112,9 @@
     <Build Include="Schemas\Auth\Programability\StoredProcedures\deleteuser.sql" />
     <Build Include="Schemas\Auth\Programability\StoredProcedures\revoketoken.sql" />
     <Build Include="Schemas\Auth\Programability\StoredProcedures\revokealltoken.sql" />
+    <Build Include="Schemas\Security\Tables\asymmetric.sql" />
+    <Build Include="Schemas\Security\Tables\symmetric.sql" />
+    <Build Include="Schemas\Security\security.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="HomeHub.Sql.publish.xml" />

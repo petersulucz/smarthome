@@ -695,6 +695,17 @@
             </summary>
             <returns>A test string</returns>
         </member>
+        <member name="T:HomeHub.Service.Web.Exceptions.ModelValidationException">
+            <summary>
+            A model validation exception
+            </summary>
+        </member>
+        <member name="M:HomeHub.Service.Web.Exceptions.ModelValidationException.#ctor(System.Web.Http.ModelBinding.ModelStateDictionary)">
+            <summary>
+            A model validation exception
+            </summary>
+            <param name="dictionary">The model state</param>
+        </member>
         <member name="T:HomeHub.Service.Web.Models.FunctionArgumentModel">
             <summary>
             An argument
